@@ -181,7 +181,7 @@ class ChordInterval(object):
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
-						if self.__chkEquivalent(tonic, item[0], groupDict[groupNo][0][4], groupDict[groupNo][0][0]):
+						if self.__chkEquivalent(item, groupDict[groupNo][0]):
 							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
 							groupDict[groupNo].append(tuple(newTuple))
 							self._recognizedResultDict[tonic][0][i] = tuple(newTuple)
@@ -201,7 +201,7 @@ class ChordInterval(object):
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
-						if self.__chkEquivalent(tonic, item[0], groupDict[groupNo][0][4], groupDict[groupNo][0][0]):
+						if self.__chkEquivalent(item, groupDict[groupNo][0]):
 							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
 							groupDict[groupNo].append(tuple(newTuple))
 							self._recognizedResultDict[tonic][1][i] = tuple(newTuple)
@@ -221,7 +221,7 @@ class ChordInterval(object):
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
-						if self.__chkEquivalent(tonic, item[0], groupDict[groupNo][0][4], groupDict[groupNo][0][0]):
+						if self.__chkEquivalent(item, groupDict[groupNo][0]):
 							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
 							groupDict[groupNo].append(tuple(newTuple))
 							self._recognizedResultDict[tonic][2][i] = tuple(newTuple)
@@ -234,7 +234,7 @@ class ChordInterval(object):
 						groupCounter += 1
 		self._equivalentGroupDict = groupDict
 
-	def __chkEquivalent(self, targetTonic, targetChord, compareTonic, compareChord):
+	def __chkEquivalent(self, targetChord, compareChord):
 		noteDict = {
 			'C':1, 'C#':2, 'Db':2,
 			'D':3, 'D#':4, 'Eb':4, 'E':5, 'F':6,
@@ -242,87 +242,20 @@ class ChordInterval(object):
 			'A':10, 'A#':11, 'Bb':11, 'B':12, 'Cb':12
 		}
 		romanDict = {
-			'I':1, 'i':1,
-			'bII':2, 'ii':3,
-			'bIII':4, 'iii':5,
-			'IV':6, 'iv':6,
-			'V':8, 'v':8,
-			'bVI':9, 'VI':9, 'vi':10,
-			'bVII':11, 'vii':12
+			'I':1,
+			'bII':2, 'II':3,
+			'bIII':4, 'III':5,
+			'IV':6,
+			'V':8,
+			'bVI':9, 'VI':10,
+			'bVII':11, 'VII':12
 		}
-		targetCtype = None
-		compareCtype = None
-		targetRoman = None
-		compareRoman = None
 
-		if "half-dim " in targetChord or "full-dim " in targetChord or "German" in targetChord or "Italian" in targetChord or "French" in targetChord or "dim " in targetChord:
-			splitResult = re.split("(half-dim |full-dim |German|Italian|French|dim )+", targetChord)
-			Ctype = re.split(splitResult[2], targetChord)
-			targetCtype = Ctype[0]
-			targetChord = splitResult[2]
+		targetSum = (noteDict[targetChord[4]] + romanDict[targetChord[3]])%12
+		compareSum = (noteDict[compareChord[4]] + romanDict[compareChord[3]])%12
 
-		if "7" in targetChord or "6" in targetChord or "4" in targetChord:
-			splitResult = re.split("[0-9]+", targetChord)
-			Ctype = re.split(splitResult[0], targetChord)
-			if targetCtype == None:
-				if "7" in Ctype or "65" in Ctype or "43" in Ctype or "42" in Ctype:
-					targetCtype = "7th"
-				else:
-					targetCtype = "Triad"
-			targetRoman = splitResult[0]
-		else:
-			targetRoman = targetChord
-			if targetCtype == None:
-				targetCtype = "Triad"
-
-		if "7th" in targetCtype or "Triad" in targetCtype:
-			if re.match("[A-Za-z]*[A-Z]+", targetRoman):
-				if targetCtype == "7th":
-					targetCtype = "Major 7th"
-				else:
-					targetCtype = "Major Triad"
-			else:
-				if targetCtype == "7th":
-					targetCtype = "Minor 7th"
-				else:
-					targetCtype = "Minor Triad"
-
-		if "half-dim " in compareChord or "full-dim " in compareChord or "German" in compareChord or "Italian" in compareChord or "French" in compareChord or "dim " in compareChord:
-			splitResult = re.split("(half-dim |full-dim |German|Italian|French|dim )+", compareChord)
-			Ctype = re.split(splitResult[2], compareChord)
-			compareCtype = Ctype[0]
-			compareChord = splitResult[2]
-
-		if "7" in compareChord or "6" in compareChord or "4" in compareChord:
-			splitResult = re.split("[0-9]+", compareChord)
-			Ctype = re.split(splitResult[0], compareChord)
-			if compareCtype == None:
-				if "7" in Ctype or "65" in Ctype or "43" in Ctype or "42" in Ctype:
-					compareCtype = "7th"
-				else:
-					compareCtype = "Triad"
-			compareRoman = splitResult[0]
-		else:
-			compareRoman = compareChord
-			if compareCtype == None:
-				compareCtype = "Triad"
-
-		if "7th" in compareCtype or "Triad" in compareCtype:
-			if re.match("[A-Za-z]*[A-Z]+", compareRoman):
-				if compareCtype == "7th":
-					compareCtype = "Major 7th"
-				else:
-					compareCtype = "Major Triad"
-			else:
-				if compareCtype == "7th":
-					compareCtype = "Minor 7th"
-				else:
-					compareCtype = "Minor Triad"
-
-		if not targetCtype == compareCtype:
+		if not targetChord[1] == compareChord[1]:
 			return False
-		targetSum = (noteDict[targetTonic] + romanDict[targetRoman])%12
-		compareSum = (noteDict[compareTonic] + romanDict[compareRoman])%12
 		if not targetSum == compareSum:
 			return False
 		return True
