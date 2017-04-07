@@ -1,46 +1,37 @@
 from ProgressionBank import ProgressionBank
-from ChordAnalyzingTool import ChordAnalyzingTool
-import copy
 
 class ProgressionVerifier(object):
 	# maybe implement equivalent chord here
 
 
-	def __init__(self, inputList=[], weightedIntervalList=[]):
-		self._inputList = copy.deepcopy(inputList)
-		self._weightedIntervalList = copy.deepcopy(weightedIntervalList)
+	def __init__(self, resultList=[], weightedResult=[], weightedDict=[]):
+		self._resultList = list(resultList)
+		self._weightedResult = weightedResult
+		self._weightedDict = weightedDict
 		self._pBank = ProgressionBank()
-		while len(self._inputList[-1]) == 0:
-			self._inputList.pop()
+		while len(self._resultList[-1]) == 0:
+			self._resultList.pop()
 		self.__produceNextWeightedIntervalDict()
-		self._chordRecognizerDict = self.__generateChordRecognizerDict()
-
-	def __generateChordRecognizerDict(self):
-		recognizers = ChordRecognizer.getAllRecognizers()
-		recognizerDict = {}
-		for recognizer in recognizers:
-			recognizerDict[recognizer.tonic] = recognizer
-		return recognizerDict
 
 	def __transformStructure(self, bar=None, interval=None):
 		# transform result structure to the following
-		# {tonic 1, tonic 2, tonic: [exact 1, exact 2, ("V", groupNo), ..., last exact, poss 1, poss 2, ("V", groupNo), ..., last possible], tonic 4, ...}
-		#                    ^                         ^                                                ^
-		#                 tonic 3                 third exact tuple                                  third poss tuple
+		# {tonic 1, tonic 2, tonic: [exact 1, exact 2, "V", ..., last exact, poss 1, poss 2, "V", ..., last possible], tonic 4, ...}
+		#                    ^                         ^                                     ^
+		#                 tonic 3                 third exact cname                       third poss cname
 		if bar is None or interval is None:
 			return None
 		newStructure = {}
-		if len(self._inputList) <= bar or len(self._inputList[bar]) <= interval:
+		if len(self._resultList) <= bar or len(self._resultList[bar]) <= interval:
 			return None
-		tonicList = self._inputList[bar][interval].recognizedResultDict.keys()
+		tonicList = self._resultList[bar][interval].keys()
 		for tonic in tonicList:
 			newStructure[tonic] = []
-			for tup in self._inputList[bar][interval].recognizedResultDict[tonic][0]:
+			for cname in self._resultList[bar][interval][tonic][0]:
 				#exact first
-				newStructure[tonic].append(tup)
-			for tup in self._inputList[bar][interval].recognizedResultDict[tonic][1]:
+				newStructure[tonic].append(cname)
+			for cname in self._resultList[bar][interval][tonic][1]:
 				#possible after
-				newStructure[tonic].append(tup)
+				newStructure[tonic].append(cname)
 		return newStructure
 
 	def __produceNextWeightedIntervalDict(self):
@@ -49,54 +40,54 @@ class ProgressionVerifier(object):
 		#                           ^                   ^                                ^         
 		#                       tonic 3              bar 3                            interval 3                          
 		nextWeightedIntervalDict = {}		
-		for tonic in self._inputList[0][0].recognizedResultDict.keys():
+		for tonic in self._resultList[0][0].keys():
 			nextWeightedIntervalDict[tonic] = {}
-		for weightedInterval in self._weightedIntervalList:
-			weightedTonicDict = weightedInterval.weightedTonicDict
-			for tonic in weightedTonicDict.keys():
+		for weightedInterval in self._weightedResult:
+			tonicList = [tonic for tonic in weightedInterval.keys() if tonic is not 'bar' and tonic is not 'interval']
+			for tonic in tonicList:
 				if len(nextWeightedIntervalDict[tonic].keys()) > 0:
 					lastBarIndex = sorted(nextWeightedIntervalDict[tonic].keys())[-1]
 				else:
 					lastBarIndex = 0
-				for barIndex in range(lastBarIndex, weightedInterval.measureNo + 1):
+				for barIndex in range(lastBarIndex, weightedInterval['bar']+1):
 					if barIndex not in nextWeightedIntervalDict[tonic]:
 						nextWeightedIntervalDict[tonic][barIndex] = {}
 					if len(nextWeightedIntervalDict[tonic][barIndex].keys()) > 0:
 						lastIntervalIndex = sorted(nextWeightedIntervalDict[tonic][barIndex].keys())[-1]
 					else:
 						lastIntervalIndex = 0
-					if barIndex == weightedInterval.measureNo:
-						intervalLimit = weightedInterval.intervalNo + 1
+					if barIndex == weightedInterval['bar']:
+						intervalLimit = weightedInterval['interval'] + 1
 					else:
-						intervalLimit = len(self._inputList[barIndex])
+						intervalLimit = len(self._resultList[barIndex])
 					for intervalIndex in range(lastIntervalIndex, intervalLimit):
-						(exact, poss) = weightedTonicDict[tonic]
+						(exact, poss) = weightedInterval[tonic]
 						tmpList = []
-						for tup in exact:
-							tmpList.append(tup)
-						for tup in poss:
-							tmpList.append(tup)
-						nextWeightedIntervalDict[tonic][barIndex][intervalIndex] = {'bar': weightedInterval.measureNo, 'interval': weightedInterval.intervalNo, 'weightedInterval': True, 'target': tmpList}
-		for tonic in self._inputList[0][0].recognizedResultDict.keys():
+						for chord in exact:
+							tmpList.append(chord['cname'])
+						for chord in poss:
+							tmpList.append(chord['cname'])
+						nextWeightedIntervalDict[tonic][barIndex][intervalIndex] = {'bar': weightedInterval['bar'], 'interval': weightedInterval['interval'], 'weightedInterval': True, 'target': tmpList}
+		for tonic in self._resultList[0][0].keys():
 			if len(nextWeightedIntervalDict[tonic].keys()) > 0:
 				lastBarIndex = sorted(nextWeightedIntervalDict[tonic].keys())[-1]
 			else:
 				lastBarIndex = 0
-			for barIndex in range(lastBarIndex, len(self._inputList)):
+			for barIndex in range(lastBarIndex, len(self._resultList)):
 				if barIndex not in nextWeightedIntervalDict[tonic]:
 					nextWeightedIntervalDict[tonic][barIndex] = {}
 				if len(nextWeightedIntervalDict[tonic][barIndex].keys()) > 0:
 					lastIntervalIndex = sorted(nextWeightedIntervalDict[tonic][barIndex].keys())[-1]
 				else:
 					lastIntervalIndex = 0
-				for intervalIndex in range(lastIntervalIndex, len(self._inputList[barIndex])):
-					lastBar = len(self._inputList)-1
-					lastInterval = len(self._inputList[lastBar])-1
+				for intervalIndex in range(lastIntervalIndex, len(self._resultList[barIndex])):
+					lastBar = len(self._resultList)-1
+					lastInterval = len(self._resultList[lastBar])-1
 					nextWeightedIntervalDict[tonic][barIndex][intervalIndex] = {'bar': lastBar, 'interval': lastInterval, 'weightedInterval': False, 'target': self.__transformStructure(bar=lastBar, interval=lastInterval)[tonic]}
 
 		self._nextWeightedIntervalDict = nextWeightedIntervalDict
 		
-		# for tonic in self._inputList[0][0].recognizedResultDict.keys():
+		# for tonic in self._resultList[0][0].keys():
 		# 	print "Tonic: ", tonic
 		# 	for barIndex in nextWeightedIntervalDict[tonic].keys():
 		# 		print "\tBar: ", barIndex
@@ -118,7 +109,7 @@ class ProgressionVerifier(object):
 	def __verifyNext(self, resultDict=None, inputList=[], currentBar=None, currentInterval=None, previous=None, barLimit=1):
 		if currentBar is None or currentInterval is None or inputList == [] or resultDict is None:
 			return False
-		if currentBar + barLimit < len(self._inputList):
+		if currentBar + barLimit < len(self._resultList):
 			barRange = barLimit
 		else:
 			return True
@@ -131,16 +122,16 @@ class ProgressionVerifier(object):
 					intervalMin = currentInterval+1
 				else:
 					intervalMin = 0
-				if len(self._inputList[currentBar+i]) - intervalMin <= 0:
+				if len(self._resultList[currentBar+i]) - intervalMin <= 0:
 					continue
 				# print 'looping at barLoop at bar', currentBar+i, ' currentBar is ', currentBar, ' i is ', i
-				intervalLoopList = list(reversed(range(len(self._inputList[currentBar+i]) - intervalMin)))
+				intervalLoopList = list(reversed(range(len(self._resultList[currentBar+i]) - intervalMin)))
 				for j in intervalLoopList:
 					interval = self.__transformStructure(bar=currentBar+i, interval=intervalMin+j)
 					if interval is None:
 						continue
 					# print 'looping at intervalLoop at interval', intervalMin+j, ' intervalMin is ', intervalMin, ' j is ', j, ' intervalLoopList: ', intervalLoopList
-					for (targetCName, groupNo) in interval[tonic]:
+					for targetCName in interval[tonic]:
 						progressionResult = self._pBank.verify(before=cname, after=targetCName)
 						# print 'looping at intervalTonic'
 						if progressionResult == "Yes" or cname == targetCName:
@@ -153,7 +144,7 @@ class ProgressionVerifier(object):
 							if not currentBar+i in resultDict:
 								resultDict[currentBar+i] = {}
 							if not j + intervalMin in resultDict[currentBar+i]:
-								resultDict[currentBar+i][j + intervalMin] = [] 
+								resultDict[currentBar+i][j + intervalMin] = []
 							resultDict[currentBar+i][j + intervalMin].append(nextChord)
 							# print 'Now Going into next level, currentBar is ', currentBar+i, ' currentInterval is ', j+intervalMin, ' j is ', j
 							searched = self.__verifyNext(resultDict=resultDict, inputList=[(tonic, targetCName)], currentBar = currentBar+i, currentInterval = j + intervalMin, previous=[nextChord])
@@ -171,91 +162,64 @@ class ProgressionVerifier(object):
 					break
 		return searched
 
-	def __verifyWithLimit(self, startingTonic=None, resultDict=None, inputChord=None, currentBar=None, currentInterval=None, previous=None, limit=None):
-		if currentBar is None or currentInterval is None or inputChord == None or resultDict is None or limit is None or startingTonic is None :
+	def __verifyWithLimit(self, resultDict=None, inputChord=None, currentBar=None, currentInterval=None, previous=None, limit=None):
+		if currentBar is None or currentInterval is None or inputChord == None or resultDict is None or limit is None:
 			return False
 		(tonic, cname) = inputChord
 		barLimit = limit['bar']
 		intervalLimit = limit['interval']
-		if barLimit < currentBar or (barLimit == currentBar and intervalLimit < currentInterval):
-			return False
 		searched = False
 		for i in range(currentBar, barLimit+1):
 			if i == currentBar:
-				intervalRange = range(currentInterval+1, len(self._inputList[i])+1)
+				intervalRange = range(currentInterval+1, len(self._resultList[i])+1)
 			else:
-				intervalRange = range(len(self._inputList[i]))
+				intervalRange = range(len(self._resultList[i]))
 			for j in intervalRange:
 				interval = self.__transformStructure(bar=i, interval=j)
 				if interval is None:
 					continue
 				# print 'looping at intervalLoop at interval', intervalMin+j, ' intervalMin is ', intervalMin, ' j is ', j, ' intervalLoopList: ', intervalLoopList
 				successAtLimit = False
-				handledGroupNo = []
-				for (targetCName, groupNo) in interval[tonic]:
-					if groupNo in handledGroupNo:
-						continue
+				for targetCName in interval[tonic]:
 					progressionResult = self._pBank.verify(before=cname, after=targetCName)
 					# print 'looping at intervalTonic'
 					if progressionResult == "Yes" or cname == targetCName:
-						if limit['weightedInterval']:
-							limitTargetCnameList = [tup[1] for tup in limit['target']]
-							if i == barLimit and j == intervalLimit and targetCName not in limitTargetCnameList:
-								# the limit interval that is not a weighted interval is not a good progression, so reject this progression
-								continue
-						# limit['weightedInterval'] == False means that the limit interval is the last interval of the whole score, so accept all possible progression
-						acceptedTonicNoteList = ['M6', 'm3', 'P5']
-						acceptedTonicList = [self._chordRecognizerDict[tonic].notesDict[note] for note in acceptedTonicNoteList]
-						#insert the tonic of the chord of the current starting point
-						acceptedTonicList.append(startingTonic)
-						equivalentTupleList = [tup for tup in self._inputList[i][j].equivalentGroupDict[groupNo] if tup[0] in acceptedTonicList]
-						for (eqvTonic, eqvCname) in equivalentTupleList:
-							# eqvTonic = tonic
-							# eqvCname = targetCName
-							nextChord = {}
-							nextChord['bar'] = i
-							nextChord['interval'] = j
-							nextChord['previous'] = previous
-							nextChord['tonic'] = eqvTonic
-							nextChord['cname'] = eqvCname
+						if i == barLimit and j == intervalLimit and limit['weightedInterval'] and targetCName not in limit['target']:
+							# not i v I V
+							continue
+						nextChord = {}
+						nextChord['bar'] = i
+						nextChord['interval'] = j
+						nextChord['previous'] = previous
+						nextChord['tonic'] = tonic
+						nextChord['cname'] = targetCName
+						if not i in resultDict:
+							resultDict[i] = {}
+						if not j in resultDict[i]:
+							resultDict[i][j] = []
+						resultDict[i][j].append(nextChord)
 
-							# nextChord['equivalentTupleList'] = equivalentTupleList
-							if not i in resultDict:
-								resultDict[i] = {}
-							if not j in resultDict[i]:
-								resultDict[i][j] = []
-							resultDict[i][j].append(nextChord)
+						if i == barLimit and j == intervalLimit:
+							successAtLimit = True
+							continue
 
-							if i == barLimit and j == intervalLimit:
-								successAtLimit = True
-								continue
-							limit = self.__nextWeightedInterval(tonic=eqvTonic, bar=i, interval=j)
-							if not limit['weightedInterval'] and len(limit['target']) == 0:
-								continue
-							if i in self._provedNoResultDict and j in self._provedNoResultDict[i] and eqvTonic in self._provedNoResultDict[i][j] and eqvCname in self._provedNoResultDict[i][j][eqvTonic]:
-								continue
-							print 'Now Going into next level, currentBar is ', i, ' currentInterval is ', j, ' input is ', eqvTonic, eqvCname, ' limit is ', limit
-							
-							searched = self.__verifyWithLimit(startingTonic=startingTonic, resultDict=resultDict, inputChord=(eqvTonic, eqvCname), currentBar = i, currentInterval = j, previous=nextChord, limit=limit)
-							
-							if not searched:
-								if i not in self._provedNoResultDict:
-									self._provedNoResultDict[i] = {}
-								if j not in self._provedNoResultDict[i]:
-									self._provedNoResultDict[i][j] = {}
-								if eqvTonic not in self._provedNoResultDict[i][j]:
-									self._provedNoResultDict[i][j][eqvTonic] = []
-								self._provedNoResultDict[i][j][eqvTonic].append(eqvCname)
-							if not searched and limit['weightedInterval']:
-								resultDict[i][j].remove(nextChord)
-								if len(resultDict[i][j]) == 0:
-									resultDict[i].pop(j)
-								if len(resultDict[i].keys()) == 0:
-									resultDict.pop(i)
-
-						handledGroupNo.append(groupNo)
+						# print 'Now Going into next level, currentBar is ', currentBar+i, ' currentInterval is ', j+intervalMin, ' j is ', j
+						searched = self.__verifyWithLimit(resultDict=resultDict, inputChord=(tonic, targetCName), currentBar = i, currentInterval = j, previous=nextChord, limit=limit)
+						
+						if not searched:
+							resultDict[i][j].remove(nextChord)
+							if len(resultDict[i][j]) == 0:
+								resultDict[i].pop(j)
+							if len(resultDict[i].keys()) == 0:
+								resultDict.pop(i)
 				if successAtLimit:
 					return True
+			# 			else:
+			# 				break
+			# 	if searched:
+			# 		break
+			# if searched:
+			# 	break
 		return searched
 
 
@@ -267,7 +231,7 @@ class ProgressionVerifier(object):
 		resultDict[0]={}
 		resultDict[0][0] = []
 		for tonic in tonicList:
-			for (cname, groupNo) in newStructure[tonic]:
+			for cname in newStructure[tonic]:
 				inputList.append((tonic, cname))
 				firstChord = {}
 				firstChord['bar'] = 0
@@ -279,20 +243,17 @@ class ProgressionVerifier(object):
 		self.__verifyNext(resultDict = resultDict, inputList = inputList, currentBar = 0, currentInterval = 0, previous=resultDict[0][0])
 		return resultDict
 	
-	def verify2(self, safeBarLimit=2, safeWeightedIntervalLimit=0):
+	def verify2(self, safeBarLimit=5, safeWeightedIntervalLimit=10):
 		newStructure = self.__transformStructure(bar=0, interval=0)
 		tonicList = newStructure.keys()
 		resultProgressionList = []
-		self._provedNoResultDict = {}
 		for tonic in tonicList:
-			for (cname, groupNo) in newStructure[tonic]:
+			for cname in newStructure[tonic]:
 				# for each different starting point
 				sectorResult = []
 				currentBar = 0
 				currentInterval = 0
-				startingTonic = tonic
 				previousCName = cname
-				previousTonic = tonic
 				extendLimit = 0
 				reachEnd = False
 				while True:
@@ -303,12 +264,12 @@ class ProgressionVerifier(object):
 					firstChord['bar'] = currentBar
 					firstChord['interval'] = currentInterval
 					firstChord['previous'] = None
-					firstChord['tonic'] = previousTonic
+					firstChord['tonic'] = tonic
 					firstChord['cname'] = previousCName
 					resultDict[currentBar][currentInterval].append(firstChord)
-					limit = self.__nextWeightedInterval(tonic=previousTonic, bar=currentBar, interval=currentInterval)
+					limit = self.__nextWeightedInterval(tonic=tonic, bar=currentBar, interval=currentInterval)
 					for i in range(extendLimit):
-						limit = self.__nextWeightedInterval(tonic=previousTonic, bar=limit['bar'], interval=limit['interval'])
+						limit = self.__nextWeightedInterval(tonic=tonic, bar=limit['bar'], interval=limit['interval'])
 					# print "limit: ", limit['bar'], limit['interval'], "current: ",currentBar, currentInterval
 					# safe bar limit
 					if limit['bar'] - currentBar >= safeBarLimit:
@@ -316,8 +277,7 @@ class ProgressionVerifier(object):
 						break
 					if not limit['weightedInterval']:
 						reachEnd = True
-					print "Start next sector, currentBar is ", currentBar, ", currentInterval is ", currentInterval, ", inputChord is ", (previousTonic, previousCName)
-					self.__verifyWithLimit(startingTonic=startingTonic, resultDict=resultDict, inputChord=(previousTonic, previousCName), currentBar=currentBar, currentInterval=currentInterval, previous=firstChord, limit=limit)
+					self.__verifyWithLimit(resultDict=resultDict, inputChord=(tonic, previousCName), currentBar=currentBar, currentInterval=currentInterval, previous=firstChord, limit=limit)
 					lastBar = sorted(resultDict.keys())[-1]
 					lastInterval = sorted(resultDict[lastBar].keys())[-1]
 					progressionList = []
@@ -342,10 +302,8 @@ class ProgressionVerifier(object):
 						sectorResult.append(progressionList)
 						currentBar = lastBar
 						currentInterval = lastInterval
-						print currentBar, currentInterval
 						# pick the longest progression 
 						previousCName = max(progressionList, key=len)[-1]['cname']
-						previousTonic = max(progressionList, key=len)[-1]['tonic']
 					else:
 						extendLimit = extendLimit + 1
 					
@@ -354,7 +312,7 @@ class ProgressionVerifier(object):
 						sectorResult = []
 						break
 					
-					# if lastBar ==  self._weightedIntervalList[-1]['bar'] and lastInterval == self._weightedIntervalList[-1]['interval']:
+					# if lastBar ==  self._weightedResult[-1]['bar'] and lastInterval == self._weightedResult[-1]['interval']:
 					# 	break
 					if reachEnd:
 						break

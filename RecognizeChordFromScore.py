@@ -1,146 +1,244 @@
 import os
-from ChordAnalyzingTool import ChordAnalyzingTool
+from ChordRecognizer import ChordRecognizer
 from ProgressionVerifier import ProgressionVerifier
-from ChordNote import ChordNote
-from ChordInterval import ChordInterval
 import music21
 import sys
-import copy
 
 curPath = os.getcwd() + '/'
 try:
 	inputFileName = sys.argv[1]
 except IndexError:
-	print "Fail to read input file name" 
+	print "Fail to read input file name"
 	sys.exit(1)
 #read input
 
 print "Reading input musicxml file"
 try:
-	rawScore = music21.converter.parse(curPath+inputFileName)  #for relative path
+	score = music21.converter.parse(curPath+inputFileName)  #for relative path
 except music21.converter.ConverterException:
 	try:
-		rawScore = music21.converter.parse(inputFileName)  #for absolute path
+		score = music21.converter.parse(inputFileName)  #for absolute path
 	except music21.converter.ConverterException:
 		print "Fail to read input file"
 		sys.exit(1)
 
-#initialize chord analyzing tool object
-analyzeTool = ChordAnalyzingTool()
+#initialize 15 chord recognizers with different tonic
+recognizers = ChordRecognizer.getAllRecognizers()
+#recognizers = ChordRecognizer.getRecognizersByTonic(['D']);
 
-# chordify
-score = rawScore.chordify()
 
 inputs = []
 count = 1
-currentTimeSignature = None
-measure = score.measure(count)
-while measure is not None:
-	if measure.timeSignature is not None:
-		currentTimeSignature = measure.timeSignature
-	if currentTimeSignature is None:
+measureLength = -1
+measureLengthCounter = 0
+prevTs = None
+prevBase = None
+while measureLengthCounter < score.highestTime:
+	subScore = score.measure(count)
+	count += 1
+	tmpMeasure = subScore.parts[0].getElementsByClass(music21.stream.Measure)[0]
+	if tmpMeasure.timeSignature is not None:
+		prevTs = tmpMeasure.timeSignature
+	if prevTs is None:
 		print "Error - No time signature detected."
 		sys.exit()
+	measureLengthCounter += prevTs.beatCount * prevTs.beatDuration.quarterLength
+	
 	#operation in each bar
-	inputIntervalList = []
-	continuousInterval = None
-	intervalCounter = 0
-	for offsetMap in measure.offsetMap():
-		chordNoteList = []
-		element = offsetMap.element
-		if isinstance(element, music21.chord.Chord):
-			for pitch in element.pitches:
-				chordNoteList.append(ChordNote(name=pitch.name,frequency=pitch.frequency,offset=offsetMap.offset,endTime=offsetMap.endTime,measure=count-1))
-		if len(chordNoteList) == 1:
-			if continuousInterval is not None:
-				noteNameList = [chordNote.name for chordNote in continuousInterval.noteList]
-				if chordNoteList[0].name in noteNameList:
-					for chordNote in continuousInterval.noteList:
-						if chordNoteList[0].name == chordNote.name and chordNoteList[0].frequency < chordNote.frequency:
-							continuousInterval.replaceNote(chordNote, chordNoteList[0])
-							break
+	notes = []
+	for part in subScore.parts:
+		measure = part.getElementsByClass(music21.stream.Measure)[0]
+		for elem in measure.offsetMap():
+			element = elem.element
+			if isinstance(element, music21.note.GeneralNote) and not isinstance(element, music21.note.Rest) and not element.duration.isGrace:
+				for pitch in element.pitches:
+					notes.append((pitch.name, pitch.frequency, elem.offset, elem.endTime))
+
+	# start = prevTs.beatDuration.quarterLength
+	# end = start + prevTs.beatDuration.quarterLength
+
+	interval = {}
+	for (note, frequency, offset, endTime) in notes:
+
+		if offset not in interval.keys():
+			interval[offset] = {}
+			interval[offset]["start"] = []
+			interval[offset]["end"] = []
+		if endTime not in interval.keys():
+			interval[endTime] = {}
+			interval[endTime]["start"] = []
+			interval[endTime]["end"] = []
+
+		interval[offset]["start"].append((note, frequency, offset, endTime))
+		interval[endTime]["end"].append((note, frequency, offset, endTime))
+
+	inputDictArr = []
+	running = {}
+	firstEntryArr = []
+	for key in sorted(interval.keys()):
+		ending = interval[key]["end"]
+		starting = interval[key]["start"]
+		for tup in ending:
+			if str(tup) in running.keys():
+				running.pop(str(tup))
+		for tup in starting:
+			running[str(tup)] = tup
+
+		if running:
+			runningNotes = list(running.values());
+			if len(runningNotes) == 1:
+				if prevBase is None:
+					# first entry
+					firstEntryArr.append(tuple(runningNotes[0]))
+					continue
 				else:
-					continuousInterval.addNote(chordNoteList[0])
+					# single note, take prevBase together
+					runningNotes.append(tuple(prevBase))
 			else:
-				continuousInterval = ChordInterval(intervalNo=intervalCounter, noteList=list(chordNoteList), offset=chordNoteList[0].offset)
-				continuousInterval.setIntervalType(ChordInterval.IntervalType.Continuous)
-				intervalCounter += 1
-		elif len(chordNoteList):
-			if continuousInterval is not None:
-				inputIntervalList.append(continuousInterval)
-				continuousInterval = None
-				inputIntervalList[-1].setExactEndTime(inputIntervalList[-1].noteList[-1].endTime)
-			noteNameList = [chordNote.name for chordNote in chordNoteList]
-			tmpChordNoteDict = {}
-			for chordNote in chordNoteList:
-				if chordNote.name not in tmpChordNoteDict:
-					tmpChordNoteDict[chordNote.name] = chordNote
-				elif chordNote.frequency < tmpChordNoteDict[chordNote.name].frequency:
-					tmpChordNoteDict[chordNote.name] = chordNote
-			inputIntervalList.append(ChordInterval(intervalNo=intervalCounter, noteList=list(tmpChordNoteDict.values()), offset=chordNoteList[0].offset, endTime=chordNoteList[0].endTime))
+				if prevBase is None and len(firstEntryArr):
+					# first "chord" after "first entry"
+					firstEntryInputDict = {}
+					for (note, frequency, offset, endTime) in firstEntryArr:
+						note = note.replace("-", "b")
+						if note not in firstEntryInputDict.keys():
+							firstEntryInputDict[note] = frequency
+						else:
+							if frequency < firstEntryInputDict[note]:
+								firstEntryInputDict[note] = frequency
+					inputDictArr.append(firstEntryInputDict)
+					firstEntryArr = []
+			inputDict = {}
+			tmpBase = None
+			for (note, frequency, offset, endTime) in runningNotes:
+				note = note.replace("-", "b")
+				if note not in inputDict.keys():
+					inputDict[note] = frequency
+				else:
+					if frequency < inputDict[note]:
+						inputDict[note] = frequency
+				if tmpBase :
+					if frequency < tmpBase[1] :
+						tmpBase = (note, frequency, offset, endTime)
+				else:
+					tmpBase = (note, frequency, offset, endTime)
+			if len(running.values()) > 1:
+				prevBase = tmpBase
+			inputDictArr.append(inputDict)
+	if len(firstEntryArr) :
+		firstEntryInputDict = {}
+		for (note, frequency, offset, endTime) in firstEntryArr:
+			note = note.replace("-", "b")
+			if note not in firstEntryInputDict.keys():
+				firstEntryInputDict[note] = frequency
+			else:
+				if frequency < firstEntryInputDict[note]:
+					firstEntryInputDict[note] = frequency
+		inputDictArr.append(firstEntryInputDict)
+		firstEntryArr = []
+	inputs.append(inputDictArr)
 
-			# check previous interval that whether it is OnBeat Interval
-			if len(inputIntervalList) > 1 and inputIntervalList[-2].intervalType == ChordInterval.IntervalType.OnBeat:
-				inputIntervalList[-1].setIntervalType(ChordInterval.IntervalType.AfterBeat)
+#inputs structure
+#[measure 1, measure 2, [ interval 1, interval 2, {note 1, note 2, note: frequency, note 4, ... }, interval 4, ... ], measure 4, ... ]
+#                       ^                         ^                ^
+#                   in measure 3            in interval 3        in note 3
 
-			beatDuration = currentTimeSignature.beatDuration.quarterLength
-			# check current interval that whether it is OnBeat
-			if inputIntervalList[-1].exactOffset / beatDuration % 1 == 0:
-				inputIntervalList[-1].setIntervalType(ChordInterval.IntervalType.OnBeat)
-			# default will be Normal type
-
-			intervalCounter += 1
-	if continuousInterval is not None:
-		inputIntervalList.append(continuousInterval)
-		continuousInterval = None
-		inputIntervalList[-1].setExactEndTime(inputIntervalList[-1].noteList[-1].endTime)
-	inputs.append(inputIntervalList)
-
-	count += 1
-	measure = score.measure(count)
-
-
-# #inputs structure
-# #[measure 1, measure 2, [ interval 1, interval 2, interval Object, interval 4, ... ], measure 4, ... ]
-# #                       ^                         ^                
-# #                   in measure 3            in interval 3        
-
-for i, measure in enumerate(inputs):
+barResult = []
+weightedResult = []
+weightedDict = {}
+for i, inputDictArr in enumerate(inputs):
 	resultArr = []
-	for j, interval in enumerate(measure):
-		tonicResult = analyzeTool.recognizeByAllTonic(interval)
-		inputs[i][j].setRecognizedResultDict(tonicResult)
-		inputs[i][j].analyzeEquivalentChord()
+	for j, inputDict in enumerate(inputDictArr):
+		tonicResult = {}
+		weightedInterval = {}
+		weightedInterval['bar'] = i
+		weightedInterval['interval'] = j
+		weightedFlag = False
+		for r in recognizers:
+			tonicResult[r.tonic] = r.recognize(inputDict)
+			# Only I and V chords are weighted
+			for cname in tonicResult[r.tonic][0]:
+				#exact match
+				match = [x for x in cname if x == 'i' or x == 'I' or x == 'v' or x == 'V']
+				if len(match) == 1:
+					#create dict for this tonic
+					if r.tonic not in weightedInterval:
+						weightedInterval[r.tonic] = ([], [])
+					tmpDict = {}
+					tmpDict['ctype'] = match[0]
+					tmpDict['cname'] = cname
+					weightedInterval[r.tonic][0].append(tmpDict)
+					if not weightedFlag:
+						weightedFlag = True
+			for cname in tonicResult[r.tonic][1]:
+				#possible match
+				match = [x for x in cname if x == 'i' or x == 'I' or x == 'v' or x == 'V']
+				if len(match) == 1:
+					#create dict for this tonic
+					if r.tonic not in weightedInterval:
+						weightedInterval[r.tonic] = ([], [])
+					tmpDict = {}
+					tmpDict['ctype'] = match[0]
+					tmpDict['cname'] = cname
+					weightedInterval[r.tonic][1].append(tmpDict)
+					if not weightedFlag:
+						weightedFlag = True
+		resultArr.append(tonicResult)
+		if weightedFlag:
+			weightedResult.append(weightedInterval)
+			weightedDict[i,',',j] = weightedInterval
+	barResult.append(resultArr)
 
-for measure in inputs:
-	for interval in measure:
-		interval.debug()
+
+#barResult structure
+#[measure 1, measure 2, [ interval 1, interval, { tonic 1, tonic 2, tonic: (exact, possible), tonic 4, ... }, interval 4, ...  ], measure 4, ... ]
+#                       ^                       ^                   ^
+#                   in measure 3           in interval 3          in tonic 3
+
+#weightedResult structure
+#[weightedInterval 1, weightedInterval 2, {bar: i, interval: j, tonic 1, tonic 2, tonic: ([exact 1, exact 2, {ctype: V, cname: V7}, ...], [poss 1, poss2, {ctype: V, cname: V7}, ...]), ...}, ...]
+#                                         ^                                       ^                          ^                                            ^
+#                                    in weightedInterval 3                    in tonic 3                 in exact 3                                   in possible 3
+
+for i, resultArr in enumerate(barResult):
+	print "Bar",i
+
+	for j, result in enumerate(resultArr):
+		print "\tInterval", j
+		print "\tInput notes: ", inputs[i][j].keys()
+		# first print exact match
+		print "\tExact match chords are: "
+		for tonic in result.keys():
+			if len(result[tonic][0]) > 0:
+				print "\t\t", tonic, ": ", result[tonic][0]
+		# then print possible match
+		print "\tPossible match chords are: "
+		for tonic in result.keys():
+			if len(result[tonic][1]) > 0:
+				print "\t\t", tonic, ": ", result[tonic][1]
 		print ""
 
-sys.exit(0)
+# for i, weightedInterval in enumerate(weightedResult):
+# 	print "Weighted Interval", i
+# 	print "At Bar ", weightedInterval['bar'], ", Interval ", weightedInterval['interval']
+# 	tonicList = [tonic for tonic in weightedInterval.keys() if tonic is not 'bar' and tonic is not 'interval']
+# 	tonicList.sort()
+# 	print "\tExact match chords are: "
+# 	for tonic in tonicList:
+# 		print "\t\t", tonic, ": ", weightedInterval[tonic][0]
+# 	print "\tPossible match chords are: "
+# 	for tonic in tonicList:
+# 		print "\t\t", tonic, ": ", weightedInterval[tonic][1]
+# 	print ""
 
-# #Progression Verifying
-progressionVerifier = ProgressionVerifier(inputList = inputs, weightedIntervalList = weightedIntervalList)
-resultProgressionList = progressionVerifier.verify2()
+#Progression Verifying
+progressionVerifier = ProgressionVerifier(resultList = barResult, weightedResult = weightedResult, weightedDict = weightedDict)
+progressionVerifier.verify2()
+
+# for bar in range(len(barResult)):
+# 	if bar in resultDict:
+# 		for interval in range(len(barResult[bar])):
+# 			if interval in resultDict[bar]:
+# 				for dicts in resultDict[bar][interval]:
+# 					print dicts
 
 
-# # output as xml file
-# for resultProgression in resultProgressionList:
-# 	progression = resultProgression["progression"]
-# 	tonic = resultProgression["tonic"]
-# 	part = music21. stream.Part()
-# 	score.insert(0, part)
-# 	refPart = score.parts[0]
-# 	for measure in refPart.getElementsByClass(music21.stream.Measure):
-# 		copied = (copy.deepcopy(measure))
-# 		# copied.offset = measure.offset
-# 		removePending = []
-# 		for i, elem in enumerate(copied):
-# 			if isinstance(elem, music21.note.GeneralNote) or isinstance(elem, music21.note.Rest):
-# 				removePending.append(i)
-# 		for i in reversed(removePending):
-# 			copied.pop(i)
-# 	for chord in progression:
-# 		chordInterval = inputs[chord['bar']][chord['interval']]
-# 	# score.write('musicxml', fp=curPath+'output.xml')
-# 	break
