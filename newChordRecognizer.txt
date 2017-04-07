@@ -1,0 +1,1529 @@
+Reading input musicxml file
+Measure  0
+	Interval  0
+	Start at  0.0 End at  0.25
+			D
+			Exact match chords are: 
+				D :  ['I']
+			Possible match chords are: 
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			D
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['iv']
+				C :  ['ii', 'dim ii']
+				D :  ['i']
+				G :  ['v']
+				F :  ['vi']
+				Bb :  ['iii']
+				Eb :  ['dim vii']
+
+	Interval  2
+	Start at  0.5 End at  0.75
+			A
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['IV', 'iv']
+				C :  ['ii']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I', 'i']
+				G :  ['V', 'v']
+				F :  ['vi']
+				C# :  ['bII']
+				Bb :  ['iii']
+				F# :  ['bVI']
+
+	Interval  3
+	Start at  0.75 End at  1.0
+			D
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVII64']
+				C :  ['V64', 'v64']
+				B :  ['bVI64']
+				E :  ['bIII64']
+				D :  ['IV64', 'iv64']
+				G :  ['I64', 'i64']
+				F :  ['ii64']
+				Bb :  ['vi64']
+				Eb :  ['iii64']
+				F# :  ['bII64']
+
+	Interval  4
+	Start at  1.0 End at  1.25
+			D
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['iv']
+				C :  ['ii', 'dim ii']
+				D :  ['i']
+				G :  ['v']
+				F :  ['vi']
+				Bb :  ['iii']
+				Eb :  ['dim vii']
+
+	Interval  5
+	Start at  1.25 End at  1.5
+			A
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVI', 'ItalianVI']
+				C :  ['IV']
+				E :  ['bII']
+				D :  ['bIII']
+				G :  ['bVII']
+				F :  ['I']
+				Bb :  ['V']
+
+	Interval  6
+	Start at  1.5 End at  1.75
+			A
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVI6', 'ItalianVI']
+				C :  ['IV6']
+				E :  ['bII6']
+				D :  ['bIII6']
+				G :  ['bVII6']
+				F :  ['I6']
+				Bb :  ['V6']
+
+	Interval  7
+	Start at  1.75 End at  2.0
+			D
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['iv6']
+				C :  ['ii6', 'dim ii6']
+				D :  ['i6']
+				G :  ['v6']
+				F :  ['vi6']
+				Bb :  ['iii6']
+				Eb :  ['dim vii6']
+
+Measure  1
+	Interval  0
+	Start at  0.0 End at  0.25
+			C#
+			G#
+			E
+			Exact match chords are: 
+				A :  ['iii6']
+				B :  ['ii6']
+				E :  ['vi6']
+				C# :  ['i6']
+				F# :  ['v6']
+				G# :  ['iv6']
+			Possible match chords are: 
+				A :  ['V']
+				B :  ['IV']
+				E :  ['I']
+				D :  ['dim vii6']
+				C# :  ['bIII']
+				D# :  ['bII', 'bVII64']
+				F# :  ['bVII']
+				G# :  ['bVI', 'ItalianVI']
+				A# :  ['bIII64']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			C#
+			A
+			E
+			Exact match chords are: 
+				A :  ['I64']
+				B :  ['bVII64']
+				E :  ['IV64']
+				D :  ['V64']
+				C# :  ['bVI64']
+				F# :  ['bIII64']
+				G# :  ['bII64']
+			Possible match chords are: 
+				A :  ['iii6']
+				C :  ['vi64']
+				B :  ['ii6', 'dim ii6']
+				E :  ['vi6']
+				D :  ['dim vii6']
+				G :  ['ii64']
+				F :  ['iii64']
+				C# :  ['i6']
+				F# :  ['v6']
+				G# :  ['iv6']
+
+	Interval  2
+	Start at  0.5 End at  2.0
+			G#
+			A
+			E
+			C#
+			Exact match chords are: 
+				A :  ['I65', 'iii']
+				B :  ['ii', 'bVII6']
+				E :  ['IV65', 'vi']
+				D :  ['V6']
+				C# :  ['i', 'bVI6']
+				F# :  ['bIII6', 'v']
+				G# :  ['bII6', 'iv']
+			Possible match chords are: 
+				A :  ['V']
+				C :  ['vi64']
+				B :  ['IV']
+				E :  ['I']
+				D :  ['dim vii']
+				G :  ['ii64']
+				F :  ['iii64']
+				C# :  ['bIII']
+				D# :  ['bII', 'bVII']
+				F# :  ['bVII']
+				G# :  ['bVI', 'ItalianVI']
+				A# :  ['bIII']
+
+Measure  2
+	Interval  0
+	Start at  0.0 End at  0.25
+			A
+			Exact match chords are: 
+				A :  ['I']
+			Possible match chords are: 
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			C#
+			A
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['I']
+				B :  ['bVII']
+				E :  ['IV']
+				D :  ['V']
+				C# :  ['bVI', 'ItalianVI']
+				F# :  ['bIII']
+				G# :  ['bII']
+
+	Interval  2
+	Start at  0.5 End at  1.0
+			E
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+
+	Interval  3
+	Start at  1.0 End at  1.25
+			C#
+			A
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['I']
+				B :  ['bVII']
+				E :  ['IV']
+				D :  ['V']
+				C# :  ['bVI', 'ItalianVI']
+				F# :  ['bIII']
+				G# :  ['bII']
+
+	Interval  4
+	Start at  1.25 End at  1.5
+			C#
+			E
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['iii']
+				B :  ['ii', 'dim ii']
+				E :  ['vi']
+				D :  ['dim vii']
+				C# :  ['i']
+				F# :  ['v']
+				G# :  ['iv']
+
+	Interval  5
+	Start at  1.5 End at  1.75
+			A
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVI', 'ItalianVI']
+				C :  ['IV']
+				E :  ['bII']
+				D :  ['bIII']
+				G :  ['bVII']
+				F :  ['I']
+				Bb :  ['V']
+
+	Interval  6
+	Start at  1.75 End at  2.0
+			E
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['v']
+				C :  ['iii']
+				B :  ['iv']
+				E :  ['i']
+				D :  ['ii', 'dim ii']
+				G :  ['vi']
+				F :  ['dim vii']
+
+Measure  3
+	Interval  0
+	Start at  0.0 End at  0.25
+			C#
+			D
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['iv']
+				C :  ['ii', 'dim ii']
+				D :  ['i']
+				G :  ['v']
+				F :  ['vi']
+				Bb :  ['iii']
+				Eb :  ['dim vii']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			D
+			F
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['iv']
+				C :  ['ii', 'dim ii']
+				D :  ['i']
+				G :  ['v']
+				F :  ['vi']
+				Bb :  ['iii']
+				Eb :  ['dim vii']
+
+	Interval  2
+	Start at  0.5 End at  2.0
+			C#
+			D
+			A
+			F
+			Exact match chords are: 
+				A :  ['iv6']
+				C :  ['ii6']
+				D :  ['i6']
+				G :  ['v6']
+				F :  ['vi6']
+				Bb :  ['iii6']
+			Possible match chords are: 
+				A :  ['I', 'bVI', 'ItalianVI']
+				C :  ['IV']
+				B :  ['bIII64', 'bVII']
+				E :  ['bII', 'IV', 'bVII64']
+				D :  ['bIII', 'V']
+				G :  ['bVII']
+				F :  ['I']
+				C# :  ['bII64', 'bVI', 'ItalianVI']
+				Bb :  ['V']
+				Eb :  ['dim vii6']
+				F# :  ['bIII', 'bVI64']
+				G# :  ['bII']
+
+Measure  4
+	Interval  0
+	Start at  0.0 End at  0.25
+			A
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['IV', 'iv']
+				C :  ['ii']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I', 'i']
+				G :  ['V', 'v']
+				F :  ['vi']
+				C# :  ['bII']
+				Bb :  ['iii']
+				F# :  ['bVI']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			D
+			Exact match chords are: 
+				D :  ['I']
+			Possible match chords are: 
+
+	Interval  2
+	Start at  0.5 End at  2.0
+			F
+			E
+			D
+			Bb
+			A
+			Exact match chords are: 
+				A :  ['bII6', 'iv']
+				C :  ['ii', 'bVII6']
+				D :  ['i', 'bVI6']
+				G :  ['bIII6', 'v']
+				F :  ['IV65', 'vi']
+				Bb :  ['I65', 'iii']
+				Eb :  ['V6']
+			Possible match chords are: 
+				A :  ['I64', 'i64', 'bVI', 'ItalianVI']
+				C :  ['IV42', 'vi64']
+				B :  ['bIII', 'bVII64']
+				E :  ['bII', 'IV64', 'iv64', 'bVII']
+				D :  ['half-dim ii42', 'bIII', 'V64', 'v64']
+				G :  ['ii64', 'bVII']
+				F :  ['I42', 'iii64', 'half-dim vii42']
+				C# :  ['bII', 'bVI64']
+				Bb :  ['V']
+				Db :  ['vi64']
+				Ab :  ['ii64']
+				Eb :  ['dim vii']
+				F# :  ['bIII64', 'bVI']
+				G# :  ['bII64']
+				Gb :  ['iii64']
+
+Measure  5
+	Interval  0
+	Start at  0.0 End at  0.25
+			B
+			G#
+			D#
+			D
+			Exact match chords are: 
+				A :  ['dim vii6']
+				B :  ['vi6']
+				E :  ['iii6']
+				C# :  ['v6']
+				D# :  ['iv6']
+				F# :  ['ii6']
+				G# :  ['i6']
+			Possible match chords are: 
+				A :  ['ii', 'dim ii']
+				C :  ['dim vii']
+				B :  ['I', 'i']
+				E :  ['V', 'v']
+				D :  ['vi']
+				G :  ['iii']
+				C# :  ['bVII']
+				D# :  ['bVI', 'ItalianVI']
+				F# :  ['IV', 'iv']
+				G# :  ['bIII']
+				A# :  ['bII', 'bVII']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			G#
+			B
+			E
+			D
+			Exact match chords are: 
+				A :  ['V43', 'dim vii6']
+				B :  ['IV64']
+				E :  ['I64']
+				C# :  ['bIII64']
+				D# :  ['bII64']
+				F# :  ['dim ii6', 'bVII64']
+				G# :  ['bVI64']
+			Possible match chords are: 
+				A :  ['ii', 'dim ii']
+				C :  ['iii43', 'dim vii']
+				B :  ['i', 'vi6']
+				E :  ['iii6', 'v']
+				D :  ['ii43', 'vi']
+				G :  ['iii', 'vi43']
+				C# :  ['v6']
+				D# :  ['iv6']
+				F# :  ['iv']
+				G# :  ['i6']
+
+	Interval  2
+	Start at  0.5 End at  2.0
+			D#
+			E
+			B
+			G#
+			Exact match chords are: 
+				A :  ['V6']
+				B :  ['IV65', 'vi']
+				E :  ['I65', 'iii']
+				C# :  ['bIII6', 'v']
+				D# :  ['bII6', 'iv']
+				F# :  ['ii', 'bVII6']
+				G# :  ['i', 'bVI6']
+			Possible match chords are: 
+				A :  ['dim vii']
+				C :  ['iii64']
+				B :  ['I']
+				E :  ['V']
+				D :  ['ii64']
+				G :  ['vi64']
+				C# :  ['bVII']
+				D# :  ['bVI', 'ItalianVI']
+				F# :  ['IV']
+				G# :  ['bIII']
+				A# :  ['bII', 'bVII']
+
+Measure  6
+	Interval  0
+	Start at  0.0 End at  0.25
+			G#
+			B
+			E
+			Exact match chords are: 
+				A :  ['V6']
+				B :  ['IV6']
+				E :  ['I6']
+				C# :  ['bIII6']
+				D# :  ['bII6']
+				F# :  ['bVII6']
+				G# :  ['bVI6']
+			Possible match chords are: 
+				A :  ['dim vii']
+				C :  ['iii64']
+				B :  ['vi']
+				E :  ['iii']
+				D :  ['ii64']
+				G :  ['vi64']
+				C# :  ['v']
+				D# :  ['iv']
+				F# :  ['ii', 'dim ii']
+				G# :  ['i']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			G#
+			B
+			E
+			Exact match chords are: 
+				A :  ['V6']
+				B :  ['IV6']
+				E :  ['I6']
+				C# :  ['bIII6']
+				D# :  ['bII6']
+				F# :  ['bVII6']
+				G# :  ['bVI6']
+			Possible match chords are: 
+				A :  ['dim vii']
+				C :  ['iii64']
+				B :  ['vi']
+				E :  ['iii']
+				D :  ['ii64']
+				G :  ['vi64']
+				C# :  ['v']
+				D# :  ['iv']
+				F# :  ['ii', 'dim ii']
+				G# :  ['i']
+
+	Interval  2
+	Start at  0.5 End at  1.0
+			B
+			A
+			Exact match chords are: 
+			Possible match chords are: 
+
+	Interval  3
+	Start at  1.0 End at  1.25
+			E
+			B
+			G#
+			Exact match chords are: 
+				A :  ['V']
+				B :  ['IV']
+				E :  ['I']
+				C# :  ['bIII']
+				D# :  ['bII']
+				F# :  ['bVII']
+				G# :  ['bVI']
+			Possible match chords are: 
+				A :  ['dim vii6']
+				C :  ['iii']
+				B :  ['vi6']
+				E :  ['iii6']
+				D :  ['ii']
+				G :  ['vi']
+				C# :  ['v6']
+				D# :  ['iv6']
+				F# :  ['ii6', 'dim ii6']
+				G# :  ['i6']
+
+	Interval  4
+	Start at  1.25 End at  1.5
+			B
+			E
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['V', 'v']
+				C :  ['iii']
+				B :  ['IV', 'iv']
+				E :  ['I', 'i']
+				D :  ['ii']
+				G :  ['vi']
+				C# :  ['bIII']
+				D# :  ['bII']
+				F# :  ['bVII']
+				G# :  ['bVI']
+
+	Interval  5
+	Start at  1.5 End at  2.0
+			E
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+
+Measure  7
+	Interval  0
+	Start at  0.0 End at  0.25
+			A
+			C
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['i']
+				C :  ['vi']
+				E :  ['iv']
+				D :  ['v']
+				G :  ['ii', 'dim ii']
+				F :  ['iii']
+				Bb :  ['dim vii']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			A
+			C
+			E
+			Exact match chords are: 
+				A :  ['i']
+				C :  ['vi']
+				E :  ['iv']
+				D :  ['v']
+				G :  ['ii']
+				F :  ['iii']
+			Possible match chords are: 
+				A :  ['bIII']
+				C :  ['I']
+				B :  ['bII', 'bVII']
+				E :  ['bVI', 'ItalianVI']
+				D :  ['bVII']
+				G :  ['IV']
+				F :  ['V']
+				C# :  ['bVI']
+				Bb :  ['dim vii']
+				F# :  ['bIII']
+				G# :  ['bII']
+
+	Interval  2
+	Start at  0.5 End at  0.75
+			A
+			E
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['I', 'i', 'IV64', 'iv64']
+				C :  ['ii64', 'vi']
+				B :  ['bIII64', 'bVII']
+				E :  ['IV', 'iv', 'bVII64']
+				D :  ['I64', 'i64', 'V', 'v']
+				G :  ['ii', 'V64', 'v64']
+				F :  ['iii', 'vi64']
+				C# :  ['bII64', 'bVI']
+				Bb :  ['iii64']
+				F# :  ['bIII', 'bVI64']
+				G# :  ['bII']
+
+	Interval  3
+	Start at  0.75 End at  1.0
+			A
+			C
+			E
+			Exact match chords are: 
+				A :  ['i']
+				C :  ['vi']
+				E :  ['iv']
+				D :  ['v']
+				G :  ['ii']
+				F :  ['iii']
+			Possible match chords are: 
+				A :  ['bIII6']
+				C :  ['I6']
+				B :  ['bII6', 'bVII']
+				E :  ['bVI6', 'ItalianVI']
+				D :  ['bVII6']
+				G :  ['IV6']
+				F :  ['V6']
+				C# :  ['bVI']
+				Bb :  ['dim vii']
+				F# :  ['bIII']
+				G# :  ['bII']
+
+	Interval  4
+	Start at  1.0 End at  1.25
+			A
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+
+	Interval  5
+	Start at  1.25 End at  1.5
+			A
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+
+	Interval  6
+	Start at  1.5 End at  1.75
+			A
+			E
+			D
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['I64', 'i64', 'IV', 'iv', 'v6', 'bVII']
+				C :  ['ii', 'iii65', 'V', 'v', 'vi42']
+				B :  ['bIII', 'iv6', 'bVI', 'bVII64']
+				E :  ['i6', 'bIII', 'IV64', 'iv64', 'bVII']
+				D :  ['I', 'i', 'ii65', 'IV', 'iv', 'V42']
+				G :  ['I', 'i', 'ii42', 'V', 'v', 'vi65']
+				F :  ['ii', 'iii42', 'vi', 'half-dim vii65']
+				C# :  ['bII', 'bVI64']
+				Bb :  ['iii', 'vi']
+				Eb :  ['iii']
+				F# :  ['bII', 'bIII64', 'bVI']
+				G# :  ['bII64']
+
+	Interval  7
+	Start at  1.75 End at  2.0
+			A
+			C#
+			E
+			G
+			Exact match chords are: 
+				A :  ['I64']
+				B :  ['dim ii64', 'bVII64']
+				E :  ['IV64']
+				D :  ['V42', 'dim vii64']
+				C# :  ['bVI64']
+				F# :  ['bIII64']
+				G# :  ['bII64']
+			Possible match chords are: 
+				A :  ['iii6', 'v6']
+				C :  ['iii6', 'vi42']
+				B :  ['iv6']
+				E :  ['i6', 'vi6']
+				D :  ['ii6', 'dim ii6']
+				G :  ['ii42', 'vi6']
+				F :  ['iii42', 'dim vii6']
+				C# :  ['i6']
+				F# :  ['v6']
+				G# :  ['iv6']
+
+Measure  8
+	Interval  0
+	Start at  0.0 End at  0.25
+			A
+			F#
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['vi']
+				B :  ['v']
+				E :  ['ii', 'dim ii']
+				D :  ['iii']
+				G :  ['dim vii']
+				C# :  ['iv']
+				F# :  ['i']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			A
+			F#
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['vi']
+				B :  ['v']
+				E :  ['ii', 'dim ii']
+				D :  ['iii']
+				G :  ['dim vii']
+				C# :  ['iv']
+				F# :  ['i']
+
+	Interval  2
+	Start at  0.5 End at  0.75
+			A
+			F#
+			E
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['I', 'i', 'vi7']
+				C :  ['vi']
+				B :  ['v', 'bVII']
+				E :  ['ii7', 'IV', 'iv']
+				D :  ['iii7', 'V', 'v']
+				G :  ['ii', 'half-dim vii7']
+				F :  ['iii']
+				C# :  ['iv', 'bVI']
+				F# :  ['i', 'bIII']
+				G# :  ['bII']
+
+	Interval  3
+	Start at  0.75 End at  1.0
+			A
+			F#
+			D
+			Exact match chords are: 
+				A :  ['IV6']
+				B :  ['bIII6']
+				E :  ['bVII6']
+				D :  ['I6']
+				G :  ['V6']
+				C# :  ['bII6']
+				F# :  ['bVI6']
+			Possible match chords are: 
+				A :  ['vi']
+				C :  ['ii64']
+				B :  ['v']
+				E :  ['ii', 'dim ii']
+				D :  ['iii']
+				G :  ['dim vii']
+				F :  ['vi64']
+				C# :  ['iv']
+				Bb :  ['iii64']
+				F# :  ['i']
+
+	Interval  4
+	Start at  1.0 End at  1.25
+			F#
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['IV']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I']
+				G :  ['V']
+				C# :  ['bII']
+				F# :  ['bVI', 'ItalianVI']
+
+	Interval  5
+	Start at  1.25 End at  1.5
+			A
+			F#
+			D
+			Exact match chords are: 
+				A :  ['IV']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I']
+				G :  ['V']
+				C# :  ['bII']
+				F# :  ['bVI']
+			Possible match chords are: 
+				A :  ['vi6']
+				C :  ['ii']
+				B :  ['v6']
+				E :  ['ii6', 'dim ii6']
+				D :  ['iii6']
+				G :  ['dim vii6']
+				F :  ['vi']
+				C# :  ['iv6']
+				Bb :  ['iii']
+				F# :  ['i6']
+
+	Interval  6
+	Start at  1.5 End at  1.75
+			F#
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['IV']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I']
+				G :  ['V']
+				C# :  ['bII']
+				F# :  ['bVI', 'ItalianVI']
+
+	Interval  7
+	Start at  1.75 End at  2.0
+			C
+			F#
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['IV']
+				B :  ['bIII']
+				E :  ['dim ii64', 'bVII']
+				D :  ['I']
+				G :  ['V7', 'dim vii64']
+				C# :  ['bII']
+				F# :  ['bVI', 'ItalianVI']
+
+Measure  9
+	Interval  0
+	Start at  0.0 End at  0.5
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII']
+				C :  ['V']
+				B :  ['bVI']
+				E :  ['bIII']
+				D :  ['IV']
+				G :  ['I']
+				F# :  ['bII']
+			Possible match chords are: 
+				A :  ['ii6', 'dim ii6']
+				C :  ['dim vii6']
+				B :  ['i6']
+				E :  ['v6']
+				D :  ['vi6']
+				G :  ['iii6']
+				F :  ['ii']
+				Bb :  ['vi']
+				Eb :  ['iii']
+				F# :  ['iv6']
+
+	Interval  1
+	Start at  0.5 End at  1.0
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII64']
+				C :  ['V64']
+				B :  ['bVI64']
+				E :  ['bIII64']
+				D :  ['IV64']
+				G :  ['I64']
+				F# :  ['bII64']
+			Possible match chords are: 
+				A :  ['ii6', 'dim ii6']
+				C :  ['dim vii6']
+				B :  ['i6']
+				E :  ['v6']
+				D :  ['vi6']
+				G :  ['iii6']
+				F :  ['ii64']
+				Bb :  ['vi64']
+				Eb :  ['iii64']
+				F# :  ['iv6']
+
+	Interval  2
+	Start at  1.0 End at  1.5
+			F#
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['ii64', 'bVII64']
+				C :  ['V64']
+				B :  ['i64', 'bVI64']
+				E :  ['bIII64', 'v64']
+				D :  ['IV42', 'vi64']
+				G :  ['I42', 'iii64']
+				F# :  ['bII64', 'iv64']
+			Possible match chords are: 
+				A :  ['IV6']
+				C :  ['dim vii6']
+				B :  ['bIII6']
+				E :  ['bVII6']
+				D :  ['I6']
+				G :  ['V6']
+				F :  ['ii64']
+				C# :  ['bII6', 'bVII64']
+				Bb :  ['vi64']
+				D# :  ['bVI64']
+				Eb :  ['iii64']
+				F# :  ['bVI6', 'ItalianVI']
+				G# :  ['bIII64']
+				A# :  ['bII64']
+
+	Interval  3
+	Start at  1.5 End at  1.625
+			A
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII']
+				C :  ['V']
+				B :  ['bVI']
+				E :  ['bIII']
+				D :  ['IV']
+				G :  ['I']
+				F# :  ['bII']
+			Possible match chords are: 
+				A :  ['ii65', 'IV', 'iv']
+				C :  ['ii', 'half-dim vii65']
+				B :  ['i6', 'bIII']
+				E :  ['v6', 'bVII']
+				D :  ['I', 'i', 'vi65']
+				G :  ['iii65', 'V', 'v']
+				F :  ['ii', 'vi']
+				C# :  ['bII']
+				Bb :  ['iii', 'vi']
+				Eb :  ['iii']
+				F# :  ['iv6', 'bVI']
+
+	Interval  4
+	Start at  1.625 End at  1.75
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII']
+				C :  ['V']
+				B :  ['bVI']
+				E :  ['bIII']
+				D :  ['IV']
+				G :  ['I']
+				F# :  ['bII']
+			Possible match chords are: 
+				A :  ['ii6', 'dim ii6']
+				C :  ['dim vii6']
+				B :  ['i6']
+				E :  ['v6']
+				D :  ['vi6']
+				G :  ['iii6']
+				F :  ['ii']
+				Bb :  ['vi']
+				Eb :  ['iii']
+				F# :  ['iv6']
+
+	Interval  5
+	Start at  1.75 End at  1.875
+			B
+			F#
+			D
+			G
+			Exact match chords are: 
+				A :  ['ii6', 'bVII']
+				C :  ['V']
+				B :  ['i6', 'bVI']
+				E :  ['bIII', 'v6']
+				D :  ['IV7', 'vi6']
+				G :  ['I7', 'iii6']
+				F# :  ['bII', 'iv6']
+			Possible match chords are: 
+				A :  ['IV']
+				C :  ['dim vii6']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I']
+				G :  ['V']
+				F :  ['ii']
+				C# :  ['bII', 'bVII']
+				Bb :  ['vi']
+				D# :  ['bVI']
+				Eb :  ['iii']
+				F# :  ['bVI', 'ItalianVI']
+				G# :  ['bIII']
+				A# :  ['bII']
+
+	Interval  6
+	Start at  1.875 End at  2.0
+			B
+			E
+			D
+			G
+			Exact match chords are: 
+				A :  ['v6', 'bVII']
+				C :  ['iii65', 'V']
+				B :  ['iv6', 'bVI']
+				E :  ['i6', 'bIII']
+				D :  ['ii65', 'IV']
+				G :  ['I', 'vi65']
+				F# :  ['bII']
+			Possible match chords are: 
+				A :  ['ii6', 'dim ii6']
+				C :  ['dim vii6']
+				B :  ['i6']
+				E :  ['v6']
+				D :  ['vi6']
+				G :  ['iii6']
+				F :  ['ii', 'half-dim vii65']
+				C# :  ['bIII64']
+				Bb :  ['vi']
+				D# :  ['bII64']
+				Eb :  ['iii']
+				F# :  ['iv6', 'bVII64']
+				G# :  ['bVI64']
+
+Measure  10
+	Interval  0
+	Start at  0.0 End at  0.5
+			A
+			C
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['i', 'IV64', 'iv64']
+				C :  ['ii43', 'vi']
+				B :  ['bIII64']
+				E :  ['iv', 'bVII64']
+				D :  ['I64', 'i64', 'v']
+				G :  ['ii', 'dim ii', 'V43']
+				F :  ['iii', 'vi43']
+				C# :  ['bII64']
+				Bb :  ['iii43', 'dim vii']
+				F# :  ['bVI64']
+
+	Interval  1
+	Start at  0.5 End at  1.0
+			C
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+
+	Interval  2
+	Start at  1.0 End at  1.5
+			C
+			G#
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['dim vii']
+				F# :  ['dim ii']
+
+	Interval  3
+	Start at  1.5 End at  2.0
+			A
+			C
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['i', 'IV64', 'iv64']
+				C :  ['ii43', 'vi']
+				B :  ['bIII64']
+				E :  ['iv', 'bVII64']
+				D :  ['I64', 'i64', 'v']
+				G :  ['ii', 'dim ii', 'V43']
+				F :  ['iii', 'vi43']
+				C# :  ['bII64']
+				Bb :  ['iii43', 'dim vii']
+				F# :  ['bVI64']
+
+Measure  11
+	Interval  0
+	Start at  0.0 End at  0.5
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII6']
+				C :  ['V6']
+				B :  ['bVI6']
+				E :  ['bIII6']
+				D :  ['IV6']
+				G :  ['I6']
+				F# :  ['bII6']
+			Possible match chords are: 
+				A :  ['ii', 'dim ii']
+				C :  ['dim vii']
+				B :  ['i']
+				E :  ['v']
+				D :  ['vi']
+				G :  ['iii']
+				F :  ['ii64']
+				Bb :  ['vi64']
+				Eb :  ['iii64']
+				F# :  ['iv']
+
+	Interval  1
+	Start at  0.5 End at  1.0
+			D
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVII64']
+				C :  ['V64', 'v64']
+				B :  ['bVI64']
+				E :  ['bIII64']
+				D :  ['IV64', 'iv64']
+				G :  ['I64', 'i64']
+				F :  ['ii64']
+				Bb :  ['vi64']
+				Eb :  ['iii64']
+				F# :  ['bII64']
+
+	Interval  2
+	Start at  1.0 End at  1.5
+			A
+			F#
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['vi6']
+				B :  ['v6']
+				E :  ['ii6', 'dim ii6']
+				D :  ['iii6']
+				G :  ['dim vii6']
+				C# :  ['iv6']
+				F# :  ['i6']
+
+	Interval  3
+	Start at  1.5 End at  1.625
+			A
+			B
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVII6']
+				C :  ['V6']
+				B :  ['bVI6', 'ItalianVI']
+				E :  ['bIII6']
+				D :  ['IV6']
+				G :  ['I6']
+				F# :  ['bII6']
+
+	Interval  4
+	Start at  1.625 End at  1.75
+			B
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVII6']
+				C :  ['V6']
+				B :  ['bVI6', 'ItalianVI']
+				E :  ['bIII6']
+				D :  ['IV6']
+				G :  ['I6']
+				F# :  ['bII6']
+
+	Interval  5
+	Start at  1.75 End at  1.875
+			B
+			F#
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['ii', 'bVII6']
+				C :  ['V6']
+				B :  ['I', 'i', 'bVI6', 'ItalianVI']
+				E :  ['bIII6', 'V', 'v']
+				D :  ['IV65', 'vi']
+				G :  ['I65', 'iii']
+				C# :  ['bVII']
+				D# :  ['bVI']
+				F# :  ['bII6', 'IV', 'iv']
+				G# :  ['bIII']
+				A# :  ['bII']
+
+	Interval  6
+	Start at  1.875 End at  2.0
+			B
+			E
+			G
+			Exact match chords are: 
+				A :  ['v64']
+				C :  ['iii64']
+				B :  ['iv64']
+				E :  ['i64']
+				D :  ['ii64']
+				G :  ['vi64']
+			Possible match chords are: 
+				A :  ['bVII6']
+				C :  ['V6']
+				B :  ['bVI6', 'ItalianVI']
+				E :  ['bIII6']
+				D :  ['IV6']
+				G :  ['I6']
+				F :  ['dim vii6']
+				C# :  ['bIII64']
+				D# :  ['bII64']
+				F# :  ['bII6', 'bVII64']
+				G# :  ['bVI64']
+
+Measure  12
+	Interval  0
+	Start at  0.0 End at  0.5
+			A
+			C
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['i6', 'IV64', 'iv64']
+				C :  ['ii42', 'vi6']
+				B :  ['bIII64']
+				E :  ['iv6', 'bVII64']
+				D :  ['I64', 'i64', 'v6']
+				G :  ['ii6', 'dim ii6', 'V42']
+				F :  ['iii6', 'vi42']
+				C# :  ['bII64']
+				Bb :  ['iii42', 'dim vii6']
+				F# :  ['bVI64']
+
+	Interval  1
+	Start at  0.5 End at  1.0
+			D
+			Exact match chords are: 
+				D :  ['I']
+			Possible match chords are: 
+
+	Interval  2
+	Start at  1.0 End at  1.5
+			E
+			D
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['v', 'bVII']
+				C :  ['iii7', 'V', 'v']
+				B :  ['iv', 'bVI']
+				E :  ['i', 'bIII']
+				D :  ['ii7', 'IV', 'iv']
+				G :  ['I', 'i', 'vi7']
+				F :  ['ii', 'half-dim vii7']
+				Bb :  ['vi']
+				Eb :  ['iii']
+				F# :  ['bII']
+
+	Interval  3
+	Start at  1.5 End at  2.0
+			A
+			F#
+			D
+			Exact match chords are: 
+				A :  ['IV6']
+				B :  ['bIII6']
+				E :  ['bVII6']
+				D :  ['I6']
+				G :  ['V6']
+				C# :  ['bII6']
+				F# :  ['bVI6']
+			Possible match chords are: 
+				A :  ['vi']
+				C :  ['ii64']
+				B :  ['v']
+				E :  ['ii', 'dim ii']
+				D :  ['iii']
+				G :  ['dim vii']
+				F :  ['vi64']
+				C# :  ['iv']
+				Bb :  ['iii64']
+				F# :  ['i']
+
+Measure  13
+	Interval  0
+	Start at  0.0 End at  0.25
+			A
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII']
+				C :  ['V']
+				B :  ['bVI']
+				E :  ['bIII']
+				D :  ['IV']
+				G :  ['I']
+				F# :  ['bII']
+			Possible match chords are: 
+				A :  ['ii7', 'IV', 'iv']
+				C :  ['ii', 'half-dim vii7']
+				B :  ['i', 'bIII']
+				E :  ['v', 'bVII']
+				D :  ['I', 'i', 'vi7']
+				G :  ['iii7', 'V', 'v']
+				F :  ['ii', 'vi']
+				C# :  ['bII']
+				Bb :  ['iii', 'vi']
+				Eb :  ['iii']
+				F# :  ['iv', 'bVI']
+
+	Interval  1
+	Start at  0.25 End at  0.5
+			B
+			D
+			G
+			Exact match chords are: 
+				A :  ['bVII']
+				C :  ['V']
+				B :  ['bVI']
+				E :  ['bIII']
+				D :  ['IV']
+				G :  ['I']
+				F# :  ['bII']
+			Possible match chords are: 
+				A :  ['ii', 'dim ii']
+				C :  ['dim vii']
+				B :  ['i']
+				E :  ['v']
+				D :  ['vi']
+				G :  ['iii']
+				F :  ['ii']
+				Bb :  ['vi']
+				Eb :  ['iii']
+				F# :  ['iv']
+
+	Interval  2
+	Start at  0.5 End at  0.75
+			F#
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['IV']
+				B :  ['bIII']
+				E :  ['bVII']
+				D :  ['I']
+				G :  ['V']
+				C# :  ['bII']
+				F# :  ['bVI', 'ItalianVI']
+
+	Interval  3
+	Start at  0.75 End at  1.0
+			D
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['bVII64']
+				C :  ['V64', 'v64']
+				B :  ['bVI64']
+				E :  ['bIII64']
+				D :  ['IV64', 'iv64']
+				G :  ['I64', 'i64']
+				F :  ['ii64']
+				Bb :  ['vi64']
+				Eb :  ['iii64']
+				F# :  ['bII64']
+
+	Interval  4
+	Start at  1.0 End at  1.25
+			A
+			F#
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['vi']
+				B :  ['v']
+				E :  ['ii', 'dim ii']
+				D :  ['iii']
+				G :  ['dim vii']
+				C# :  ['iv']
+				F# :  ['i']
+
+	Interval  5
+	Start at  1.25 End at  1.5
+			A
+			F#
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['vi']
+				B :  ['v']
+				E :  ['ii', 'dim ii']
+				D :  ['iii']
+				G :  ['dim vii']
+				C# :  ['iv']
+				F# :  ['i']
+
+	Interval  6
+	Start at  1.5 End at  1.75
+			B
+			F#
+			G
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['ii', 'bVII']
+				C :  ['V']
+				B :  ['I', 'i', 'bVI', 'ItalianVI']
+				E :  ['bIII', 'V', 'v']
+				D :  ['IV7', 'vi']
+				G :  ['I7', 'iii']
+				C# :  ['bVII']
+				D# :  ['bVI']
+				F# :  ['bII', 'IV', 'iv']
+				G# :  ['bIII']
+				A# :  ['bII']
+
+	Interval  7
+	Start at  1.75 End at  2.0
+			B
+			E
+			G
+			Exact match chords are: 
+				A :  ['v6']
+				C :  ['iii6']
+				B :  ['iv6']
+				E :  ['i6']
+				D :  ['ii6']
+				G :  ['vi6']
+			Possible match chords are: 
+				A :  ['bVII']
+				C :  ['V']
+				B :  ['bVI', 'ItalianVI']
+				E :  ['bIII']
+				D :  ['IV']
+				G :  ['I']
+				F :  ['dim vii6']
+				C# :  ['bIII64']
+				D# :  ['bII64']
+				F# :  ['bII', 'bVII64']
+				G# :  ['bVI64']
+
+Measure  14
+	Interval  0
+	Start at  0.0 End at  0.5
+			A
+			C
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['i', 'IV64', 'iv64']
+				C :  ['ii43', 'vi']
+				B :  ['bIII64']
+				E :  ['iv', 'bVII64']
+				D :  ['I64', 'i64', 'v']
+				G :  ['ii', 'dim ii', 'V43']
+				F :  ['iii', 'vi43']
+				C# :  ['bII64']
+				Bb :  ['iii43', 'dim vii']
+				F# :  ['bVI64']
+
+	Interval  1
+	Start at  0.5 End at  1.0
+			D
+			Exact match chords are: 
+				D :  ['I']
+			Possible match chords are: 
+
+	Interval  2
+	Start at  1.0 End at  1.5
+			B
+			G#
+			D
+			Exact match chords are: 
+				A :  ['dim vii']
+				F# :  ['dim ii']
+			Possible match chords are: 
+				A :  ['ii', 'dim ii']
+				C :  ['dim vii']
+				B :  ['i', 'vi']
+				E :  ['iii', 'v']
+				D :  ['vi']
+				G :  ['iii']
+				C# :  ['v']
+				D# :  ['iv']
+				F# :  ['iv']
+				G# :  ['i']
+
+	Interval  3
+	Start at  1.5 End at  2.0
+			A
+			C
+			D
+			Exact match chords are: 
+			Possible match chords are: 
+				A :  ['i', 'IV64', 'iv64']
+				C :  ['ii43', 'vi']
+				B :  ['bIII64']
+				E :  ['iv', 'bVII64']
+				D :  ['I64', 'i64', 'v']
+				G :  ['ii', 'dim ii', 'V43']
+				F :  ['iii', 'vi43']
+				C# :  ['bII64']
+				Bb :  ['iii43', 'dim vii']
+				F# :  ['bVI64']
+

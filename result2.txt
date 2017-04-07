@@ -1,0 +1,1818 @@
+Reading input musicxml file
+Measure:  0  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['D']
+
+	Exact match chords are: 
+	D :  ['I']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('D', 'I')]
+
+
+Measure:  0  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['D', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['iv']
+	C :  ['ii', 'dim ii']
+	D :  ['i']
+	G :  ['v']
+	F :  ['vi']
+	Bb :  ['iii']
+	Eb :  ['dim vii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	1 :  [('C', 'dim ii'), ('Eb', 'dim vii')]
+
+
+Measure:  0  Interval:  2
+	Start at  0.5 End at  0.75
+
+	Note List:  ['A', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['IV', 'iv']
+	C :  ['ii']
+	B :  ['bIII']
+	E :  ['bVII']
+	D :  ['I', 'i']
+	G :  ['V', 'v']
+	F :  ['vi']
+	C# :  ['bII']
+	Bb :  ['iii']
+	F# :  ['bVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	1 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+
+
+Measure:  0  Interval:  3
+	Start at  0.75 End at  1.0
+
+	Note List:  ['D', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVII64']
+	C :  ['V64', 'v64']
+	B :  ['bVI64']
+	E :  ['bIII64']
+	D :  ['IV64', 'iv64']
+	G :  ['I64', 'i64']
+	F :  ['ii64']
+	Bb :  ['vi64']
+	Eb :  ['iii64']
+	F# :  ['bII64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII64'), ('C', 'V64'), ('B', 'bVI64'), ('E', 'bIII64'), ('D', 'IV64'), ('G', 'I64'), ('F#', 'bII64')]
+	1 :  [('C', 'v64'), ('D', 'iv64'), ('G', 'i64'), ('F', 'ii64'), ('Bb', 'vi64'), ('Eb', 'iii64')]
+
+
+Measure:  0  Interval:  4
+	Start at  1.0 End at  1.25
+
+	Note List:  ['D', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['iv']
+	C :  ['ii', 'dim ii']
+	D :  ['i']
+	G :  ['v']
+	F :  ['vi']
+	Bb :  ['iii']
+	Eb :  ['dim vii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	1 :  [('C', 'dim ii'), ('Eb', 'dim vii')]
+
+
+Measure:  0  Interval:  5
+	Start at  1.25 End at  1.5
+
+	Note List:  ['A', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVI', 'ItalianVI']
+	C :  ['IV']
+	E :  ['bII']
+	D :  ['bIII']
+	G :  ['bVII']
+	F :  ['I']
+	Bb :  ['V']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVI'), ('C', 'IV'), ('E', 'bII'), ('D', 'bIII'), ('G', 'bVII'), ('F', 'I'), ('Bb', 'V')]
+	1 :  [('A', 'ItalianVI')]
+
+
+Measure:  0  Interval:  6
+	Start at  1.5 End at  1.75
+
+	Note List:  ['A', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVI6', 'ItalianVI']
+	C :  ['IV6']
+	E :  ['bII6']
+	D :  ['bIII6']
+	G :  ['bVII6']
+	F :  ['I6']
+	Bb :  ['V6']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVI6'), ('C', 'IV6'), ('E', 'bII6'), ('D', 'bIII6'), ('G', 'bVII6'), ('F', 'I6'), ('Bb', 'V6')]
+	1 :  [('A', 'ItalianVI')]
+
+
+Measure:  0  Interval:  7
+	Start at  1.75 End at  2.0
+
+	Note List:  ['D', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['iv6']
+	C :  ['ii6', 'dim ii6']
+	D :  ['i6']
+	G :  ['v6']
+	F :  ['vi6']
+	Bb :  ['iii6']
+	Eb :  ['dim vii6']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iv6'), ('C', 'ii6'), ('D', 'i6'), ('G', 'v6'), ('F', 'vi6'), ('Bb', 'iii6')]
+	1 :  [('C', 'dim ii6'), ('Eb', 'dim vii6')]
+
+
+Measure:  1  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['C#', 'G#', 'E']
+
+	Exact match chords are: 
+	A :  ['iii6']
+	B :  ['ii6']
+	E :  ['vi6']
+	C# :  ['i6']
+	F# :  ['v6']
+	G# :  ['iv6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'iii6'), ('B', 'ii6'), ('E', 'vi6'), ('C#', 'i6'), ('F#', 'v6'), ('G#', 'iv6')]
+
+
+Measure:  1  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['C#', 'A', 'E']
+
+	Exact match chords are: 
+	A :  ['I64']
+	B :  ['bVII64']
+	E :  ['IV64']
+	D :  ['V64']
+	C# :  ['bVI64']
+	F# :  ['bIII64']
+	G# :  ['bII64']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'I64'), ('B', 'bVII64'), ('E', 'IV64'), ('D', 'V64'), ('C#', 'bVI64'), ('F#', 'bIII64'), ('G#', 'bII64')]
+
+
+Measure:  1  Interval:  2
+	Start at  0.5 End at  2.0
+
+	Note List:  ['G#', 'A', 'E', 'C#']
+
+	Exact match chords are: 
+	A :  ['I65', 'iii']
+	B :  ['ii', 'bVII6']
+	E :  ['IV65', 'vi']
+	D :  ['V6']
+	C# :  ['i', 'bVI6']
+	F# :  ['bIII6', 'v']
+	G# :  ['bII6', 'iv']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'I65'), ('E', 'IV65')]
+	1 :  [('A', 'iii'), ('B', 'ii'), ('E', 'vi'), ('C#', 'i'), ('F#', 'v'), ('G#', 'iv')]
+	2 :  [('B', 'bVII6'), ('D', 'V6'), ('C#', 'bVI6'), ('F#', 'bIII6'), ('G#', 'bII6')]
+
+
+Measure:  2  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['A']
+
+	Exact match chords are: 
+	A :  ['I']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'I')]
+
+
+Measure:  2  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['C#', 'A']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['I']
+	B :  ['bVII']
+	E :  ['IV']
+	D :  ['V']
+	C# :  ['bVI', 'ItalianVI']
+	F# :  ['bIII']
+	G# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'I'), ('B', 'bVII'), ('E', 'IV'), ('D', 'V'), ('C#', 'bVI'), ('F#', 'bIII'), ('G#', 'bII')]
+	1 :  [('C#', 'ItalianVI')]
+
+
+Measure:  2  Interval:  2
+	Start at  0.5 End at  1.0
+
+	Note List:  ['E', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+
+
+Measure:  2  Interval:  3
+	Start at  1.0 End at  1.25
+
+	Note List:  ['C#', 'A']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['I']
+	B :  ['bVII']
+	E :  ['IV']
+	D :  ['V']
+	C# :  ['bVI', 'ItalianVI']
+	F# :  ['bIII']
+	G# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'I'), ('B', 'bVII'), ('E', 'IV'), ('D', 'V'), ('C#', 'bVI'), ('F#', 'bIII'), ('G#', 'bII')]
+	1 :  [('C#', 'ItalianVI')]
+
+
+Measure:  2  Interval:  4
+	Start at  1.25 End at  1.5
+
+	Note List:  ['C#', 'E']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['iii']
+	B :  ['ii', 'dim ii']
+	E :  ['vi']
+	D :  ['dim vii']
+	C# :  ['i']
+	F# :  ['v']
+	G# :  ['iv']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iii'), ('B', 'ii'), ('E', 'vi'), ('C#', 'i'), ('F#', 'v'), ('G#', 'iv')]
+	1 :  [('B', 'dim ii'), ('D', 'dim vii')]
+
+
+Measure:  2  Interval:  5
+	Start at  1.5 End at  1.75
+
+	Note List:  ['A', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVI', 'ItalianVI']
+	C :  ['IV']
+	E :  ['bII']
+	D :  ['bIII']
+	G :  ['bVII']
+	F :  ['I']
+	Bb :  ['V']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVI'), ('C', 'IV'), ('E', 'bII'), ('D', 'bIII'), ('G', 'bVII'), ('F', 'I'), ('Bb', 'V')]
+	1 :  [('A', 'ItalianVI')]
+
+
+Measure:  2  Interval:  6
+	Start at  1.75 End at  2.0
+
+	Note List:  ['E', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['v']
+	C :  ['iii']
+	B :  ['iv']
+	E :  ['i']
+	D :  ['ii', 'dim ii']
+	G :  ['vi']
+	F :  ['dim vii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'v'), ('C', 'iii'), ('B', 'iv'), ('E', 'i'), ('D', 'ii'), ('G', 'vi')]
+	1 :  [('D', 'dim ii'), ('F', 'dim vii')]
+
+
+Measure:  3  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['C#', 'D', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['iv']
+	C :  ['ii', 'dim ii']
+	D :  ['i']
+	G :  ['v']
+	F :  ['vi']
+	Bb :  ['iii']
+	Eb :  ['dim vii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	1 :  [('C', 'dim ii'), ('Eb', 'dim vii')]
+
+
+Measure:  3  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['D', 'F']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['iv']
+	C :  ['ii', 'dim ii']
+	D :  ['i']
+	G :  ['v']
+	F :  ['vi']
+	Bb :  ['iii']
+	Eb :  ['dim vii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	1 :  [('C', 'dim ii'), ('Eb', 'dim vii')]
+
+
+Measure:  3  Interval:  2
+	Start at  0.5 End at  2.0
+
+	Note List:  ['C#', 'D', 'A', 'F']
+
+	Exact match chords are: 
+	A :  ['iv6']
+	C :  ['ii6']
+	D :  ['i6']
+	G :  ['v6']
+	F :  ['vi6']
+	Bb :  ['iii6']
+
+	Possible match chords are: 
+	A :  ['I', 'bVI', 'ItalianVI']
+	C :  ['IV']
+	B :  ['bIII64', 'bVII']
+	E :  ['bII', 'IV', 'bVII64']
+	D :  ['bIII', 'V']
+	G :  ['bVII']
+	F :  ['I']
+	C# :  ['bII64', 'bVI', 'ItalianVI']
+	Bb :  ['V']
+	Eb :  ['dim vii6']
+	F# :  ['bIII', 'bVI64']
+	G# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'iv6'), ('C', 'ii6'), ('D', 'i6'), ('G', 'v6'), ('F', 'vi6'), ('Bb', 'iii6')]
+	1 :  [('A', 'I'), ('B', 'bVII'), ('E', 'IV'), ('D', 'V'), ('C#', 'bVI'), ('F#', 'bIII'), ('G#', 'bII')]
+	2 :  [('A', 'bVI'), ('C', 'IV'), ('E', 'bII'), ('D', 'bIII'), ('G', 'bVII'), ('F', 'I'), ('Bb', 'V')]
+	3 :  [('A', 'ItalianVI')]
+	4 :  [('B', 'bIII64'), ('E', 'bVII64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	5 :  [('C#', 'ItalianVI')]
+	6 :  [('Eb', 'dim vii6')]
+
+
+Measure:  4  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['A', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['IV', 'iv']
+	C :  ['ii']
+	B :  ['bIII']
+	E :  ['bVII']
+	D :  ['I', 'i']
+	G :  ['V', 'v']
+	F :  ['vi']
+	C# :  ['bII']
+	Bb :  ['iii']
+	F# :  ['bVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	1 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+
+
+Measure:  4  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['D']
+
+	Exact match chords are: 
+	D :  ['I']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('D', 'I')]
+
+
+Measure:  4  Interval:  2
+	Start at  0.5 End at  2.0
+
+	Note List:  ['F', 'E', 'D', 'Bb', 'A']
+
+	Exact match chords are: 
+	A :  ['bII6', 'iv']
+	C :  ['ii', 'bVII6']
+	D :  ['i', 'bVI6']
+	G :  ['bIII6', 'v']
+	F :  ['IV65', 'vi']
+	Bb :  ['I65', 'iii']
+	Eb :  ['V6']
+
+	Possible match chords are: 
+	A :  ['I64', 'i64', 'bVI', 'ItalianVI']
+	C :  ['IV42', 'vi64']
+	B :  ['bIII', 'bVII64']
+	E :  ['bII', 'IV64', 'iv64', 'bVII']
+	D :  ['half-dim ii42', 'bIII', 'V64', 'v64']
+	G :  ['ii64', 'bVII']
+	F :  ['I42', 'iii64', 'half-dim vii42']
+	C# :  ['bII', 'bVI64']
+	Bb :  ['V']
+	Db :  ['vi64']
+	Ab :  ['ii64']
+	Eb :  ['dim vii']
+	F# :  ['bIII64', 'bVI']
+	G# :  ['bII64']
+	Gb :  ['iii64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bII6'), ('C', 'bVII6'), ('D', 'bVI6'), ('G', 'bIII6'), ('Eb', 'V6')]
+	1 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	2 :  [('A', 'I64'), ('B', 'bVII64'), ('E', 'IV64'), ('D', 'V64'), ('C#', 'bVI64'), ('F#', 'bIII64'), ('G#', 'bII64')]
+	3 :  [('A', 'i64'), ('C', 'vi64'), ('E', 'iv64'), ('D', 'v64'), ('G', 'ii64'), ('F', 'iii64')]
+	4 :  [('A', 'bVI'), ('E', 'bII'), ('D', 'bIII'), ('G', 'bVII'), ('Bb', 'V')]
+	5 :  [('A', 'ItalianVI')]
+	6 :  [('C', 'IV42'), ('F', 'I42')]
+	7 :  [('B', 'bIII'), ('E', 'bVII'), ('C#', 'bII'), ('F#', 'bVI')]
+	8 :  [('D', 'half-dim ii42'), ('F', 'half-dim vii42')]
+	9 :  [('F', 'IV65'), ('Bb', 'I65')]
+	10 :  [('Db', 'vi64'), ('Ab', 'ii64'), ('Gb', 'iii64')]
+	11 :  [('Eb', 'dim vii')]
+
+
+Measure:  5  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['B', 'G#', 'D#', 'D']
+
+	Exact match chords are: 
+	A :  ['dim vii6']
+	B :  ['vi6']
+	E :  ['iii6']
+	C# :  ['v6']
+	D# :  ['iv6']
+	F# :  ['ii6']
+	G# :  ['i6']
+
+	Possible match chords are: 
+	A :  ['ii', 'dim ii']
+	C :  ['dim vii']
+	B :  ['I', 'i']
+	E :  ['V', 'v']
+	D :  ['vi']
+	G :  ['iii']
+	C# :  ['bVII']
+	D# :  ['bVI', 'ItalianVI']
+	F# :  ['IV', 'iv']
+	G# :  ['bIII']
+	A# :  ['bII', 'bVII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'dim vii6')]
+	1 :  [('A', 'ii'), ('B', 'i'), ('E', 'v'), ('D', 'vi'), ('G', 'iii'), ('F#', 'iv')]
+	2 :  [('A', 'dim ii'), ('C', 'dim vii')]
+	3 :  [('B', 'vi6'), ('E', 'iii6'), ('C#', 'v6'), ('D#', 'iv6'), ('F#', 'ii6'), ('G#', 'i6')]
+	4 :  [('B', 'I'), ('E', 'V'), ('C#', 'bVII'), ('D#', 'bVI'), ('F#', 'IV'), ('G#', 'bIII'), ('A#', 'bII')]
+	5 :  [('D#', 'ItalianVI')]
+	6 :  [('A#', 'bVII')]
+
+
+Measure:  5  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['G#', 'B', 'E', 'D']
+
+	Exact match chords are: 
+	A :  ['V43', 'dim vii6']
+	B :  ['IV64']
+	E :  ['I64']
+	C# :  ['bIII64']
+	D# :  ['bII64']
+	F# :  ['dim ii6', 'bVII64']
+	G# :  ['bVI64']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'V43')]
+	1 :  [('A', 'dim vii6'), ('F#', 'dim ii6')]
+	2 :  [('B', 'IV64'), ('E', 'I64'), ('C#', 'bIII64'), ('D#', 'bII64'), ('F#', 'bVII64'), ('G#', 'bVI64')]
+
+
+Measure:  5  Interval:  2
+	Start at  0.5 End at  2.0
+
+	Note List:  ['D#', 'E', 'B', 'G#']
+
+	Exact match chords are: 
+	A :  ['V6']
+	B :  ['IV65', 'vi']
+	E :  ['I65', 'iii']
+	C# :  ['bIII6', 'v']
+	D# :  ['bII6', 'iv']
+	F# :  ['ii', 'bVII6']
+	G# :  ['i', 'bVI6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'V6'), ('C#', 'bIII6'), ('D#', 'bII6'), ('F#', 'bVII6'), ('G#', 'bVI6')]
+	1 :  [('B', 'IV65'), ('E', 'I65')]
+	2 :  [('B', 'vi'), ('E', 'iii'), ('C#', 'v'), ('D#', 'iv'), ('F#', 'ii'), ('G#', 'i')]
+
+
+Measure:  6  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['G#', 'B', 'E']
+
+	Exact match chords are: 
+	A :  ['V6']
+	B :  ['IV6']
+	E :  ['I6']
+	C# :  ['bIII6']
+	D# :  ['bII6']
+	F# :  ['bVII6']
+	G# :  ['bVI6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'V6'), ('B', 'IV6'), ('E', 'I6'), ('C#', 'bIII6'), ('D#', 'bII6'), ('F#', 'bVII6'), ('G#', 'bVI6')]
+
+
+Measure:  6  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['G#', 'B', 'E']
+
+	Exact match chords are: 
+	A :  ['V6']
+	B :  ['IV6']
+	E :  ['I6']
+	C# :  ['bIII6']
+	D# :  ['bII6']
+	F# :  ['bVII6']
+	G# :  ['bVI6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'V6'), ('B', 'IV6'), ('E', 'I6'), ('C#', 'bIII6'), ('D#', 'bII6'), ('F#', 'bVII6'), ('G#', 'bVI6')]
+
+
+Measure:  6  Interval:  2
+	Start at  0.5 End at  1.0
+
+	Note List:  ['B', 'A']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+
+
+Measure:  6  Interval:  3
+	Start at  1.0 End at  1.25
+
+	Note List:  ['E', 'B', 'G#']
+
+	Exact match chords are: 
+	A :  ['V']
+	B :  ['IV']
+	E :  ['I']
+	C# :  ['bIII']
+	D# :  ['bII']
+	F# :  ['bVII']
+	G# :  ['bVI']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'V'), ('B', 'IV'), ('E', 'I'), ('C#', 'bIII'), ('D#', 'bII'), ('F#', 'bVII'), ('G#', 'bVI')]
+
+
+Measure:  6  Interval:  4
+	Start at  1.25 End at  1.5
+
+	Note List:  ['B', 'E']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['V', 'v']
+	C :  ['iii']
+	B :  ['IV', 'iv']
+	E :  ['I', 'i']
+	D :  ['ii']
+	G :  ['vi']
+	C# :  ['bIII']
+	D# :  ['bII']
+	F# :  ['bVII']
+	G# :  ['bVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'V'), ('B', 'IV'), ('E', 'I'), ('C#', 'bIII'), ('D#', 'bII'), ('F#', 'bVII'), ('G#', 'bVI')]
+	1 :  [('A', 'v'), ('C', 'iii'), ('B', 'iv'), ('E', 'i'), ('D', 'ii'), ('G', 'vi')]
+
+
+Measure:  6  Interval:  5
+	Start at  1.5 End at  2.0
+
+	Note List:  ['E', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+
+
+Measure:  7  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['A', 'C']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['i']
+	C :  ['vi']
+	E :  ['iv']
+	D :  ['v']
+	G :  ['ii', 'dim ii']
+	F :  ['iii']
+	Bb :  ['dim vii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	1 :  [('G', 'dim ii'), ('Bb', 'dim vii')]
+
+
+Measure:  7  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['A', 'C', 'E']
+
+	Exact match chords are: 
+	A :  ['i']
+	C :  ['vi']
+	E :  ['iv']
+	D :  ['v']
+	G :  ['ii']
+	F :  ['iii']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+
+
+Measure:  7  Interval:  2
+	Start at  0.5 End at  0.75
+
+	Note List:  ['A', 'E', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['I', 'i', 'IV64', 'iv64']
+	C :  ['ii64', 'vi']
+	B :  ['bIII64', 'bVII']
+	E :  ['IV', 'iv', 'bVII64']
+	D :  ['I64', 'i64', 'V', 'v']
+	G :  ['ii', 'V64', 'v64']
+	F :  ['iii', 'vi64']
+	C# :  ['bII64', 'bVI']
+	Bb :  ['iii64']
+	F# :  ['bIII', 'bVI64']
+	G# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'I'), ('B', 'bVII'), ('E', 'IV'), ('D', 'V'), ('C#', 'bVI'), ('F#', 'bIII'), ('G#', 'bII')]
+	1 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	2 :  [('A', 'IV64'), ('B', 'bIII64'), ('E', 'bVII64'), ('D', 'I64'), ('G', 'V64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	3 :  [('A', 'iv64'), ('C', 'ii64'), ('D', 'i64'), ('G', 'v64'), ('F', 'vi64'), ('Bb', 'iii64')]
+
+
+Measure:  7  Interval:  3
+	Start at  0.75 End at  1.0
+
+	Note List:  ['A', 'C', 'E']
+
+	Exact match chords are: 
+	A :  ['i']
+	C :  ['vi']
+	E :  ['iv']
+	D :  ['v']
+	G :  ['ii']
+	F :  ['iii']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+
+
+Measure:  7  Interval:  4
+	Start at  1.0 End at  1.25
+
+	Note List:  ['A', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+
+
+Measure:  7  Interval:  5
+	Start at  1.25 End at  1.5
+
+	Note List:  ['A', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+
+
+Measure:  7  Interval:  6
+	Start at  1.5 End at  1.75
+
+	Note List:  ['A', 'E', 'D', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['I64', 'i64', 'IV', 'iv', 'v6', 'bVII']
+	C :  ['ii', 'iii65', 'V', 'v', 'vi42']
+	B :  ['bIII', 'iv6', 'bVI', 'bVII64']
+	E :  ['i6', 'bIII', 'IV64', 'iv64', 'bVII']
+	D :  ['I', 'i', 'ii65', 'IV', 'iv', 'V42']
+	G :  ['I', 'i', 'ii42', 'V', 'v', 'vi65']
+	F :  ['ii', 'iii42', 'vi', 'half-dim vii65']
+	C# :  ['bII', 'bVI64']
+	Bb :  ['iii', 'vi']
+	Eb :  ['iii']
+	F# :  ['bII', 'bIII64', 'bVI']
+	G# :  ['bII64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'I64'), ('B', 'bVII64'), ('E', 'IV64'), ('C#', 'bVI64'), ('F#', 'bIII64'), ('G#', 'bII64')]
+	1 :  [('A', 'i64'), ('E', 'iv64')]
+	2 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	3 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	4 :  [('A', 'v6'), ('B', 'iv6'), ('E', 'i6')]
+	5 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+	6 :  [('C', 'iii65'), ('D', 'ii65'), ('G', 'vi65')]
+	7 :  [('C', 'v'), ('D', 'iv'), ('G', 'i'), ('F', 'ii'), ('Bb', 'vi'), ('Eb', 'iii')]
+	8 :  [('C', 'vi42'), ('G', 'ii42'), ('F', 'iii42')]
+	9 :  [('D', 'V42')]
+	10 :  [('F', 'half-dim vii65')]
+
+
+Measure:  7  Interval:  7
+	Start at  1.75 End at  2.0
+
+	Note List:  ['A', 'C#', 'E', 'G']
+
+	Exact match chords are: 
+	A :  ['I64']
+	B :  ['dim ii64', 'bVII64']
+	E :  ['IV64']
+	D :  ['V42', 'dim vii64']
+	C# :  ['bVI64']
+	F# :  ['bIII64']
+	G# :  ['bII64']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'I64'), ('B', 'bVII64'), ('E', 'IV64'), ('C#', 'bVI64'), ('F#', 'bIII64'), ('G#', 'bII64')]
+	1 :  [('B', 'dim ii64'), ('D', 'dim vii64')]
+	2 :  [('D', 'V42')]
+
+
+Measure:  8  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['A', 'F#']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['vi']
+	B :  ['v']
+	E :  ['ii', 'dim ii']
+	D :  ['iii']
+	G :  ['dim vii']
+	C# :  ['iv']
+	F# :  ['i']
+
+	Equivalent Chord: 
+	0 :  [('A', 'vi'), ('B', 'v'), ('E', 'ii'), ('D', 'iii'), ('C#', 'iv'), ('F#', 'i')]
+	1 :  [('E', 'dim ii'), ('G', 'dim vii')]
+
+
+Measure:  8  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['A', 'F#']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['vi']
+	B :  ['v']
+	E :  ['ii', 'dim ii']
+	D :  ['iii']
+	G :  ['dim vii']
+	C# :  ['iv']
+	F# :  ['i']
+
+	Equivalent Chord: 
+	0 :  [('A', 'vi'), ('B', 'v'), ('E', 'ii'), ('D', 'iii'), ('C#', 'iv'), ('F#', 'i')]
+	1 :  [('E', 'dim ii'), ('G', 'dim vii')]
+
+
+Measure:  8  Interval:  2
+	Start at  0.5 End at  0.75
+
+	Note List:  ['A', 'F#', 'E']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['I', 'i', 'vi7']
+	C :  ['vi']
+	B :  ['v', 'bVII']
+	E :  ['ii7', 'IV', 'iv']
+	D :  ['iii7', 'V', 'v']
+	G :  ['ii', 'half-dim vii7']
+	F :  ['iii']
+	C# :  ['iv', 'bVI']
+	F# :  ['i', 'bIII']
+	G# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'I'), ('B', 'bVII'), ('E', 'IV'), ('D', 'V'), ('C#', 'bVI'), ('F#', 'bIII'), ('G#', 'bII')]
+	1 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	2 :  [('A', 'vi7'), ('E', 'ii7'), ('D', 'iii7')]
+	3 :  [('B', 'v'), ('C#', 'iv'), ('F#', 'i')]
+	4 :  [('G', 'half-dim vii7')]
+
+
+Measure:  8  Interval:  3
+	Start at  0.75 End at  1.0
+
+	Note List:  ['A', 'F#', 'D']
+
+	Exact match chords are: 
+	A :  ['IV6']
+	B :  ['bIII6']
+	E :  ['bVII6']
+	D :  ['I6']
+	G :  ['V6']
+	C# :  ['bII6']
+	F# :  ['bVI6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV6'), ('B', 'bIII6'), ('E', 'bVII6'), ('D', 'I6'), ('G', 'V6'), ('C#', 'bII6'), ('F#', 'bVI6')]
+
+
+Measure:  8  Interval:  4
+	Start at  1.0 End at  1.25
+
+	Note List:  ['F#', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['IV']
+	B :  ['bIII']
+	E :  ['bVII']
+	D :  ['I']
+	G :  ['V']
+	C# :  ['bII']
+	F# :  ['bVI', 'ItalianVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	1 :  [('F#', 'ItalianVI')]
+
+
+Measure:  8  Interval:  5
+	Start at  1.25 End at  1.5
+
+	Note List:  ['A', 'F#', 'D']
+
+	Exact match chords are: 
+	A :  ['IV']
+	B :  ['bIII']
+	E :  ['bVII']
+	D :  ['I']
+	G :  ['V']
+	C# :  ['bII']
+	F# :  ['bVI']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+
+
+Measure:  8  Interval:  6
+	Start at  1.5 End at  1.75
+
+	Note List:  ['F#', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['IV']
+	B :  ['bIII']
+	E :  ['bVII']
+	D :  ['I']
+	G :  ['V']
+	C# :  ['bII']
+	F# :  ['bVI', 'ItalianVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	1 :  [('F#', 'ItalianVI')]
+
+
+Measure:  8  Interval:  7
+	Start at  1.75 End at  2.0
+
+	Note List:  ['C', 'F#', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['IV']
+	B :  ['bIII']
+	E :  ['dim ii64', 'bVII']
+	D :  ['I']
+	G :  ['V7', 'dim vii64']
+	C# :  ['bII']
+	F# :  ['bVI', 'ItalianVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('C#', 'bII'), ('F#', 'bVI')]
+	1 :  [('E', 'dim ii64'), ('G', 'dim vii64')]
+	2 :  [('G', 'V7')]
+	3 :  [('F#', 'ItalianVI')]
+
+
+Measure:  9  Interval:  0
+	Start at  0.0 End at  0.5
+
+	Note List:  ['B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII']
+	C :  ['V']
+	B :  ['bVI']
+	E :  ['bIII']
+	D :  ['IV']
+	G :  ['I']
+	F# :  ['bII']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+
+
+Measure:  9  Interval:  1
+	Start at  0.5 End at  1.0
+
+	Note List:  ['B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII64']
+	C :  ['V64']
+	B :  ['bVI64']
+	E :  ['bIII64']
+	D :  ['IV64']
+	G :  ['I64']
+	F# :  ['bII64']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII64'), ('C', 'V64'), ('B', 'bVI64'), ('E', 'bIII64'), ('D', 'IV64'), ('G', 'I64'), ('F#', 'bII64')]
+
+
+Measure:  9  Interval:  2
+	Start at  1.0 End at  1.5
+
+	Note List:  ['F#', 'B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['ii64', 'bVII64']
+	C :  ['V64']
+	B :  ['i64', 'bVI64']
+	E :  ['bIII64', 'v64']
+	D :  ['IV42', 'vi64']
+	G :  ['I42', 'iii64']
+	F# :  ['bII64', 'iv64']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'ii64'), ('B', 'i64'), ('E', 'v64'), ('D', 'vi64'), ('G', 'iii64'), ('F#', 'iv64')]
+	1 :  [('A', 'bVII64'), ('C', 'V64'), ('B', 'bVI64'), ('E', 'bIII64'), ('F#', 'bII64')]
+	2 :  [('D', 'IV42'), ('G', 'I42')]
+
+
+Measure:  9  Interval:  3
+	Start at  1.5 End at  1.625
+
+	Note List:  ['A', 'B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII']
+	C :  ['V']
+	B :  ['bVI']
+	E :  ['bIII']
+	D :  ['IV']
+	G :  ['I']
+	F# :  ['bII']
+
+	Possible match chords are: 
+	A :  ['ii65', 'IV', 'iv']
+	C :  ['ii', 'half-dim vii65']
+	B :  ['i6', 'bIII']
+	E :  ['v6', 'bVII']
+	D :  ['I', 'i', 'vi65']
+	G :  ['iii65', 'V', 'v']
+	F :  ['ii', 'vi']
+	C# :  ['bII']
+	Bb :  ['iii', 'vi']
+	Eb :  ['iii']
+	F# :  ['iv6', 'bVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+	1 :  [('A', 'ii65'), ('D', 'vi65'), ('G', 'iii65')]
+	2 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	3 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	4 :  [('C', 'half-dim vii65')]
+	5 :  [('B', 'i6'), ('E', 'v6'), ('F#', 'iv6')]
+	6 :  [('F', 'ii'), ('Bb', 'vi'), ('Eb', 'iii')]
+
+
+Measure:  9  Interval:  4
+	Start at  1.625 End at  1.75
+
+	Note List:  ['B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII']
+	C :  ['V']
+	B :  ['bVI']
+	E :  ['bIII']
+	D :  ['IV']
+	G :  ['I']
+	F# :  ['bII']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+
+
+Measure:  9  Interval:  5
+	Start at  1.75 End at  1.875
+
+	Note List:  ['B', 'F#', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['ii6', 'bVII']
+	C :  ['V']
+	B :  ['i6', 'bVI']
+	E :  ['bIII', 'v6']
+	D :  ['IV7', 'vi6']
+	G :  ['I7', 'iii6']
+	F# :  ['bII', 'iv6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'ii6'), ('B', 'i6'), ('E', 'v6'), ('D', 'vi6'), ('G', 'iii6'), ('F#', 'iv6')]
+	1 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('F#', 'bII')]
+	2 :  [('D', 'IV7'), ('G', 'I7')]
+
+
+Measure:  9  Interval:  6
+	Start at  1.875 End at  2.0
+
+	Note List:  ['B', 'E', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['v6', 'bVII']
+	C :  ['iii65', 'V']
+	B :  ['iv6', 'bVI']
+	E :  ['i6', 'bIII']
+	D :  ['ii65', 'IV']
+	G :  ['I', 'vi65']
+	F# :  ['bII']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'v6'), ('B', 'iv6'), ('E', 'i6')]
+	1 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+	2 :  [('C', 'iii65'), ('D', 'ii65'), ('G', 'vi65')]
+
+
+Measure:  10  Interval:  0
+	Start at  0.0 End at  0.5
+
+	Note List:  ['A', 'C', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['i', 'IV64', 'iv64']
+	C :  ['ii43', 'vi']
+	B :  ['bIII64']
+	E :  ['iv', 'bVII64']
+	D :  ['I64', 'i64', 'v']
+	G :  ['ii', 'dim ii', 'V43']
+	F :  ['iii', 'vi43']
+	C# :  ['bII64']
+	Bb :  ['iii43', 'dim vii']
+	F# :  ['bVI64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	1 :  [('A', 'IV64'), ('B', 'bIII64'), ('E', 'bVII64'), ('D', 'I64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	2 :  [('A', 'iv64'), ('D', 'i64')]
+	3 :  [('C', 'ii43'), ('F', 'vi43'), ('Bb', 'iii43')]
+	4 :  [('G', 'dim ii'), ('Bb', 'dim vii')]
+	5 :  [('G', 'V43')]
+
+
+Measure:  10  Interval:  1
+	Start at  0.5 End at  1.0
+
+	Note List:  ['C', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+
+
+Measure:  10  Interval:  2
+	Start at  1.0 End at  1.5
+
+	Note List:  ['C', 'G#', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['dim vii']
+	F# :  ['dim ii']
+
+	Equivalent Chord: 
+	0 :  [('A', 'dim vii'), ('F#', 'dim ii')]
+
+
+Measure:  10  Interval:  3
+	Start at  1.5 End at  2.0
+
+	Note List:  ['A', 'C', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['i', 'IV64', 'iv64']
+	C :  ['ii43', 'vi']
+	B :  ['bIII64']
+	E :  ['iv', 'bVII64']
+	D :  ['I64', 'i64', 'v']
+	G :  ['ii', 'dim ii', 'V43']
+	F :  ['iii', 'vi43']
+	C# :  ['bII64']
+	Bb :  ['iii43', 'dim vii']
+	F# :  ['bVI64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	1 :  [('A', 'IV64'), ('B', 'bIII64'), ('E', 'bVII64'), ('D', 'I64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	2 :  [('A', 'iv64'), ('D', 'i64')]
+	3 :  [('C', 'ii43'), ('F', 'vi43'), ('Bb', 'iii43')]
+	4 :  [('G', 'dim ii'), ('Bb', 'dim vii')]
+	5 :  [('G', 'V43')]
+
+
+Measure:  11  Interval:  0
+	Start at  0.0 End at  0.5
+
+	Note List:  ['B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII6']
+	C :  ['V6']
+	B :  ['bVI6']
+	E :  ['bIII6']
+	D :  ['IV6']
+	G :  ['I6']
+	F# :  ['bII6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII6'), ('C', 'V6'), ('B', 'bVI6'), ('E', 'bIII6'), ('D', 'IV6'), ('G', 'I6'), ('F#', 'bII6')]
+
+
+Measure:  11  Interval:  1
+	Start at  0.5 End at  1.0
+
+	Note List:  ['D', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVII64']
+	C :  ['V64', 'v64']
+	B :  ['bVI64']
+	E :  ['bIII64']
+	D :  ['IV64', 'iv64']
+	G :  ['I64', 'i64']
+	F :  ['ii64']
+	Bb :  ['vi64']
+	Eb :  ['iii64']
+	F# :  ['bII64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII64'), ('C', 'V64'), ('B', 'bVI64'), ('E', 'bIII64'), ('D', 'IV64'), ('G', 'I64'), ('F#', 'bII64')]
+	1 :  [('C', 'v64'), ('D', 'iv64'), ('G', 'i64'), ('F', 'ii64'), ('Bb', 'vi64'), ('Eb', 'iii64')]
+
+
+Measure:  11  Interval:  2
+	Start at  1.0 End at  1.5
+
+	Note List:  ['A', 'F#', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['vi6']
+	B :  ['v6']
+	E :  ['ii6', 'dim ii6']
+	D :  ['iii6']
+	G :  ['dim vii6']
+	C# :  ['iv6']
+	F# :  ['i6']
+
+	Equivalent Chord: 
+	0 :  [('A', 'vi6'), ('B', 'v6'), ('E', 'ii6'), ('D', 'iii6'), ('C#', 'iv6'), ('F#', 'i6')]
+	1 :  [('E', 'dim ii6'), ('G', 'dim vii6')]
+
+
+Measure:  11  Interval:  3
+	Start at  1.5 End at  1.625
+
+	Note List:  ['A', 'B', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVII6']
+	C :  ['V6']
+	B :  ['bVI6', 'ItalianVI']
+	E :  ['bIII6']
+	D :  ['IV6']
+	G :  ['I6']
+	F# :  ['bII6']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII6'), ('C', 'V6'), ('B', 'bVI6'), ('E', 'bIII6'), ('D', 'IV6'), ('G', 'I6'), ('F#', 'bII6')]
+	1 :  [('B', 'ItalianVI')]
+
+
+Measure:  11  Interval:  4
+	Start at  1.625 End at  1.75
+
+	Note List:  ['B', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVII6']
+	C :  ['V6']
+	B :  ['bVI6', 'ItalianVI']
+	E :  ['bIII6']
+	D :  ['IV6']
+	G :  ['I6']
+	F# :  ['bII6']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII6'), ('C', 'V6'), ('B', 'bVI6'), ('E', 'bIII6'), ('D', 'IV6'), ('G', 'I6'), ('F#', 'bII6')]
+	1 :  [('B', 'ItalianVI')]
+
+
+Measure:  11  Interval:  5
+	Start at  1.75 End at  1.875
+
+	Note List:  ['B', 'F#', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['ii', 'bVII6']
+	C :  ['V6']
+	B :  ['I', 'i', 'bVI6', 'ItalianVI']
+	E :  ['bIII6', 'V', 'v']
+	D :  ['IV65', 'vi']
+	G :  ['I65', 'iii']
+	C# :  ['bVII']
+	D# :  ['bVI']
+	F# :  ['bII6', 'IV', 'iv']
+	G# :  ['bIII']
+	A# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'ii'), ('B', 'i'), ('E', 'v'), ('D', 'vi'), ('G', 'iii'), ('F#', 'iv')]
+	1 :  [('A', 'bVII6'), ('C', 'V6'), ('B', 'bVI6'), ('E', 'bIII6'), ('F#', 'bII6')]
+	2 :  [('B', 'I'), ('E', 'V'), ('C#', 'bVII'), ('D#', 'bVI'), ('F#', 'IV'), ('G#', 'bIII'), ('A#', 'bII')]
+	3 :  [('B', 'ItalianVI')]
+	4 :  [('D', 'IV65'), ('G', 'I65')]
+
+
+Measure:  11  Interval:  6
+	Start at  1.875 End at  2.0
+
+	Note List:  ['B', 'E', 'G']
+
+	Exact match chords are: 
+	A :  ['v64']
+	C :  ['iii64']
+	B :  ['iv64']
+	E :  ['i64']
+	D :  ['ii64']
+	G :  ['vi64']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'v64'), ('C', 'iii64'), ('B', 'iv64'), ('E', 'i64'), ('D', 'ii64'), ('G', 'vi64')]
+
+
+Measure:  12  Interval:  0
+	Start at  0.0 End at  0.5
+
+	Note List:  ['A', 'C', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['i6', 'IV64', 'iv64']
+	C :  ['ii42', 'vi6']
+	B :  ['bIII64']
+	E :  ['iv6', 'bVII64']
+	D :  ['I64', 'i64', 'v6']
+	G :  ['ii6', 'dim ii6', 'V42']
+	F :  ['iii6', 'vi42']
+	C# :  ['bII64']
+	Bb :  ['iii42', 'dim vii6']
+	F# :  ['bVI64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'i6'), ('C', 'vi6'), ('E', 'iv6'), ('D', 'v6'), ('G', 'ii6'), ('F', 'iii6')]
+	1 :  [('A', 'IV64'), ('B', 'bIII64'), ('E', 'bVII64'), ('D', 'I64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	2 :  [('A', 'iv64'), ('D', 'i64')]
+	3 :  [('C', 'ii42'), ('F', 'vi42'), ('Bb', 'iii42')]
+	4 :  [('G', 'dim ii6'), ('Bb', 'dim vii6')]
+	5 :  [('G', 'V42')]
+
+
+Measure:  12  Interval:  1
+	Start at  0.5 End at  1.0
+
+	Note List:  ['D']
+
+	Exact match chords are: 
+	D :  ['I']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('D', 'I')]
+
+
+Measure:  12  Interval:  2
+	Start at  1.0 End at  1.5
+
+	Note List:  ['E', 'D', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['v', 'bVII']
+	C :  ['iii7', 'V', 'v']
+	B :  ['iv', 'bVI']
+	E :  ['i', 'bIII']
+	D :  ['ii7', 'IV', 'iv']
+	G :  ['I', 'i', 'vi7']
+	F :  ['ii', 'half-dim vii7']
+	Bb :  ['vi']
+	Eb :  ['iii']
+	F# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'v'), ('B', 'iv'), ('E', 'i')]
+	1 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+	2 :  [('C', 'iii7'), ('D', 'ii7'), ('G', 'vi7')]
+	3 :  [('C', 'v'), ('D', 'iv'), ('G', 'i'), ('F', 'ii'), ('Bb', 'vi'), ('Eb', 'iii')]
+	4 :  [('F', 'half-dim vii7')]
+
+
+Measure:  12  Interval:  3
+	Start at  1.5 End at  2.0
+
+	Note List:  ['A', 'F#', 'D']
+
+	Exact match chords are: 
+	A :  ['IV6']
+	B :  ['bIII6']
+	E :  ['bVII6']
+	D :  ['I6']
+	G :  ['V6']
+	C# :  ['bII6']
+	F# :  ['bVI6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV6'), ('B', 'bIII6'), ('E', 'bVII6'), ('D', 'I6'), ('G', 'V6'), ('C#', 'bII6'), ('F#', 'bVI6')]
+
+
+Measure:  13  Interval:  0
+	Start at  0.0 End at  0.25
+
+	Note List:  ['A', 'B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII']
+	C :  ['V']
+	B :  ['bVI']
+	E :  ['bIII']
+	D :  ['IV']
+	G :  ['I']
+	F# :  ['bII']
+
+	Possible match chords are: 
+	A :  ['ii7', 'IV', 'iv']
+	C :  ['ii', 'half-dim vii7']
+	B :  ['i', 'bIII']
+	E :  ['v', 'bVII']
+	D :  ['I', 'i', 'vi7']
+	G :  ['iii7', 'V', 'v']
+	F :  ['ii', 'vi']
+	C# :  ['bII']
+	Bb :  ['iii', 'vi']
+	Eb :  ['iii']
+	F# :  ['iv', 'bVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+	1 :  [('A', 'ii7'), ('D', 'vi7'), ('G', 'iii7')]
+	2 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	3 :  [('A', 'iv'), ('C', 'ii'), ('D', 'i'), ('G', 'v'), ('F', 'vi'), ('Bb', 'iii')]
+	4 :  [('C', 'half-dim vii7')]
+	5 :  [('B', 'i'), ('E', 'v'), ('F#', 'iv')]
+	6 :  [('F', 'ii'), ('Bb', 'vi'), ('Eb', 'iii')]
+
+
+Measure:  13  Interval:  1
+	Start at  0.25 End at  0.5
+
+	Note List:  ['B', 'D', 'G']
+
+	Exact match chords are: 
+	A :  ['bVII']
+	C :  ['V']
+	B :  ['bVI']
+	E :  ['bIII']
+	D :  ['IV']
+	G :  ['I']
+	F# :  ['bII']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('D', 'IV'), ('G', 'I'), ('F#', 'bII')]
+
+
+Measure:  13  Interval:  2
+	Start at  0.5 End at  0.75
+
+	Note List:  ['F#', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['IV']
+	B :  ['bIII']
+	E :  ['bVII']
+	D :  ['I']
+	G :  ['V']
+	C# :  ['bII']
+	F# :  ['bVI', 'ItalianVI']
+
+	Equivalent Chord: 
+	0 :  [('A', 'IV'), ('B', 'bIII'), ('E', 'bVII'), ('D', 'I'), ('G', 'V'), ('C#', 'bII'), ('F#', 'bVI')]
+	1 :  [('F#', 'ItalianVI')]
+
+
+Measure:  13  Interval:  3
+	Start at  0.75 End at  1.0
+
+	Note List:  ['D', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['bVII64']
+	C :  ['V64', 'v64']
+	B :  ['bVI64']
+	E :  ['bIII64']
+	D :  ['IV64', 'iv64']
+	G :  ['I64', 'i64']
+	F :  ['ii64']
+	Bb :  ['vi64']
+	Eb :  ['iii64']
+	F# :  ['bII64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'bVII64'), ('C', 'V64'), ('B', 'bVI64'), ('E', 'bIII64'), ('D', 'IV64'), ('G', 'I64'), ('F#', 'bII64')]
+	1 :  [('C', 'v64'), ('D', 'iv64'), ('G', 'i64'), ('F', 'ii64'), ('Bb', 'vi64'), ('Eb', 'iii64')]
+
+
+Measure:  13  Interval:  4
+	Start at  1.0 End at  1.25
+
+	Note List:  ['A', 'F#']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['vi']
+	B :  ['v']
+	E :  ['ii', 'dim ii']
+	D :  ['iii']
+	G :  ['dim vii']
+	C# :  ['iv']
+	F# :  ['i']
+
+	Equivalent Chord: 
+	0 :  [('A', 'vi'), ('B', 'v'), ('E', 'ii'), ('D', 'iii'), ('C#', 'iv'), ('F#', 'i')]
+	1 :  [('E', 'dim ii'), ('G', 'dim vii')]
+
+
+Measure:  13  Interval:  5
+	Start at  1.25 End at  1.5
+
+	Note List:  ['A', 'F#', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['vi']
+	B :  ['v']
+	E :  ['ii', 'dim ii']
+	D :  ['iii']
+	G :  ['dim vii']
+	C# :  ['iv']
+	F# :  ['i']
+
+	Equivalent Chord: 
+	0 :  [('A', 'vi'), ('B', 'v'), ('E', 'ii'), ('D', 'iii'), ('C#', 'iv'), ('F#', 'i')]
+	1 :  [('E', 'dim ii'), ('G', 'dim vii')]
+
+
+Measure:  13  Interval:  6
+	Start at  1.5 End at  1.75
+
+	Note List:  ['B', 'F#', 'G']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['ii', 'bVII']
+	C :  ['V']
+	B :  ['I', 'i', 'bVI', 'ItalianVI']
+	E :  ['bIII', 'V', 'v']
+	D :  ['IV7', 'vi']
+	G :  ['I7', 'iii']
+	C# :  ['bVII']
+	D# :  ['bVI']
+	F# :  ['bII', 'IV', 'iv']
+	G# :  ['bIII']
+	A# :  ['bII']
+
+	Equivalent Chord: 
+	0 :  [('A', 'ii'), ('B', 'i'), ('E', 'v'), ('D', 'vi'), ('G', 'iii'), ('F#', 'iv')]
+	1 :  [('A', 'bVII'), ('C', 'V'), ('B', 'bVI'), ('E', 'bIII'), ('F#', 'bII')]
+	2 :  [('B', 'I'), ('E', 'V'), ('C#', 'bVII'), ('D#', 'bVI'), ('F#', 'IV'), ('G#', 'bIII'), ('A#', 'bII')]
+	3 :  [('B', 'ItalianVI')]
+	4 :  [('D', 'IV7'), ('G', 'I7')]
+
+
+Measure:  13  Interval:  7
+	Start at  1.75 End at  2.0
+
+	Note List:  ['B', 'E', 'G']
+
+	Exact match chords are: 
+	A :  ['v6']
+	C :  ['iii6']
+	B :  ['iv6']
+	E :  ['i6']
+	D :  ['ii6']
+	G :  ['vi6']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'v6'), ('C', 'iii6'), ('B', 'iv6'), ('E', 'i6'), ('D', 'ii6'), ('G', 'vi6')]
+
+
+Measure:  14  Interval:  0
+	Start at  0.0 End at  0.5
+
+	Note List:  ['A', 'C', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['i', 'IV64', 'iv64']
+	C :  ['ii43', 'vi']
+	B :  ['bIII64']
+	E :  ['iv', 'bVII64']
+	D :  ['I64', 'i64', 'v']
+	G :  ['ii', 'dim ii', 'V43']
+	F :  ['iii', 'vi43']
+	C# :  ['bII64']
+	Bb :  ['iii43', 'dim vii']
+	F# :  ['bVI64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	1 :  [('A', 'IV64'), ('B', 'bIII64'), ('E', 'bVII64'), ('D', 'I64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	2 :  [('A', 'iv64'), ('D', 'i64')]
+	3 :  [('C', 'ii43'), ('F', 'vi43'), ('Bb', 'iii43')]
+	4 :  [('G', 'dim ii'), ('Bb', 'dim vii')]
+	5 :  [('G', 'V43')]
+
+
+Measure:  14  Interval:  1
+	Start at  0.5 End at  1.0
+
+	Note List:  ['D']
+
+	Exact match chords are: 
+	D :  ['I']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('D', 'I')]
+
+
+Measure:  14  Interval:  2
+	Start at  1.0 End at  1.5
+
+	Note List:  ['B', 'G#', 'D']
+
+	Exact match chords are: 
+	A :  ['dim vii']
+	F# :  ['dim ii']
+
+	Possible match chords are: 
+
+	Equivalent Chord: 
+	0 :  [('A', 'dim vii'), ('F#', 'dim ii')]
+
+
+Measure:  14  Interval:  3
+	Start at  1.5 End at  2.0
+
+	Note List:  ['A', 'C', 'D']
+
+	Exact match chords are: 
+
+	Possible match chords are: 
+	A :  ['i', 'IV64', 'iv64']
+	C :  ['ii43', 'vi']
+	B :  ['bIII64']
+	E :  ['iv', 'bVII64']
+	D :  ['I64', 'i64', 'v']
+	G :  ['ii', 'dim ii', 'V43']
+	F :  ['iii', 'vi43']
+	C# :  ['bII64']
+	Bb :  ['iii43', 'dim vii']
+	F# :  ['bVI64']
+
+	Equivalent Chord: 
+	0 :  [('A', 'i'), ('C', 'vi'), ('E', 'iv'), ('D', 'v'), ('G', 'ii'), ('F', 'iii')]
+	1 :  [('A', 'IV64'), ('B', 'bIII64'), ('E', 'bVII64'), ('D', 'I64'), ('C#', 'bII64'), ('F#', 'bVI64')]
+	2 :  [('A', 'iv64'), ('D', 'i64')]
+	3 :  [('C', 'ii43'), ('F', 'vi43'), ('Bb', 'iii43')]
+	4 :  [('G', 'dim ii'), ('Bb', 'dim vii')]
+	5 :  [('G', 'V43')]
+
+
