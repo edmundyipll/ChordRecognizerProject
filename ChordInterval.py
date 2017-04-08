@@ -5,6 +5,10 @@ class ChordInterval(object):
 	#simulate enum
 	class IntervalType(object):
 		OnBeat, AfterBeat, Continuous, Normal, ChangedBaseline = range(5)
+		@staticmethod
+		def toString(intervalType=0):
+			strList = ['OnBeat', 'AfterBeat', 'Continuous', 'Normal', 'ChangedBaseline']
+			return strList[intervalType]
 
 	def __init__(self, noteList=[], intervalNo=None, offset=None, endTime=None):
 		self._noteList = list(noteList)
