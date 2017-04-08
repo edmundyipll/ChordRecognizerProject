@@ -1,0 +1,26 @@
+Possible chordType Mode = [OnBeat, ChangeBaseLine, AllExceptContinous]
+for Interval in Scores:
+	if Interval.chordType == select chordType Mode:
+		Prioitize the chords recognized by first Chord Match Type (TotalMatch > ExactMatch > PossibleMatch) and then Chord Roman (I > V > others)
+			for Chord in Prioity List:
+				result = progressionChk(Chord)
+				Print and Break if result is valid
+
+progressionChk(Chord):
+	for Interval in Two Bars' range from Chord:
+		if Interval.chordType == select chordType Mode:
+			if (Interval.Chord.Roman == V (neglect Tonic)):
+				for IntervalB in Two Bars' range from Interval:
+					if exists (V7-I or V-I or v-i or v-I7 (must be of same tonic)):
+						if Chord-The equivalent chord of the V in Interval having the same tonic as Chord is valid:
+							result = progressionChk(the I chord of IntervalB)
+							append result if result is valid and return result
+						elif Chord-The equivalent chord of the I in IntervalB having the same tonic as Chord is valid:
+							result = progressionChk(the equivalent chord of I in IntervalB)
+							append result if result is valid and return result
+	for Interval in Two Bars' range from Chord:
+		if Interval.chordType == select chordType Mode:
+			if Chord-newChord(any chord having same Tonic with Chord in Interval) is valid:
+				result = progressionChk(newChord)
+				append result if result is valid and return result
+	return False
