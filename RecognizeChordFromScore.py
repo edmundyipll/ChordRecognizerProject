@@ -95,7 +95,7 @@ while measure is not None:
 			if not (lowestFreq == currentBaseLineFreq):
 				inputIntervalList[-1].setIntervalType(ChordInterval.IntervalType.ChangedBaseline)
 				currentBaseLineFreq = lowestFreq
-			
+
 			intervalCounter += 1
 	if continuousInterval is not None:
 		inputIntervalList.append(continuousInterval)
@@ -119,16 +119,16 @@ for i, measure in enumerate(inputs):
 		inputs[i][j].setRecognizedResultDict(tonicResult)
 		inputs[i][j].analyzeEquivalentChord()
 
-for measure in inputs:
-	for interval in measure:
-		interval.debug()
-		print ""
+# for measure in inputs:
+# 	for interval in measure:
+# 		interval.debug()
+# 		print ""
 
-sys.exit(0)
 
 # #Progression Verifying
-progressionVerifier = ProgressionVerifier(inputList = inputs, weightedIntervalList = weightedIntervalList)
-resultProgressionList = progressionVerifier.verify2()
+progressionVerifier = ProgressionVerifier(inputList=inputs)
+progressionVerifier.verify(featureList=[ProgressionVerifier.ProgressionFeatures.PriorAllChordType])
+sys.exit(0)
 
 
 # # output as xml file
