@@ -4,11 +4,11 @@ class ChordInterval(object):
 
 	#simulate enum
 	class IntervalType(object):
-		OnBeat, AfterBeat, Continuous, Normal = range(4)
+		OnBeat, AfterBeat, Continuous, Normal, ChangedBaseline = range(5)
 
 	def __init__(self, noteList=[], intervalNo=None, offset=None, endTime=None):
 		self._noteList = list(noteList)
-		self._intervalType = self.IntervalType.Normal
+		self._intervalType = [self.IntervalType.Normal]
 		if len(self._noteList):
 			self._exactOffset = offset
 			self._exactEndTime = endTime
@@ -21,7 +21,6 @@ class ChordInterval(object):
 			self._intervalNo = None
 		self._recognizedResultDict = {}
 		self._equivalentGroupDict = {}
-		self._weightedTonicDict = {}
 		self.__updateStartEndTime()
 
 	# notes in this interval
@@ -65,12 +64,6 @@ class ChordInterval(object):
 	def equivalentGroupDict(self):
 		return self._equivalentGroupDict
 
-	# Weighted Interval Tonic
-	# {tonic 1: ([exact weighted 1, exact weighted 2, (weightedType, cname), ...], [possible weighted 1, possible weighted 2, ... ]), tonic 2, tonic 3, ... }
-	@property
-	def weightedTonicDict(self):
-		return self._weightedTonicDict
-
 	# deprecated
 	@property
 	def startOffset(self):
@@ -84,14 +77,20 @@ class ChordInterval(object):
 	def debug(self):
 		print "Measure: ", self._measureNo, " Interval: ", self._intervalNo
 		print "\tStart at ", self._exactOffset, "End at ", self._exactEndTime
-		if self._intervalType == self.IntervalType.OnBeat:
-			print "\tType: OnBeat"
-		elif self._intervalType == self.IntervalType.AfterBeat:
-			print "\tType: AfterBeat"
-		elif self._intervalType == self.IntervalType.Continuous:
-			print "\tType: Continuous"
-		elif self._intervalType == self.IntervalType.Normal:
-			print "\tType: Normal"
+
+		typeStr = "\tType: "
+		if self._intervalType[0] == self.IntervalType.Continuous:
+			typeStr += "Continuous "
+		else:
+			if self._intervalType[0] == self.IntervalType.OnBeat:
+				typeStr += "OnBeat "
+			elif self._intervalType[0] == self.IntervalType.AfterBeat:
+				typeStr += "AfterBeat "
+			elif self._intervalType[0] == self.IntervalType.Normal:
+				typeStr += "Normal "
+			if len(self._intervalType) == 2 and self._intervalType[1] == self.IntervalType.ChangedBaseline:
+				typeStr += "ChangedBaseline"
+		print typeStr
 		print ""
 
 		noteStrList = [chordNote.debugMessage() for chordNote in self._noteList]
@@ -143,20 +142,37 @@ class ChordInterval(object):
 			except ValueError:
 				self._noteList.append(newNote)
 
+	def getLowestFrequency(self):
+		if len(self._noteList):
+			return min([note.frequency for note in self._noteList])
+		else:
+			return None
+
 	def getChordRecognizerInputFormat(self):
 		inputDict = {}
 		for chordNote in self._noteList:
 			inputDict[chordNote.name] = chordNote.frequency
 		return inputDict
 
-	def isWeighted(self):
-		return len(self._weightedTonicDict.keys()) > 0
-
 	def setExactEndTime(self, endTime=None):
 		self._exactEndTime = endTime
 
 	def setIntervalType(self, intervalType=None):
-		self._intervalType = intervalType
+		if len(self._intervalType) == 0:
+			if intervalType is not self.IntervalType.ChangedBaseline:
+				self.intervalType = [intervalType]
+			else:
+				self.intervalType = [self.IntervalType.Normal, self._intervalType.ChangedBaseline]
+		else:
+			if intervalType is self.IntervalType.ChangedBaseline:
+				if len(self._intervalType) == 1:
+					if self._intervalType[0] is not self.IntervalType.Continuous:
+						self._intervalType.append(self.IntervalType.ChangedBaseline)
+			else:
+				self._intervalType[0] = intervalType
+
+	def resetIntervalType(self):
+		self._intervalType = [self.IntervalType.Normal]
 
 	def setRecognizedResultDict(self, d={}):
 		self._recognizedResultDict = d

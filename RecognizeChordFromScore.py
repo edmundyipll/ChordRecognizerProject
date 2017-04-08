@@ -34,6 +34,7 @@ score = rawScore.chordify()
 inputs = []
 count = 1
 currentTimeSignature = None
+currentBaseLineFreq = None
 measure = score.measure(count)
 while measure is not None:
 	if measure.timeSignature is not None:
@@ -89,6 +90,12 @@ while measure is not None:
 				inputIntervalList[-1].setIntervalType(ChordInterval.IntervalType.OnBeat)
 			# default will be Normal type
 
+			# now check did baseline changed, only applicable to OnBeat / AfterBeat / Normal
+			lowestFreq = inputIntervalList[-1].getLowestFrequency()
+			if not (lowestFreq == currentBaseLineFreq):
+				inputIntervalList[-1].setIntervalType(ChordInterval.IntervalType.ChangedBaseline)
+				currentBaseLineFreq = lowestFreq
+			
 			intervalCounter += 1
 	if continuousInterval is not None:
 		inputIntervalList.append(continuousInterval)
