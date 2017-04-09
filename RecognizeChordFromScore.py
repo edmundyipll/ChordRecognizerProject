@@ -129,7 +129,6 @@ for i, measure in enumerate(inputs):
 progressionVerifier = ProgressionVerifier(inputList=inputs)
 progressionVerifier.verify(featureList=[ProgressionVerifier.ProgressionFeatures.PriorOnBeat])
 sys.exit(0)
-# progressionVerifier.debug(interval=inputs[13][0])
 
 # # output as xml file
 # for resultProgression in resultProgressionList:
