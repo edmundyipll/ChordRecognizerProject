@@ -56,7 +56,7 @@ class ChordInterval(object):
 	# Result Dictionary from chord recognizer
 	# {tonic: ([totalmatch, ...], [exactmatch, ...], [possiblematch, ... )}
 	#
-	# totalmatch / exactmatch / possiblematch structure: tuple of (cname, chordType, inversion, roman, tonic, groupNo)         
+	# totalmatch / exactmatch / possiblematch structure: tuple of (cname, chordType, inversion, roman, tonic, groupNo)
 	@property
 	def recognizedResultDict(self):
 		return self._recognizedResultDict
@@ -180,9 +180,6 @@ class ChordInterval(object):
 
 	def setRecognizedResultDict(self, d={}):
 		self._recognizedResultDict = d
-
-	def setEquivalentGroupDict(self, d={}):
-		self._equivalentGroupDict = d
 
 	def setWeightedTonicDict(self, d={}):
 		self._weightedTonicDict = d

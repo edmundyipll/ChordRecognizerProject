@@ -21,6 +21,13 @@ class ChordAnalyzingTool(object):
 	def getNoteOccurenceDictionary(self):
 		return self._noteOccurenceDictionary
 
+	def convertMatchTupleKeyToIndex(self, key=None):
+		l = ['cname', 'chordType', 'inversion', 'roman', 'tonic', 'groupNo']
+		if key in l:
+			return l.index(key)
+		else:
+			return None
+
 	# Result Structure
 	# {tonic: ([totalmatch, ...], [exactmatch, ...], [possiblematch, ... )}
 	#
