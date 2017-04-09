@@ -193,61 +193,61 @@ class ChordInterval(object):
 			for i, item in enumerate(resultDict[tonic][0]):
 				if groupCounter == 0:
 					newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
-					groupDict[groupCounter] = [tuple(newTuple)]
-					self._recognizedResultDict[tonic][0][i] = tuple(newTuple)
+					groupDict[groupCounter] = [newTuple]
+					self._recognizedResultDict[tonic][0][i] = newTuple
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
 						if self.__chkEquivalent(item, groupDict[groupNo][0]):
 							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
-							groupDict[groupNo].append(tuple(newTuple))
-							self._recognizedResultDict[tonic][0][i] = tuple(newTuple)
+							groupDict[groupNo].append(newTuple)
+							self._recognizedResultDict[tonic][0][i] = newTuple
 							item = self._recognizedResultDict[tonic][0][i]
 							break
 					if item[5] is None:
 						newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
-						groupDict[groupCounter] = [tuple(newTuple)]
-						self._recognizedResultDict[tonic][0][i] = tuple(newTuple)
+						groupDict[groupCounter] = [newTuple]
+						self._recognizedResultDict[tonic][0][i] = newTuple
 						groupCounter += 1
 			#exact
 			for i, item in enumerate(resultDict[tonic][1]):
 				if groupCounter == 0:
 					newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
-					groupDict[groupCounter] = [tuple(newTuple)]
-					self._recognizedResultDict[tonic][1][i] = tuple(newTuple)
+					groupDict[groupCounter] = [newTuple]
+					self._recognizedResultDict[tonic][1][i] = newTuple
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
 						if self.__chkEquivalent(item, groupDict[groupNo][0]):
 							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
-							groupDict[groupNo].append(tuple(newTuple))
-							self._recognizedResultDict[tonic][1][i] = tuple(newTuple)
+							groupDict[groupNo].append(newTuple)
+							self._recognizedResultDict[tonic][1][i] = newTuple
 							item = self._recognizedResultDict[tonic][1][i]
 							break
 					if item[5] is None:
 						newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
-						groupDict[groupCounter] = [tuple(newTuple)]
-						self._recognizedResultDict[tonic][1][i] = tuple(newTuple)
+						groupDict[groupCounter] = [newTuple]
+						self._recognizedResultDict[tonic][1][i] = newTuple
 						groupCounter += 1
 			#possible
 			for i, item in enumerate(resultDict[tonic][2]):
 				if groupCounter == 0:
 					newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
-					groupDict[groupCounter] = [tuple(newTuple)]
-					self._recognizedResultDict[tonic][2][i] = tuple(newTuple)
+					groupDict[groupCounter] = [newTuple]
+					self._recognizedResultDict[tonic][2][i] = newTuple
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
 						if self.__chkEquivalent(item, groupDict[groupNo][0]):
 							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
-							groupDict[groupNo].append(tuple(newTuple))
-							self._recognizedResultDict[tonic][2][i] = tuple(newTuple)
+							groupDict[groupNo].append(newTuple)
+							self._recognizedResultDict[tonic][2][i] = newTuple
 							item = self._recognizedResultDict[tonic][2][i]
 							break
 					if item[5] is None:
 						newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
-						groupDict[groupCounter] = [tuple(newTuple)]
-						self._recognizedResultDict[tonic][2][i] = tuple(newTuple)
+						groupDict[groupCounter] = [newTuple]
+						self._recognizedResultDict[tonic][2][i] = newTuple
 						groupCounter += 1
 		self._equivalentGroupDict = groupDict
 

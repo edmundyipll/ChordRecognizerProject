@@ -119,34 +119,26 @@ for i, measure in enumerate(inputs):
 		inputs[i][j].setRecognizedResultDict(tonicResult)
 		inputs[i][j].analyzeEquivalentChord()
 
-# for measure in inputs:
-# 	for interval in measure:
-# 		interval.debug()
-# 		print ""
+for measure in inputs:
+	for interval in measure:
+		interval.debug()
+		print ""
 
 
 # #Progression Verifying
 progressionVerifier = ProgressionVerifier(inputList=inputs)
-progressionVerifier.verify(featureList=[ProgressionVerifier.ProgressionFeatures.PriorOnBeat])
-sys.exit(0)
+result = progressionVerifier.verify(featureList=[ProgressionVerifier.ProgressionFeatures.PriorAllIntervalType])
+for (interval, matchTuple) in result:
+	print matchTuple
 
-# # output as xml file
-# for resultProgression in resultProgressionList:
-# 	progression = resultProgression["progression"]
-# 	tonic = resultProgression["tonic"]
-# 	part = music21. stream.Part()
-# 	score.insert(0, part)
-# 	refPart = score.parts[0]
-# 	for measure in refPart.getElementsByClass(music21.stream.Measure):
-# 		copied = (copy.deepcopy(measure))
-# 		# copied.offset = measure.offset
-# 		removePending = []
-# 		for i, elem in enumerate(copied):
-# 			if isinstance(elem, music21.note.GeneralNote) or isinstance(elem, music21.note.Rest):
-# 				removePending.append(i)
-# 		for i in reversed(removePending):
-# 			copied.pop(i)
-# 	for chord in progression:
-# 		chordInterval = inputs[chord['bar']][chord['interval']]
-# 	# score.write('musicxml', fp=curPath+'output.xml')
-# 	break
+# output as xml file
+for c in score.recurse().getElementsByClass(music21.chord.Chord):
+	c.closedPosition(forceOctave=5, inPlace=True)
+
+for (interval, matchTuple) in result:
+	c = [offsetMap.element for offsetMap in score.measure(interval.measureNo+1).offsetMap() if isinstance(offsetMap.element, music21.chord.Chord) and offsetMap.offset == interval.exactOffset]
+	if len(c):
+		c[0].addLyric(str(matchTuple[4])+str(matchTuple[0]))
+rawScore.insert(0, score)
+rawScore.write('musicxml', fp=curPath+'output.xml')
+sys.exit(0)

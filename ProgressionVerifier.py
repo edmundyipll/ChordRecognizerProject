@@ -38,7 +38,7 @@ class ProgressionVerifier(object):
 			self._inputList.pop()
 
 
-	def verify(self, featureList=[]):
+	def verify(self, featureList=[], barLimit=2):
 
 		# handle featureList
 		firstPriorityCnt = len([f for f in self.ProgressionFeatures.getFirstPriorityList() if f in featureList])
@@ -57,8 +57,8 @@ class ProgressionVerifier(object):
 		touchEnd = False
 		measureCnt = 0
 		while len(startingPointIntervalList) == 0 and not touchEnd:
-			(startingPointIntervalList, touchEnd) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=measureCnt, startInterval=0, barLimit=2)
-			measureCnt += 2
+			(startingPointIntervalList, touchEnd) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=measureCnt, startInterval=0, barLimit=barLimit)
+			measureCnt += barLimit
 		# for interval in startingPointIntervalList:
 		# 	interval.debug()
 		# 	print ""
@@ -78,7 +78,7 @@ class ProgressionVerifier(object):
 			for matchTuple in matchTuplePriorityList:
 				if startingPoint in self._invalidResult and matchTuple in self._invalidResult[startingPoint]:
 					continue
-				recursiveResult = self.__recursiveProgression(startingInterval=startingPoint, startingMatch=matchTuple, featureList=featureList)
+				recursiveResult = self.__recursiveProgression(startingInterval=startingPoint, startingMatch=matchTuple, featureList=featureList, barLimit=barLimit)
 				if len(recursiveResult) == 0:
 					if startingPoint not in self._invalidResult:
 						self._invalidResult[startingPoint] = []
@@ -89,39 +89,47 @@ class ProgressionVerifier(object):
 		return resultList
 
 
-	def __recursiveProgression(self, startingInterval, startingMatch, featureList):
+	def __recursiveProgression(self, startingInterval, startingMatch, featureList, barLimit):
 
 		intervalA = startingInterval
 		matchTupleA = startingMatch
+		# print "StartingMatch: ", matchTupleA
 
 		targetTypeList = self.__getTargetTypeListFromFirstPriorityFeature(feature=featureList[0])
 		matchTupleRomanIndex = self._analyzingTool.convertMatchTupleKeyToIndex('roman')
 		matchTupleTonicIndex = self._analyzingTool.convertMatchTupleKeyToIndex('tonic')
+		matchTupleCNameIndex = self._analyzingTool.convertMatchTupleKeyToIndex('cname')
 
 		# check if current interval is the last PriorInterval, if no, progressionBarLimit=2, if yes, progressionBarLimit=3
-		targetIntervalWithinThisBar = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=1)[0]
+		(targetIntervalWithinThisBar, touchEnd) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=1)
+		if touchEnd and len(targetIntervalWithinThisBar) == 0:
+			return [(intervalA, matchTupleA)]
 		if len(targetIntervalWithinThisBar) == 0:
-			progressionBarLimitA = 3
+			progressionBarLimitA = barLimit+1
 		else:
-			progressionBarLimitA = 2
+			progressionBarLimitA = barLimit
 
-		(targetIntervalInNextTwoBarsFromA, touchEndA) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=progressionBarLimitA)
-		for i, intervalB in enumerate(targetIntervalInNextTwoBarsFromA):
+		(targetIntervalWithinBarLimitA, touchEndA) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=progressionBarLimitA)
+		for i, intervalB in enumerate(targetIntervalWithinBarLimitA):
+			# print "\tIntervalB: ", intervalB.measureNo, intervalB.intervalNo
+
 			totalExactMatches = self.__getOrderedMatchesDict(interval=intervalB, totalMatch=True, exactMatch=True, possibleMatch=False)
 			intervalBRomanVList = []
 			for key in sorted(totalExactMatches.keys()):
 				intervalBRomanVList += [matchTuple for matchTuple in totalExactMatches[key] if matchTuple[matchTupleRomanIndex] == 'V']
 
 			# check if current interval is the last PriorInterval, if no, progressionBarLimit=2, if yes, progressionBarLimit=2
-			if i+1 < len(targetIntervalInNextTwoBarsFromA) and targetIntervalInNextTwoBarsFromA[i+1].measureNo == intervalB.measureNo:
-				progressionBarLimitB = 2
+			if i+1 < len(targetIntervalWithinBarLimitA) and targetIntervalWithinBarLimitA[i+1].measureNo == intervalB.measureNo:
+				progressionBarLimitB = barLimit
 			else:
-				progressionBarLimitB = 3
+				progressionBarLimitB = barLimit+1
 
-			(targetIntervalInNextTwoBarsFromB, touchEndB) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalB.measureNo, startInterval=intervalB.intervalNo+1, barLimit=progressionBarLimitB)
+			(targetIntervalWithinBarLimitB, touchEndB) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalB.measureNo, startInterval=intervalB.intervalNo+1, barLimit=progressionBarLimitB)
 			for matchTupleB in intervalBRomanVList:
 				(cnameB, chordTypeB, inverionB, romanB, tonicB, groupNoB) = matchTupleB
-				for j, intervalC in enumerate(targetIntervalInNextTwoBarsFromB):
+				for j, intervalC in enumerate(targetIntervalWithinBarLimitB):
+					# print "\t\tIntervalC: ", intervalC.measureNo, intervalC.intervalNo
+
 					allMatches = self.__getOrderedMatchesDict(interval=intervalC, totalMatch=True, exactMatch=True, possibleMatch=True)
 					sameTonicRomanIList = []
 					for key in sorted(allMatches.keys()):
@@ -129,30 +137,75 @@ class ProgressionVerifier(object):
 					for matchTupleC in sameTonicRomanIList:
 						(cnameC, chordTypeC, inversionC, romanC, tonicC, groupNoC) = matchTupleC
 						if self.__isPerfectCadenceProgression(previousChordType=chordTypeB, afterChordType=chordTypeC):
+
 							# examine intervalA to intervalC first
 							eqvIntervalCinTonicA = [matchTuple for matchTuple in intervalC.equivalentGroupDict[groupNoC] if matchTuple[matchTupleTonicIndex] == matchTupleA[matchTupleTonicIndex]]
 							if len(eqvIntervalCinTonicA):
-								
-								# next progression with no tonic changed
-								recursiveResult = self.__recursiveProgression(startingInterval=intervalC, startingMatch=eqvIntervalCinTonicA[0], featureList=featureList)
+								beforeCName = matchTupleA[matchTupleCNameIndex]
+								afterCName = eqvIntervalCinTonicA[0][matchTupleCNameIndex]
+								if self._pBank.verify(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
 
-								if len(recursiveResult) == 0:
-									if intervalC not in self._invalidResult:
-										self._invalidResult[intervalC]
+									if not(intervalC in self._invalidResult and eqvIntervalCinTonicA[0] in self._invalidResult[intervalC]):
+										# print "Going to next Level"
+
+										# next progression with no tonic changed
+										recursiveResult = self.__recursiveProgression(startingInterval=intervalC, startingMatch=eqvIntervalCinTonicA[0], featureList=featureList, barLimit=barLimit)
+
+										if len(recursiveResult) == 0:
+											if intervalC not in self._invalidResult:
+												self._invalidResult[intervalC] = []
+											self._invalidResult[intervalC].append(eqvIntervalCinTonicA[0])
+										else:
+											return [(intervalA, matchTupleA)] + recursiveResult
 
 							# examine intervalA to intervalB
 							eqvIntervalBinTonicA = [matchTuple for matchTuple in intervalB.equivalentGroupDict[groupNoB] if matchTuple[matchTupleTonicIndex] == matchTupleA[matchTupleTonicIndex]]
 							if len(eqvIntervalBinTonicA):
+								beforeCName = matchTupleA[matchTupleCNameIndex]
+								afterCName = eqvIntervalBinTonicA[0][matchTupleCNameIndex]
+								if self._pBank.verify(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
 
-								# next progression with tonic changed
-								recursiveResult = self.__recursiveProgression(startingInterval=intervalC, startingMatch=matchTupleC, featureList=featureList)
+									if not(intervalC in self._invalidResult and matchTupleC in self._invalidResult[intervalC]):
+										# print "Going to next Level"
 
-								if len(recursiveResult) == 0:
-									if intervalC not in self._invalidResult:
-										self._invalidResult[intervalC] = []
-									self._invalidResult[intervalC].append(matchTupleC)
-								else:
-									return [(intervalB, eqvIntervalBinTonicA[0])] + recursiveResult
+										# next progression with tonic changed
+										recursiveResult = self.__recursiveProgression(startingInterval=intervalC, startingMatch=matchTupleC, featureList=featureList, barLimit=barLimit)
+
+										if len(recursiveResult) == 0:
+											if intervalC not in self._invalidResult:
+												self._invalidResult[intervalC] = []
+											self._invalidResult[intervalC].append(matchTupleC)
+										else:
+											return [(intervalA, matchTupleA), (intervalB, matchTupleB)] + recursiveResult
+
+		# no result above, now first come first serve
+		(cnameA, chordTypeA, inverionA, romanA, tonicA, groupNoA) = matchTupleA
+		(intervalWithinBarLimitA, touchEnd) = self.__findAllIntervalWithLimit(startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=barLimit)
+		for i, intervalB in enumerate(intervalWithinBarLimitA):
+			allMatches = self.__getOrderedMatchesDict(interval=intervalB, totalMatch=True, exactMatch=True, possibleMatch=True)
+			sameTonicList = []
+			for key in sorted(allMatches.keys()):
+				sameTonicList += [matchTuple for matchTuple in allMatches[key] if matchTuple[matchTupleTonicIndex] == tonicA]
+			for matchTupleB in sameTonicList:
+				beforeCName = cnameA
+				afterCName = matchTupleB[matchTupleCNameIndex]
+				if self._pBank.verify(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
+
+					if intervalB in self._invalidResult and matchTupleB in self._invalidResult[intervalB]:
+						continue
+
+					# print "Going to next Level by first come first serve"
+
+					# next progression 
+					recursiveResult = self.__recursiveProgression(startingInterval=intervalB, startingMatch=matchTupleB, featureList=featureList, barLimit=barLimit)
+
+					if len(recursiveResult) == 0:
+						if intervalB not in self._invalidResult:
+							self._invalidResult[intervalB] = []
+						self._invalidResult[intervalB].append(matchTupleB)
+					else:
+						return [(intervalA, matchTupleA)] + recursiveResult
+		return []
 
 
 
@@ -199,7 +252,7 @@ class ProgressionVerifier(object):
 		return targetTypeList
 
 
-	def __findAllIntervalByIntervalTypeWithLimit(self, targetIntervalType, startMeasure, startInterval, barLimit=2):
+	def __findAllIntervalByIntervalTypeWithLimit(self, targetIntervalType, startMeasure, startInterval, barLimit):
 		(allIntervalWithLimit, touchEnd) = self.__findAllIntervalWithLimit(startMeasure=startMeasure, startInterval=startInterval, barLimit=barLimit)
 		intervalList = []
 		for interval in allIntervalWithLimit:
