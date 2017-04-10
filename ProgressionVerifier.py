@@ -73,10 +73,10 @@ class ProgressionVerifier(object):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if (matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V')]
 			for key in sorted(allMatches.keys()):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList]
-			print "Starting Point Priority List: "
-			for matchTuple in matchTuplePriorityList:
-				print matchTuple
-			print ""
+			# print "Starting Point Priority List: "
+			# for matchTuple in matchTuplePriorityList:
+			# 	print matchTuple
+			# print ""
 			# start progression
 			for matchTuple in matchTuplePriorityList:
 				if startingPoint in self._invalidResult and matchTuple in self._invalidResult[startingPoint]:
@@ -146,7 +146,11 @@ class ProgressionVerifier(object):
 							if len(eqvIntervalCinTonicA):
 								beforeCName = matchTupleA[matchTupleCNameIndex]
 								afterCName = eqvIntervalCinTonicA[0][matchTupleCNameIndex]
-								if self._pBank.verify(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
+								if matchTupleA[matchTupleTonicIndex][-1] == 'm':
+									verifyFunction = self._pBank.verifyMinor
+								else:
+									verifyFunction = self._pBank.verifyMajor
+								if verifyFunction(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
 
 									if not(intervalC in self._invalidResult and eqvIntervalCinTonicA[0] in self._invalidResult[intervalC]):
 										# print "Going to next Level"
@@ -159,14 +163,18 @@ class ProgressionVerifier(object):
 												self._invalidResult[intervalC] = []
 											self._invalidResult[intervalC].append(eqvIntervalCinTonicA[0])
 										else:
-											return [(intervalA, matchTupleA)] + recursiveResult
+											return [(intervalA, matchTupleA), (intervalB, matchTupleB)] + recursiveResult
 
 							# examine intervalA to intervalB
 							eqvIntervalBinTonicA = [matchTuple for matchTuple in intervalB.equivalentGroupDict[groupNoB] if matchTuple[matchTupleTonicIndex] == matchTupleA[matchTupleTonicIndex]]
 							if len(eqvIntervalBinTonicA):
 								beforeCName = matchTupleA[matchTupleCNameIndex]
 								afterCName = eqvIntervalBinTonicA[0][matchTupleCNameIndex]
-								if self._pBank.verify(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
+								if matchTupleA[matchTupleTonicIndex][-1] == 'm':
+									verifyFunction = self._pBank.verifyMinor
+								else:
+									verifyFunction = self._pBank.verifyMajor
+								if verifyFunction(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
 
 									if not(intervalC in self._invalidResult and matchTupleC in self._invalidResult[intervalC]):
 										# print "Going to next Level"
@@ -192,7 +200,11 @@ class ProgressionVerifier(object):
 			for matchTupleB in sameTonicList:
 				beforeCName = cnameA
 				afterCName = matchTupleB[matchTupleCNameIndex]
-				if self._pBank.verify(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
+				if tonicA[-1] == 'm':
+					verifyFunction = self._pBank.verifyMinor
+				else:
+					verifyFunction = self._pBank.verifyMajor
+				if verifyFunction(before=beforeCName, after=afterCName) == "Yes" or beforeCName == afterCName:
 
 					if intervalB in self._invalidResult and matchTupleB in self._invalidResult[intervalB]:
 						continue

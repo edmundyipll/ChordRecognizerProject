@@ -181,9 +181,6 @@ class ChordInterval(object):
 	def setRecognizedResultDict(self, d={}):
 		self._recognizedResultDict = d
 
-	def setWeightedTonicDict(self, d={}):
-		self._weightedTonicDict = d
-
 	def analyzeEquivalentChord(self):
 		resultDict = self._recognizedResultDict
 		groupDict = {}

@@ -1,10 +1,10 @@
 class ChordAnalyzingTool(object):
 
 	def getChordNameList(self):
-		return self._chordNameList
+		return self._majorChordNameList + self._minorChordNameList
 
 	def getTonicList(self):
-		return self._tonicList
+		return self.majorTonicList + self._minorTonicList
 
 	def getEnharmonicDictionary(self):
 		return self._enharmonicDictionary
@@ -34,7 +34,7 @@ class ChordAnalyzingTool(object):
 	# totalmatch / exactmatch / possiblematch structure: tuple of (cname, chordType, inversion, roman, tonic, groupNo)
 
 	def recognizeByAllTonic(self, interval):
-		tonicList = self._majorTonic + self._minorTonic
+		tonicList = self._majorTonicList + self._minorTonicList
 		totalFlag = False
 		result = {}
 		for tonic in tonicList:
@@ -50,29 +50,29 @@ class ChordAnalyzingTool(object):
 	def __init__(self):		
 
 		#storing common chord names
-		self._chordNameList = [
-			'I', 'I7', 'i',
-			'bII', 'ii', 'ii7', 'dim ii', 'half-dim ii7',
-			'iii', 'iii7', 'bIII',
-			'IV', 'IV7', 'iv',
-			'V', 'V7', 'v',
-			'bVI', 'GermanVI', 'FrenchVI', 'ItalianVI', 'vi', 'vi7',
-			'dim vii', 'half-dim vii7', 'full-dim vii7', 'bVII'
+		self._majorChordNameList = [
+			'I', 'I7', 
+			'bII', 'II', 'II7', 
+			'III', 'III7', 
+			'IV', 'IV7', 
+			'V', 'V7', 
+			'bVI', 'gerVI', 'freVI', 'itaVI', 'VI', 'VI7', 
+			'VII', 'VII7', 'dimVII'
 		]
-
-		self._majorChordList = [
-			'I', 'I7', 'bII', 'II', 'III', 'III7', 'IV', 'IV7', 'V', 'V7', 'bVI', 'GermanVI', 'FrenchVI', 'ItalianVI', 'VI', 'VI7', 'VII', 'VII7', 'Diminish VII'
-		]
-		self._minorChordList = [
-			'I', 'I+', 'bII', 'II', 'II7', 'III', 'IV', 'IV+', 'V', 'V+', 'V+7', 'VI', 'GermanVI', 'FrenchVI', 'ItalianVI', 'VII', 'Diminish VII', 'Diminish VII'
+		self._minorChordNameList = [
+			'I', 'I+', 
+			'bII', 'II', 'II7', 
+			'III', 
+			'IV', 'IV+', 
+			'V', 'V+', 'V+7', 
+			'VI', 'gerVI', 'freVI', 'itaVI', 
+			'VII', 'dimVII', 'dimVII'
 		]
 
 		
 		#storing all possible tonics
-		self._tonicList = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C#', 'Cb', 'D#', 'Db', 'Eb', 'F#', 'G#', 'Gb', 'A#', 'Ab', 'Bb']
-
-		self._majorTonic = ['C', 'G', 'D', 'A', 'E', 'B', 'Cb', 'F#', 'Gb', 'Db', 'C#', 'Ab', 'Eb', 'Bb', 'F']
-		self._minorTonic = ['Am', 'Em', 'Bm', 'F#m', 'C#m', 'G#m', 'Abm', 'D#m', 'Ebm', 'Bbm', 'A#m', 'Fm', 'Cm', 'Gm', 'Dm']
+		self._majorTonicList = ['C', 'G', 'D', 'A', 'E', 'B', 'Cb', 'F#', 'Gb', 'Db', 'C#', 'Ab', 'Eb', 'Bb', 'F']
+		self._minorTonicList = ['Am', 'Em', 'Bm', 'F#m', 'C#m', 'G#m', 'Abm', 'D#m', 'Ebm', 'Bbm', 'A#m', 'Fm', 'Cm', 'Gm', 'Dm']
 
 		
 		#dictionary storing notes with same pitch
@@ -101,22 +101,8 @@ class ChordAnalyzingTool(object):
 		self._reversedEnharmonicDictionary = d
 
 
-		# Roman dictionary, where values are the chord numbers, index of self._chordNameList
-		self._romanDictionary = {
-			'I': [0, 1, 2],
-			'bII': [3],
-			'II': [4, 5, 6, 7],
-			'III': [8, 9],
-			'bIII': [10],
-			'IV': [11, 12, 13],
-			'V': [14, 15, 16],
-			'bVI': [17, 18, 19, 20],
-			'VI': [21, 22],
-			'VII': [23, 24, 25],
-			'bVII': [26]
-		}
-
-		self._majorRomanDict = {
+		# Roman dictionary, where key are the chord numbers, index of self._majorChordNameList / self._minorChordNameList
+		self._majorRomanDictionary = {
 			0: 'I', 1: 'I',
 			2: 'bII', 3: 'II', 4: 'II',
 			5: 'III', 6: 'III',
@@ -125,7 +111,7 @@ class ChordAnalyzingTool(object):
 			11: 'bVI', 12: 'bVI', 13: 'bVI', 14: 'bVI', 15: 'VI', 16: 'VI',
 			17: 'VII', 18: 'VII', 19: 'VII'
 		}
-		self._minorRomanDict = {
+		self._minorRomanDictionary = {
 			0: 'I', 1: 'I',
 			2: 'bII', 3: 'II', 4: 'II',
 			5: 'bIII',
@@ -136,30 +122,8 @@ class ChordAnalyzingTool(object):
 		}
 
 
-		# reversed roman dictionary for faster accessing by chord number
-		d = {}
-		for (key, chordNoList) in self._romanDictionary.items():
-			for chordNo in chordNoList:
-				if chordNo not in d:
-					d[chordNo] = key
-		self._reversedRomanDictionary = d
-
-
-		# chord type dictionary, where values are the chord numbers, index of self._chordNameList
-		self._chordTypeDictionary = {
-			'Major': [0, 3, 10, 11, 14, 17, 26],
-			'Major 7th': [1, 12, 15],
-			'Minor': [2, 4, 8, 13, 16, 21],
-			'Minor 7th': [5, 9, 22],
-			'dim': [6, 23],
-			'half-dim': [7, 24],
-			'full-dim': [25],
-			'German': [18],
-			'French': [19],
-			'Italian': [20]
-		}
-
-		self._majorChordTypeDict = {
+		# chord type dictionary, where key are the chord numbers, index of self._majorChordNameList / self._minorChordNameList
+		self._majorChordTypeDictionary = {
 			0: 'Major', 1: 'Major 7th',
 			2: 'Major', 3: 'Minor', 4: 'Minor 7th',
 			5: 'Minor', 6: 'Minor 7th',
@@ -168,7 +132,7 @@ class ChordAnalyzingTool(object):
 			11: 'Major', 12: 'German', 13: 'French', 14: 'Italian', 15: 'Minor', 16: 'Minor 7th',
 			17: 'dim', 18: 'half-dim', 19: 'full-dim'
 		}
-		self._minorChordTypeDict = {
+		self._minorChordTypeDictionary = {
 			0: 'Minor', 1: 'Major',
 			2: 'Major', 3: 'dim', 4: 'half-dim',
 			5: 'Major',
@@ -178,19 +142,10 @@ class ChordAnalyzingTool(object):
 			15: 'Major', 16: 'dim', 17: 'full-dim'
 		}
 
-
-		#reversed chord tyoe dictionary for faster accessing by chord number
-		d = {}
-		for(key, chordNoList) in self._chordTypeDictionary.items():
-			for chordNo in chordNoList:
-				if chordNo not in d:
-					d[chordNo] = key
-		self._reversedChordTypeDictionary = d
-
 		
 		#note interval dictionary
 		d = {}
-		for tonic in self._majorTonic:
+		for tonic in self._majorTonicList:
 			e = self._reversedEnharmonicDictionary[tonic]
 			d[tonic] = {}
 			d[tonic]['P1'] = tonic
@@ -205,7 +160,7 @@ class ChordAnalyzingTool(object):
 			d[tonic]['M6'] = self.__intervalCalculate(firstNote=tonic, targetNote=6, difference=(e + 9) % 12)
 			d[tonic]['m7'] = self.__intervalCalculate(firstNote=tonic, targetNote=7, difference=(e + 10) % 12)
 			d[tonic]['M7'] = self.__intervalCalculate(firstNote=tonic, targetNote=7, difference=(e + 11) % 12)
-		for tonic in self._minorTonic:
+		for tonic in self._minorTonicList:
 			tonicNote = tonic[:-1]
 			e = self._reversedEnharmonicDictionary[tonicNote]
 			d[tonic] = {}
@@ -226,9 +181,9 @@ class ChordAnalyzingTool(object):
 
 		#chord structure dictionary
 		d = {}
-		for tonic in self._majorTonic:
+		for tonic in self._majorTonicList:
 			i = self._intervalDictionary[tonic]
-			c = self._majorChordList
+			c = self._majorChordNameList
 			d[tonic] = {}
 			d[tonic][c[0]] = (i['P1'], i['M3'], i['P5'])
 			d[tonic][c[1]] = (i['P1'], i['M3'], i['P5'], i['M7'])
@@ -250,34 +205,35 @@ class ChordAnalyzingTool(object):
 			d[tonic][c[17]] = (i['M7'], i['M2'], i['P4'])
 			d[tonic][c[18]] = (i['M7'], i['M2'], i['P4'], i['M6'])
 			d[tonic][c[19]] = (i['M7'], i['M2'], i['P4'], i['m6'])
-		for tonic in self._minorTonic:
+		for tonic in self._minorTonicList:
 			tonicNote = tonic[:-1]
 			i = self._intervalDictionary[tonic]
-			c = self._minorChordList
-			d[tonic][c[0]] = (i['P1'], i['M3'], i['P5'])
-			d[tonic][c[1]] = (i['P1'], i['m3'], i['P5'])
+			c = self._minorChordNameList
+			d[tonic] = {}
+			d[tonic][c[0]] = (i['P1'], i['m3'], i['P5'])
+			d[tonic][c[1]] = (i['P1'], i['M3'], i['P5'])
 			d[tonic][c[2]] = (i['m2'], i['P4'], i['m6'])
 			d[tonic][c[3]] = (i['M2'], i['P4'], i['m6'])
 			d[tonic][c[4]] = (i['M2'], i['P4'], i['m6'], i['P1'])		
 			d[tonic][c[5]] = (i['m3'], i['P5'], i['m7'])
-			d[tonic][c[6]] = (i['P4'], i['M6'], i['P1'])	
-			d[tonic][c[7]] = (i['P4'], i['m6'], i['P1'])
-			d[tonic][c[8]] = (i['P5'], i['M7'], i['M2'])
-			d[tonic][c[9]] = (i['P5'], i['M7'], i['M2'], i['P4'])
-			d[tonic][c[10]] = (i['P5'], i['m7'], i['M2'])
+			d[tonic][c[6]] = (i['P4'], i['m6'], i['P1'])	
+			d[tonic][c[7]] = (i['P4'], i['M6'], i['P1'])
+			d[tonic][c[8]] = (i['P5'], i['m7'], i['M2'])
+			d[tonic][c[9]] = (i['P5'], i['M7'], i['M2'])
+			d[tonic][c[10]] = (i['P5'], i['M7'], i['M2'], i['P4'])
 			d[tonic][c[11]] = (i['m6'], i['P1'], i['m3'])
 			d[tonic][c[12]] = (i['m6'], i['P1'], i['m3'], i['A4'])
 			d[tonic][c[13]] = (i['m6'], i['P1'], i['M2'], i['A4'])
 			d[tonic][c[14]] = (i['m6'], i['P1'], i['A4'])		
-			d[tonic][c[15]] = (i['M7'], i['M2'], i['P4'])
-			d[tonic][c[16]] = (i['M7'], i['M2'], i['P4'], i['m6'])
-			d[tonic][c[17]] = (i['m7'], i['M2'], i['P4'])
+			d[tonic][c[15]] = (i['m7'], i['M2'], i['P4'])
+			d[tonic][c[16]] = (i['M7'], i['M2'], i['P4'])
+			d[tonic][c[17]] = (i['M7'], i['M2'], i['P4'], i['m6'])
 		self._chordStructureDictionary = d
 
 
 		#note occurence dictionary, for the occurence of specific notes in list of chords, indicate by chord number
 		d = {}
-		for tonic in self._majorTonic:
+		for tonic in self._majorTonicList:
 			d[tonic] = {}
 			i = self._intervalDictionary[tonic]
 			d[tonic][i['P1']] = [0, 1, 4, 7, 8, 11, 12, 13, 14, 15, 16]
@@ -291,7 +247,7 @@ class ChordAnalyzingTool(object):
 			d[tonic][i['m6']] = [2, 11, 12, 13, 14, 19]
 			d[tonic][i['M6']] = [3, 4, 7, 8, 15, 16, 18]
 			d[tonic][i['M7']] = [1, 5, 6, 9, 10, 17, 18, 19]
-		for tonic in self._minorTonic:
+		for tonic in self._minorTonicList:
 			d[tonic] = {}
 			i = self._intervalDictionary[tonic]
 			d[tonic][i['P1']] = [0, 1, 4, 6, 7, 11, 12, 13, 14]
@@ -310,7 +266,7 @@ class ChordAnalyzingTool(object):
 
 
 	# input structure
-	# {cname: frequency, cname: frequency, ... }
+	# {note: frequency, note: frequency, ... }
 	def __recognizeByTonic(self, tonic, inputDict):
 		if tonic[-1] == 'm':
 			minorMode = True
@@ -320,20 +276,19 @@ class ChordAnalyzingTool(object):
 			tonicNote = tonic
 		notemap = self._noteOccurenceDictionary[tonic]
 		chord = self._chordStructureDictionary[tonic]
-		mapDict = self._reversedEnharmonicDictionary[tonic]
 		notes = self._intervalDictionary[tonic]
 		if minorMode:
-			cname = self._minorChordList
-			chordType = self._minorChordTypeDict
-			roman = self._minorRomanDict
+			cname = self._minorChordNameList
+			chordType = self._minorChordTypeDictionary
+			roman = self._minorRomanDictionary
 			chordCount = [0] * 18
 			occur = [0] * 18
 			totalFound = [False] * 18
 			chordgp = [0, 0, 1, 2, 2, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 7, 8, 8]
 		else:
-			cname = self._majorChordList
-			chordType = self._majorChordTypeDict
-			roman = self._majorRomanDict
+			cname = self._majorChordNameList
+			chordType = self._majorChordTypeDictionary
+			roman = self._majorRomanDictionary
 			chordCount = [0] * 20
 			occur = [0] * 20
 			totalFound = [False] * 20
@@ -345,7 +300,7 @@ class ChordAnalyzingTool(object):
 		totalFlag = False
 		cnote = inputDict.keys()
 		if len(cnote) == 1:
-			if tonic == cnote[0]:
+			if tonicNote == cnote[0]:
 				return ([], [], [(cname[0], chordType[0], 'Root', roman[0], tonic, None)])
 			else:
 				return ([], [], [])
@@ -425,18 +380,21 @@ class ChordAnalyzingTool(object):
 
 	def __checkInversion(self, tonic, chordNo, inputs):
 		if tonic[-1] == 'm':
-			cname = self._minorChordList
+			cname = self._minorChordNameList
 		else:
-			cname = self._majorChordList
+			cname = self._majorChordNameList
 		chord = self._chordStructureDictionary[tonic]
 		if chordNo in range(12, 15):
 			return (cname[chordNo], 'Root')
 		targetChord = chord[cname[chordNo]]
 		is3 = len(targetChord) == 3
 		inputSubset = {}
-		for i in range(len(inputs.keys())):
-			if inputs.keys()[i] in targetChord:
-				inputSubset[inputs.keys()[i]] = inputs.values()[i]
+		for (key, value) in inputs.items():
+			if key in targetChord:
+				inputSubset[key] = value
+		# for i in range(len(inputs.keys())):
+		# 	if inputs.keys()[i] in targetChord:
+		# 		inputSubset[inputs.keys()[i]] = inputs.values()[i]
 		if len(inputSubset.keys()) < 2:
 			return ('error', 'error')
 		baseNote = inputSubset.keys()[inputSubset.values().index(min(inputSubset.values()))]
