@@ -73,7 +73,10 @@ class ProgressionVerifier(object):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if (matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V')]
 			for key in sorted(allMatches.keys()):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList]
-
+			print "Starting Point Priority List: "
+			for matchTuple in matchTuplePriorityList:
+				print matchTuple
+			print ""
 			# start progression
 			for matchTuple in matchTuplePriorityList:
 				if startingPoint in self._invalidResult and matchTuple in self._invalidResult[startingPoint]:
@@ -178,14 +181,14 @@ class ProgressionVerifier(object):
 										else:
 											return [(intervalA, matchTupleA), (intervalB, matchTupleB)] + recursiveResult
 
-		# no result above, now first come first serve
+		# no result above, now first come first serve, with OnBeat interval
 		(cnameA, chordTypeA, inverionA, romanA, tonicA, groupNoA) = matchTupleA
-		(intervalWithinBarLimitA, touchEnd) = self.__findAllIntervalWithLimit(startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=barLimit)
-		for i, intervalB in enumerate(intervalWithinBarLimitA):
+		(targetIntervalWithinBarLimitA, touchEnd) = self.__findAllIntervalByIntervalTypeWithLimit(targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=barLimit)
+		for i, intervalB in enumerate(targetIntervalWithinBarLimitA):
 			allMatches = self.__getOrderedMatchesDict(interval=intervalB, totalMatch=True, exactMatch=True, possibleMatch=True)
 			sameTonicList = []
 			for key in sorted(allMatches.keys()):
-				sameTonicList += [matchTuple for matchTuple in allMatches[key] if matchTuple[matchTupleTonicIndex] == tonicA]
+				sameTonicList += [matchTuple for matchTuple in allMatches[key] if matchTuple[matchTupleTonicIndex] == tonicA ]
 			for matchTupleB in sameTonicList:
 				beforeCName = cnameA
 				afterCName = matchTupleB[matchTupleCNameIndex]

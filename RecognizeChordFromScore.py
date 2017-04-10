@@ -119,15 +119,15 @@ for i, measure in enumerate(inputs):
 		inputs[i][j].setRecognizedResultDict(tonicResult)
 		inputs[i][j].analyzeEquivalentChord()
 
-for measure in inputs:
-	for interval in measure:
-		interval.debug()
-		print ""
+# for measure in inputs:
+# 	for interval in measure:
+# 		interval.debug()
+# 		print ""
 
 
 # #Progression Verifying
 progressionVerifier = ProgressionVerifier(inputList=inputs)
-result = progressionVerifier.verify(featureList=[ProgressionVerifier.ProgressionFeatures.PriorAllIntervalType])
+result = progressionVerifier.verify(featureList=[ProgressionVerifier.ProgressionFeatures.PriorOnBeat], barLimit=3)
 for (interval, matchTuple) in result:
 	print matchTuple
 
