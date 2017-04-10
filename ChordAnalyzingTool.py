@@ -312,7 +312,7 @@ class ChordAnalyzingTool(object):
 	# input structure
 	# {cname: frequency, cname: frequency, ... }
 	def __recognizeByTonic(self, tonic, inputDict):
-		if tonic[-1] = 'm':
+		if tonic[-1] == 'm':
 			minorMode = True
 			tonicNote = tonic[:-1]
 		else:
@@ -424,7 +424,7 @@ class ChordAnalyzingTool(object):
 
 
 	def __checkInversion(self, tonic, chordNo, inputs):
-		if tonic[-1] = 'm':
+		if tonic[-1] == 'm':
 			cname = self._minorChordList
 		else:
 			cname = self._majorChordList

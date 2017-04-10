@@ -267,9 +267,17 @@ class ChordInterval(object):
 			'bVI':9, 'VI':10,
 			'bVII':11, 'VII':12
 		}
+		if targetChord[4][-1] == 'm':
+			targetTonic = targetChord[4][:-1]
+		else:
+			targetTonic = targetChord[4]
+		if compareChord[4][-1] == 'm':
+			compareTonic = compareChord[4][:-1]
+		else:
+			compareTonic = compareChord[4]
 
-		targetSum = (noteDict[targetChord[4]] + romanDict[targetChord[3]])%12
-		compareSum = (noteDict[compareChord[4]] + romanDict[compareChord[3]])%12
+		targetSum = (noteDict[targetTonic] + romanDict[targetChord[3]])%12
+		compareSum = (noteDict[compareTonic] + romanDict[compareChord[3]])%12
 
 		if not targetChord[1] == compareChord[1]:
 			return False
