@@ -31,7 +31,7 @@ class ProgressionBank(object):
 		return "NULL"
 
 	def __init__(self):
-		majorSource = "majorProgression.csv"
-		minorSource = "minorProgression.csv"
+		majorSource = "ChordIdentifier/majorProgression.csv"
+		minorSource = "ChordIdentifier/minorProgression.csv"
 		(self._majorBank, self._majorKeys) = self.__readCSV(source=majorSource)
 		(self._minorBank, self._minorKeys) = self.__readCSV(source=minorSource)

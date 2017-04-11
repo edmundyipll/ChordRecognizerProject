@@ -30,8 +30,9 @@ class ProgressionVerifier(object):
 
 		#TonicChanging				-	Allow more tonic changing in progression
 
-	def __init__(self, inputList=[]):
+	def __init__(self, inputList=[], keyList=[]):
 		self._inputList = copy.deepcopy(inputList)
+		self._keyList = keyList
 		self._pBank = ProgressionBank()
 		self._analyzingTool = ChordAnalyzingTool()
 		while len(self._inputList[-1]) == 0:
@@ -43,8 +44,8 @@ class ProgressionVerifier(object):
 		# handle featureList
 		firstPriorityCnt = len([f for f in self.ProgressionFeatures.getFirstPriorityList() if f in featureList])
 		if firstPriorityCnt != 1:
-			# take PriorOnBeat as FIRST priority when no or multiple FIRST priority setting found,
-			featureList = [self.ProgressionFeatures.PriorOnBeat] + [f for f in featureList if f not in self.ProgressionFeatures.getFirstPriorityList()]
+			# take PriorAllIntervalType as FIRST priority when no or multiple FIRST priority setting found,
+			featureList = [self.ProgressionFeatures.PriorAllIntervalType] + [f for f in featureList if f not in self.ProgressionFeatures.getFirstPriorityList()]
 		featureList.sort()
 
 		# init
