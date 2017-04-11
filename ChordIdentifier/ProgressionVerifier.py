@@ -85,10 +85,10 @@ class ProgressionVerifier(object):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList and (matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V')]
 			for key in sorted(allMatches.keys()):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList]
-			print "Starting Point Priority List: "
-			for matchTuple in matchTuplePriorityList:
-				print matchTuple
-			print ""
+			# print "Starting Point Priority List: "
+			# for matchTuple in matchTuplePriorityList:
+			# 	print matchTuple
+			# print ""
 			# start progression
 			for matchTuple in matchTuplePriorityList:
 				if startingPoint in self._invalidResult and matchTuple in self._invalidResult[startingPoint]:
