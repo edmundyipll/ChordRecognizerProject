@@ -4,6 +4,7 @@ from ChordNote import ChordNote
 from ChordInterval import ChordInterval
 import music21
 import copy
+import os
 
 class Identifier(object):
 

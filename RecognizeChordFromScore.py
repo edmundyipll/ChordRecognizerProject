@@ -23,4 +23,4 @@ except music21.converter.ConverterException:
 identifier = ChordIdentifier.Identifier(score=rawScore)
 # identifier.printPreparedScore()
 featureList = [ChordIdentifier.ProgressionVerifier.ProgressionVerifier.ProgressionFeatures.PriorAllIntervalType]
-identifier.runProgression(barLimit=3, featureList=featureList, verbal=True)
+identifier.runProgression(barLimit=3, featureList=featureList, verbal=True, output="output.xml")
