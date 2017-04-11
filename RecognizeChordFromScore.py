@@ -24,4 +24,4 @@ identifier = ChordIdentifier.Identifier(score=rawScore)
 # identifier.printPreparedScore()
 verfierFeaturesClass = ChordIdentifier.ProgressionVerifier.ProgressionVerifier.ProgressionFeatures
 featureList = [verfierFeaturesClass.PriorAllIntervalType]
-identifier.runProgression(barLimit=3, featureList=featureList, verbal=True, output="output.xml")
+identifier.runProgression(barLimit=3, featureList=featureList, verbal=True)

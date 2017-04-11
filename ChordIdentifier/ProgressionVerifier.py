@@ -68,16 +68,27 @@ class ProgressionVerifier(object):
 		else:
 			startingPoint = startingPointIntervalList[0]
 			matchTupleRomanIndex = self._analyzingTool.convertMatchTupleKeyToIndex('roman')
+			matchTupleTonicIndex = self._analyzingTool.convertMatchTupleKeyToIndex('tonic')
+			if len(self._keyList):
+				keyReferenceObject = self._keyList[0]
+				referencedKey = keyReferenceObject.tonic.name
+				if keyReferenceObject.mode == 'minor':
+					referencedKey += 'm'
+			else:
+				referencedKey = None
 			matchTuplePriorityList = []
 			allMatches = self.__getOrderedMatchesDict(interval=startingPoint, totalMatch=True, exactMatch=True, possibleMatch=True)
+			if referencedKey:
+				for key in sorted(allMatches.keys()):
+					matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList and matchTuple[matchTupleTonicIndex] == referencedKey]
 			for key in sorted(allMatches.keys()):
-				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if (matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V')]
+				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList and (matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V')]
 			for key in sorted(allMatches.keys()):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList]
-			# print "Starting Point Priority List: "
-			# for matchTuple in matchTuplePriorityList:
-			# 	print matchTuple
-			# print ""
+			print "Starting Point Priority List: "
+			for matchTuple in matchTuplePriorityList:
+				print matchTuple
+			print ""
 			# start progression
 			for matchTuple in matchTuplePriorityList:
 				if startingPoint in self._invalidResult and matchTuple in self._invalidResult[startingPoint]:
@@ -190,7 +201,7 @@ class ProgressionVerifier(object):
 										else:
 											return [(intervalA, matchTupleA), (intervalB, matchTupleB)] + recursiveResult
 
-		# no result above, now first come first serve, with OnBeat interval
+		# no result above, now first come first serve, with selected interval type
 		(cnameA, chordTypeA, inverionA, romanA, tonicA, groupNoA) = matchTupleA
 		(targetIntervalWithinBarLimitA, touchEnd) = self.__findAllIntervalByIntervalTypeWithLimit(targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=barLimit)
 		for i, intervalB in enumerate(targetIntervalWithinBarLimitA):
