@@ -22,6 +22,12 @@ except music21.converter.ConverterException:
 		sys.exit(1)
 identifier = ChordIdentifier.Identifier(score=rawScore)
 # identifier.printPreparedScore()
-verfierFeaturesClass = ChordIdentifier.ProgressionVerifier.ProgressionVerifier.ProgressionFeatures
-featureList = [verfierFeaturesClass.PriorAllIntervalType]
-identifier.runProgression(barLimit=3, featureList=featureList, verbal=True)
+verifierFeatureClass = ChordIdentifier.ProgressionVerifier.ProgressionVerifier.ProgressionFeature
+verifierIntervalChoiceClass = ChordIdentifier.ProgressionVerifier.ProgressionVerifier.ProgressionIntervalChoice
+
+
+featureList = [verifierFeatureClass.ChordFunction]
+# identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.OnBeat, featureList=featureList, verbal=True, output="canonInD_OnBeat.xml")
+# identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.AllIntervalType, featureList=featureList, verbal=True, output="canonInD_AllIntervalType.xml")
+
+identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=featureList, verbal=True, output="canonInD_ChangedBaseline_TtoT.xml")

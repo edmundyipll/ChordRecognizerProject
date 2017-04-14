@@ -22,7 +22,7 @@ class ChordAnalyzingTool(object):
 		return self._noteOccurenceDictionary
 
 	def convertMatchTupleKeyToIndex(self, key=None):
-		l = ['cname', 'chordType', 'inversion', 'roman', 'tonic', 'groupNo']
+		l = ['cname', 'chordType', 'inversion', 'roman', 'chordFunction', 'tonic', 'groupNo']
 		if key in l:
 			return l.index(key)
 		else:
@@ -31,7 +31,7 @@ class ChordAnalyzingTool(object):
 	# Result Structure
 	# {tonic: ([totalmatch, ...], [exactmatch, ...], [possiblematch, ... )}
 	#
-	# totalmatch / exactmatch / possiblematch structure: tuple of (cname, chordType, inversion, roman, tonic, groupNo)
+	# totalmatch / exactmatch / possiblematch structure: tuple of (cname, chordType, inversion, roman, chordFunction, tonic, groupNo)
 
 	def recognizeByAllTonic(self, interval):
 		tonicList = self._majorTonicList + self._minorTonicList
@@ -57,7 +57,7 @@ class ChordAnalyzingTool(object):
 			'IV', 'IV7', 
 			'V', 'V7', 
 			'bVI', 'gerVI', 'freVI', 'itaVI', 'VI', 'VI7', 
-			'VII', 'VII7', 'dimVII'
+			'VII', 'VII7', 'dimVII7'
 		]
 		self._minorChordNameList = [
 			'I', 'I+', 
@@ -66,7 +66,7 @@ class ChordAnalyzingTool(object):
 			'IV', 'IV+', 
 			'V', 'V+', 'V+7', 
 			'VI', 'gerVI', 'freVI', 'itaVI', 
-			'VII', 'dimVII', 'dimVII'
+			'VII', 'dimVII', 'dimVII7'
 		]
 
 		
@@ -140,6 +140,25 @@ class ChordAnalyzingTool(object):
 			8: 'Minor', 9: 'Major', 10: 'Dominant 7th',
 			11: 'Major', 12: 'German', 13: 'French', 14: 'Italian',
 			15: 'Major', 16: 'dim', 17: 'full-dim'
+		}
+
+		# chord function dictionary, where key are the chord numbers, index of self._majorChordNameList / self._minorChordNameList
+		self._majorChordFunctionDictionary = {
+			0: 'Tonic', 1: 'Tonic', 2: 'Undefined',
+			3: 'Subdominant', 4: 'Subdominant', 
+			5: 'Tonic', 6: 'Undefined', 7: 'Tonic', 8: 'Undefined',
+			9: 'Dominant', 10: 'Dominant',
+			11: 'Subdominant', 12: 'Subdominant', 13: 'Subdominant', 14: 'Subdominant',
+			15: 'Tonic', 16: 'Tonic',
+			17: 'Dominant', 18: 'Dominant', 19: 'Dominant'
+		}
+		self._minorChordFunctionDictionary = {
+			0: 'Tonic', 1: 'Tonic', 2: 'Undefined',
+			3: 'Subdominant', 4: 'Subdominant', 5: 'Tonic',
+			6: 'Subdominant', 7: 'Subdominant',
+			8: 'Dominant', 9: 'Dominant', 10: 'Dominant',
+			11: 'Subdominant', 12: 'Subdominant', 13: 'Subdominant', 14: 'Subdominant',
+			15: 'Dominant', 16: 'Dominant', 17: 'Dominant'
 		}
 
 		
@@ -281,6 +300,7 @@ class ChordAnalyzingTool(object):
 			cname = self._minorChordNameList
 			chordType = self._minorChordTypeDictionary
 			roman = self._minorRomanDictionary
+			cfunction = self._minorChordFunctionDictionary
 			chordCount = [0] * 18
 			occur = [0] * 18
 			totalFound = [False] * 18
@@ -289,6 +309,7 @@ class ChordAnalyzingTool(object):
 			cname = self._majorChordNameList
 			chordType = self._majorChordTypeDictionary
 			roman = self._majorRomanDictionary
+			cfunction = self._majorChordFunctionDictionary
 			chordCount = [0] * 20
 			occur = [0] * 20
 			totalFound = [False] * 20
@@ -301,7 +322,7 @@ class ChordAnalyzingTool(object):
 		cnote = inputDict.keys()
 		if len(cnote) == 1:
 			if tonicNote == cnote[0]:
-				return ([], [], [(cname[0], chordType[0], 'Root', roman[0], tonic, None)])
+				return ([], [], [(cname[0], chordType[0], 'Root', roman[0], cfunction[0], tonic, None)])
 			else:
 				return ([], [], [])
 
@@ -356,10 +377,10 @@ class ChordAnalyzingTool(object):
 			if occur[x] == 1:
 				inversion = self.__checkInversion(tonic=tonic, chordNo=x, inputs=inputDict)
 				if totalFound[x]:
-					totalMatch.append((inversion[0], chordType[x], inversion[1], roman[x], tonic, None))
+					totalMatch.append((inversion[0], chordType[x], inversion[1], roman[x], cfunction[x], tonic, None))
 					totalFlag = True
 				else:
-					exactMatch.append((inversion[0], chordType[x], inversion[1], roman[x], tonic, None))
+					exactMatch.append((inversion[0], chordType[x], inversion[1], roman[x], cfunction[x], tonic, None))
 				occur[x] = occur[x] + 1
 		if totalFlag:
 			return (totalMatch, exactMatch, None)
@@ -374,7 +395,7 @@ class ChordAnalyzingTool(object):
 		for x in range(len(cname)):
 			if occur[x] == 1:
 				inversion = self.__checkInversion(tonic=tonic, chordNo=x, inputs=inputDict)
-				possibleMatch.append((inversion[0], chordType[x], inversion[1], roman[x], tonic, None))
+				possibleMatch.append((inversion[0], chordType[x], inversion[1], roman[x], cfunction[x], tonic, None))
 		return (totalMatch, exactMatch, possibleMatch)
 
 

@@ -62,7 +62,7 @@ class ChordInterval(object):
 		return self._recognizedResultDict
 
 	# Equivalent Chord Group Dictionary
-	# {groupNo: [(cname, chordType, inversion, roman, tonic, groupNo), ...]}
+	# {groupNo: [(cname, chordType, inversion, roman, chordFunction, tonic, groupNo), ...]}
 	# priority: TotalMatch -> ExactMatch -> PossibleMatch
 	@property
 	def equivalentGroupDict(self):
@@ -189,60 +189,60 @@ class ChordInterval(object):
 			#total
 			for i, item in enumerate(resultDict[tonic][0]):
 				if groupCounter == 0:
-					newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
+					newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupCounter)
 					groupDict[groupCounter] = [newTuple]
 					self._recognizedResultDict[tonic][0][i] = newTuple
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
 						if self.__chkEquivalent(item, groupDict[groupNo][0]):
-							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
+							newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupNo)
 							groupDict[groupNo].append(newTuple)
 							self._recognizedResultDict[tonic][0][i] = newTuple
 							item = self._recognizedResultDict[tonic][0][i]
 							break
-					if item[5] is None:
-						newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
+					if item[6] is None:
+						newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupCounter)
 						groupDict[groupCounter] = [newTuple]
 						self._recognizedResultDict[tonic][0][i] = newTuple
 						groupCounter += 1
 			#exact
 			for i, item in enumerate(resultDict[tonic][1]):
 				if groupCounter == 0:
-					newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
+					newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupCounter)
 					groupDict[groupCounter] = [newTuple]
 					self._recognizedResultDict[tonic][1][i] = newTuple
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
 						if self.__chkEquivalent(item, groupDict[groupNo][0]):
-							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
+							newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupNo)
 							groupDict[groupNo].append(newTuple)
 							self._recognizedResultDict[tonic][1][i] = newTuple
 							item = self._recognizedResultDict[tonic][1][i]
 							break
-					if item[5] is None:
-						newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
+					if item[6] is None:
+						newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupCounter)
 						groupDict[groupCounter] = [newTuple]
 						self._recognizedResultDict[tonic][1][i] = newTuple
 						groupCounter += 1
 			#possible
 			for i, item in enumerate(resultDict[tonic][2]):
 				if groupCounter == 0:
-					newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
+					newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupCounter)
 					groupDict[groupCounter] = [newTuple]
 					self._recognizedResultDict[tonic][2][i] = newTuple
 					groupCounter += 1
 				else:
 					for groupNo in groupDict.keys():
 						if self.__chkEquivalent(item, groupDict[groupNo][0]):
-							newTuple = (item[0], item[1], item[2], item[3], item[4], groupNo)
+							newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupNo)
 							groupDict[groupNo].append(newTuple)
 							self._recognizedResultDict[tonic][2][i] = newTuple
 							item = self._recognizedResultDict[tonic][2][i]
 							break
-					if item[5] is None:
-						newTuple = (item[0], item[1], item[2], item[3], item[4], groupCounter)
+					if item[6] is None:
+						newTuple = (item[0], item[1], item[2], item[3], item[4], item[5], groupCounter)
 						groupDict[groupCounter] = [newTuple]
 						self._recognizedResultDict[tonic][2][i] = newTuple
 						groupCounter += 1
@@ -264,14 +264,14 @@ class ChordInterval(object):
 			'bVI':9, 'VI':10,
 			'bVII':11, 'VII':12
 		}
-		if targetChord[4][-1] == 'm':
-			targetTonic = targetChord[4][:-1]
+		if targetChord[5][-1] == 'm':
+			targetTonic = targetChord[5][:-1]
 		else:
-			targetTonic = targetChord[4]
-		if compareChord[4][-1] == 'm':
-			compareTonic = compareChord[4][:-1]
+			targetTonic = targetChord[5]
+		if compareChord[5][-1] == 'm':
+			compareTonic = compareChord[5][:-1]
 		else:
-			compareTonic = compareChord[4]
+			compareTonic = compareChord[5]
 
 		targetSum = (noteDict[targetTonic] + romanDict[targetChord[3]])%12
 		compareSum = (noteDict[compareTonic] + romanDict[compareChord[3]])%12

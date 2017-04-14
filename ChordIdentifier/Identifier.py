@@ -43,8 +43,8 @@ class Identifier(object):
 				interval.debug()
 				print ""
 
-	def runProgression(self, featureList=[], barLimit=2, verbal=False, output=None):
-		result = self._progressionVerifier.verify(featureList=featureList, barLimit=barLimit)
+	def runProgression(self, choice, featureList=[], barLimit=2, verbal=False, output=None):
+		result = self._progressionVerifier.verify(choice=choice, featureList=featureList, barLimit=barLimit)
 		if verbal:
 			cnameIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='cname')
 			tonicIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='tonic')
