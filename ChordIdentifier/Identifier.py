@@ -5,16 +5,20 @@ from ChordInterval import ChordInterval
 import music21
 import copy
 import os
+import cPickle
 
 class Identifier(object):
+
+	StoragePath = "./Storage/"
 
 	#_preparedScoreInput structure
 	#[measure 1, measure 2, [ interval 1, interval 2, interval Object, interval 4, ... ], measure 4, ... ]
 	#                       ^                         ^                
 	#                   in measure 3            in interval 3  
 
-	def __init__(self, score):
+	def __init__(self, score, scoreFilename):
 		self._score = score
+		self._scoreFilename = scoreFilename
 		self._chordifiedScore = score.chordify()
 
 		#initialize chord analyzing tool object
@@ -55,6 +59,31 @@ class Identifier(object):
 		if output:
 			self.__outputResultInMusicXml(result=result, outputFileName=output)
 		return result
+
+	def save(self, overwrite=False):
+		filePath = self.__searchInStorage(self._scoreFilename)
+		if filePath and overwrite:
+			cPickle.dump(self, open(filePath, "w"), True)
+		elif not filePath:
+			filePath = os.getcwd()+'/'+self.StoragePath+self._scoreFilename+'.ChordIdentifier'
+			cPickle.dump(self, open(filePath, "w"), True)
+
+	@classmethod
+	def load(self, scoreFilename):
+		filePath = self.__searchInStorage(scoreFilename)
+		if filePath:
+			return cPickle.load(open(filePath, "r"))
+		else:
+			print "Unable to find saved ChordIdentifier."
+			return None
+
+	@classmethod
+	def __searchInStorage(self, scoreFilename):
+		filePath = os.getcwd()+'/'+self.StoragePath+scoreFilename+'.ChordIdentifier'
+		if os.path.isfile(filePath):
+			return filePath
+		else:
+			return None
 
 	def __outputResultInMusicXml(self, result, outputFileName):
 		cnameIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='cname')

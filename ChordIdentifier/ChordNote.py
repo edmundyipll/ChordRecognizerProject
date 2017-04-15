@@ -1,3 +1,4 @@
+import json
 class ChordNote(object):
 
 	@property

@@ -25,7 +25,6 @@ class ChordInterval(object):
 			self._intervalNo = None
 		self._recognizedResultDict = {}
 		self._equivalentGroupDict = {}
-		self.__updateStartEndTime()
 
 	# notes in this interval
 	# [note1, note2, note3, ...]
@@ -68,15 +67,6 @@ class ChordInterval(object):
 	def equivalentGroupDict(self):
 		return self._equivalentGroupDict
 
-	# deprecated
-	@property
-	def startOffset(self):
-		return self._startOffset
-
-	# decprecated
-	@property
-	def endEndTime(self):
-		return self._endEndTime
 
 	def debug(self):
 		print "Measure: ", self._measureNo, " Interval: ", self._intervalNo
@@ -128,14 +118,13 @@ class ChordInterval(object):
 
 		print "\tEquivalent Chord: "
 		for groupNo in self._equivalentGroupDict.keys():
-			strList = [str(tup[4]+' '+tup[0]) for tup in self._equivalentGroupDict[groupNo]]
+			strList = [str(tup[5]+' '+tup[0]) for tup in self._equivalentGroupDict[groupNo]]
 			print "\t", groupNo, ": ", strList
 		print ""
 
 	def addNote(self, chordNote=None):
 		if chordNote is not None:
 			self._noteList.append(chordNote)
-			self.__updateStartEndTime()
 
 	def replaceNote(self, originalNote=None, newNote=None):
 		if originalNote is not None and newNote is not None:
@@ -281,18 +270,3 @@ class ChordInterval(object):
 		if not targetSum == compareSum:
 			return False
 		return True
-
-
-	# deprecated
-	def __updateStartEndTime(self):
-		self._startOffset = None
-		self._endEndTime = None
-		if len(self._noteList):
-			self._startOffset = self._noteList[0].offset
-			self._endEndTime = self._noteList[-1].endTime
-			for chordNote in self._noteList:
-				if chordNote.offset < self._startOffset:
-					self._startOffset = chordNote.offset
-				if chordNote.endTime > self._endEndTime:
-					self._endEndTime = chordNote.endTime
-
