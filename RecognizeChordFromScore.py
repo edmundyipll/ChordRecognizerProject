@@ -38,22 +38,22 @@ verifierFeatureClass = ChordIdentifier.ProgressionVerifier.ProgressionFeature
 verifierIntervalChoiceClass = ChordIdentifier.ProgressionVerifier.ProgressionIntervalChoice
 
 # all possible feature combination for OnBeat mode
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+identifier.runProgression(choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
+# identifier.runProgression(choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+identifier.runProgression(choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
+# identifier.runProgression(choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
 
 
 # all possible feature combination for AllIntervalType mode
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+identifier.runProgression(choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
+# identifier.runProgression(choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+identifier.runProgression(choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
+# identifier.runProgression(choice=verifierIntervalChoiceClass.AllIntervalType, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
 
 
 
 # all possible feature combination for ChangedBaseline mode
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
-identifier.runProgression(barLimit=3, choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
+# identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
+# identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)

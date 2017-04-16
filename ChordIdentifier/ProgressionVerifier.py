@@ -75,7 +75,7 @@ class ProgressionVerifier(object):
 		# {intervalChoice: {featureListString: {barLimit: {interval: [matchTuple, ... ]}}}}
 
 
-	def verify(self, choice, featureList=[], barLimit=3):
+	def verify(self, choice, featureList=[], barLimit=2):
 
 		# init
 		resultList = []
@@ -184,13 +184,13 @@ class ProgressionVerifier(object):
 				# special case for changedBaseline IntervalChoice, only select the first interval
 				(targetIntervalWithinBarLimitA, touchEndA) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=0)
 			else:
-				(targetIntervalWithinBarLimitA, touchEndA) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=progressionBarLimitA)
+				(targetIntervalWithinBarLimitA, touchEndA) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=progressionBarLimitA/2)
 			for i, intervalB in enumerate(targetIntervalWithinBarLimitA):
 
 				totalExactMatches = self.__getOrderedMatchesDict(interval=intervalB, totalMatch=True, exactMatch=True, possibleMatch=False)
 				intervalBRomanVList = []
 				for key in sorted(totalExactMatches.keys()):
-					intervalBRomanVList += [matchTuple for matchTuple in totalExactMatches[key] if matchTuple[matchTupleRomanIndex] == 'V']
+					intervalBRomanVList += [matchTuple for matchTuple in totalExactMatches[key] if matchTuple[matchTupleRomanIndex] == 'V' and matchTuple[matchTupleTonicIndex][0] != tonicA[0]]
 
 				# check if current interval is the last PriorInterval, if no, progressionBarLimit=2, if yes, progressionBarLimit=2
 				if i+1 < len(targetIntervalWithinBarLimitA) and targetIntervalWithinBarLimitA[i+1].measureNo == intervalB.measureNo:
@@ -201,7 +201,7 @@ class ProgressionVerifier(object):
 					# special case for changedBaseline IntervalChoice, only select the first interval
 					(targetIntervalWithinBarLimitB, touchEndB) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalB.measureNo, startInterval=intervalB.intervalNo+1, barLimit=0)
 				else:
-					(targetIntervalWithinBarLimitB, touchEndB) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalB.measureNo, startInterval=intervalB.intervalNo+1, barLimit=progressionBarLimitB)
+					(targetIntervalWithinBarLimitB, touchEndB) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalB.measureNo, startInterval=intervalB.intervalNo+1, barLimit=progressionBarLimitB/2)
 				for matchTupleB in intervalBRomanVList:
 					(cnameB, chordTypeB, inverionB, romanB, chordFunctionB, tonicB, groupNoB) = matchTupleB
 					for j, intervalC in enumerate(targetIntervalWithinBarLimitB):
@@ -445,11 +445,10 @@ class ProgressionVerifier(object):
 
 
 	def __isPerfectCadenceProgression(self, previousChordType, afterChordType):
-		V7toI = previousChordType == "Major 7th" and afterChordType == "Major"
+		V7toI = previousChordType == "Dominant 7th" and afterChordType == "Major"
 		VtoI = previousChordType == "Major" and afterChordType == "Major"
 		vtoi = previousChordType == "Minor" and afterChordType == "Minor"
-		vtoI7 = previousChordType == "Minor" and afterChordType == "Major 7th"
-		return V7toI or VtoI or vtoi or vtoI7
+		return V7toI or VtoI or vtoi
 
 
 	def __getOrderedMatchesDict(self, interval, totalMatch=True, exactMatch=True, possibleMatch=True):
