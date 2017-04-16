@@ -47,17 +47,22 @@ class Identifier(object):
 				interval.debug()
 				print ""
 
-	def runProgression(self, choice, featureList=[], barLimit=2, verbal=False, output=None):
+	def runProgression(self, choice, featureList=[], barLimit=2, verbal=False, output=False, outputFilename=None):
 		result = self._progressionVerifier.verify(choice=choice, featureList=featureList, barLimit=barLimit)
 		if verbal:
 			cnameIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='cname')
 			tonicIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='tonic')
 			for (interval, matchTuple) in result:
-				string = "At Measure "+str(interval.measureNo+1)+", offset "+str(interval.exactOffset)+", "
+				string = "At Measure "+str(interval.measureNo)+", offset "+str(interval.exactOffset)+", "
 				string += str(matchTuple[tonicIndex])+str(matchTuple[cnameIndex])+", "+str(matchTuple)
 				print string
 		if output:
-			self.__outputResultInMusicXml(result=result, outputFileName=output)
+			if not outputFilename:
+				outputFilename = ''.join(self._scoreFilename.split('.xml')[:-1]) + '_'
+				outputFilename += ProgressionVerifier.ProgressionIntervalChoice.toString(choice) + '_'
+				outputFilename += '_'.join([ProgressionVerifier.ProgressionFeature.toString(f) for f in featureList]) + '_'
+				outputFilename += str(barLimit)+'bar' + '.xml'
+			self.__outputResultInMusicXml(result=result, outputFilename=outputFilename)
 		return result
 
 	def save(self, overwrite=False):
@@ -85,9 +90,10 @@ class Identifier(object):
 		else:
 			return None
 
-	def __outputResultInMusicXml(self, result, outputFileName):
+	def __outputResultInMusicXml(self, result, outputFilename):
 		cnameIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='cname')
 		tonicIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='tonic')
+		score = copy.deepcopy(self._score)
 		copiedChordifiedScore = copy.deepcopy(self._chordifiedScore)
 		for c in copiedChordifiedScore.recurse().getElementsByClass(music21.chord.Chord):
 			c.closedPosition(forceOctave=5, inPlace=True)
@@ -96,9 +102,8 @@ class Identifier(object):
 			c = [offsetMap.element for offsetMap in copiedChordifiedScore.measure(interval.measureNo+1).offsetMap() if isinstance(offsetMap.element, music21.chord.Chord) and offsetMap.offset == interval.exactOffset]
 			if len(c):
 				c[0].addLyric(str(matchTuple[tonicIndex])+str(matchTuple[cnameIndex]))
-		self._score.insert(0, copiedChordifiedScore)
-		self._score.write('musicxml', fp=os.getcwd()+'/'+outputFileName)
-		self._score.remove(copiedChordifiedScore)
+		score.insert(0, copiedChordifiedScore)
+		score.write('musicxml', fp=os.getcwd()+'/'+outputFilename)
 
 	def __basicAnalyze(self, inputs):
 		for i, measure in enumerate(inputs):

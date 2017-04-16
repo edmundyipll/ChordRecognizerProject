@@ -146,7 +146,7 @@ class ChordAnalyzingTool(object):
 		self._majorChordFunctionDictionary = {
 			0: 'Tonic', 1: 'Tonic', 2: 'Undefined',
 			3: 'Subdominant', 4: 'Subdominant', 
-			5: 'Tonic', 6: 'Undefined', 7: 'Tonic', 8: 'Undefined',
+			5: 'Tonic', 6: 'Undefined', 7: 'Subdominant', 8: 'Undefined',
 			9: 'Dominant', 10: 'Dominant',
 			11: 'Subdominant', 12: 'Subdominant', 13: 'Subdominant', 14: 'Subdominant',
 			15: 'Tonic', 16: 'Tonic',
