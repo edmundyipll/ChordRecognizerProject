@@ -50,6 +50,7 @@ class Identifier(object):
 			identifier = Identifier(score=score, scoreFilename=scoreFilename)
 			print "Save into storage folder"
 			identifier.save(overwrite=True)
+		return identifier
 
 	@classmethod
 	def __searchInStorage(self, scoreFilename):
