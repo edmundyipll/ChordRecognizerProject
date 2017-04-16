@@ -39,6 +39,42 @@ class Identifier(object):
 		# initialize progression verifier
 		self._progressionVerifier = ProgressionVerifier(inputList=self._preparedScoreInput, keyList=self._keyList)
 
+	@classmethod
+	def getIdentifier(self, score, scoreFilename):
+		# first search for saved storage
+		print "Searching storage folder for saved ChordIdentifier"
+		identifier = self.__load(scoreFilename=scoreFilename)
+
+		if not identifier:
+			print "Initializing new ChordIdentifier"
+			identifier = Identifier(score=score, scoreFilename=scoreFilename)
+			print "Save into storage folder"
+			identifier.save(overwrite=True)
+
+	@classmethod
+	def __searchInStorage(self, scoreFilename):
+		filePath = os.getcwd()+'/'+self.StoragePath+scoreFilename+'.ChordIdentifier'
+		if os.path.isfile(filePath):
+			return filePath
+		else:
+			return None
+
+	@classmethod
+	def __load(self, scoreFilename):
+		filePath = self.__searchInStorage(scoreFilename)
+		if filePath:
+			return cPickle.load(open(filePath, "r"))
+		else:
+			print "Unable to find saved ChordIdentifier."
+			return None
+
+	def save(self, overwrite=False):
+		filePath = self.__searchInStorage(self._scoreFilename)
+		if filePath and overwrite:
+			cPickle.dump(self, open(filePath, "w"), True)
+		elif not filePath:
+			filePath = os.getcwd()+'/'+self.StoragePath+self._scoreFilename+'.ChordIdentifier'
+			cPickle.dump(self, open(filePath, "w"), True)
 
 	def printPreparedScore(self):
 		inputs = self._preparedScoreInput
@@ -63,32 +99,7 @@ class Identifier(object):
 				outputFilename += '_'.join([ProgressionVerifier.ProgressionFeature.toString(f) for f in featureList]) + '_'
 				outputFilename += str(barLimit)+'bar' + '.xml'
 			self.__outputResultInMusicXml(result=result, outputFilename=outputFilename)
-		return result
-
-	def save(self, overwrite=False):
-		filePath = self.__searchInStorage(self._scoreFilename)
-		if filePath and overwrite:
-			cPickle.dump(self, open(filePath, "w"), True)
-		elif not filePath:
-			filePath = os.getcwd()+'/'+self.StoragePath+self._scoreFilename+'.ChordIdentifier'
-			cPickle.dump(self, open(filePath, "w"), True)
-
-	@classmethod
-	def load(self, scoreFilename):
-		filePath = self.__searchInStorage(scoreFilename)
-		if filePath:
-			return cPickle.load(open(filePath, "r"))
-		else:
-			print "Unable to find saved ChordIdentifier."
-			return None
-
-	@classmethod
-	def __searchInStorage(self, scoreFilename):
-		filePath = os.getcwd()+'/'+self.StoragePath+scoreFilename+'.ChordIdentifier'
-		if os.path.isfile(filePath):
-			return filePath
-		else:
-			return None
+		return result	
 
 	def __outputResultInMusicXml(self, result, outputFilename):
 		cnameIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='cname')
