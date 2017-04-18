@@ -1,0 +1,77 @@
+FEATURE ChordFunction
+	purpose: to find out all target matchTuple, with the requirement of appropriate chord function, within a given bar limit
+
+	input: intervalA,
+		   matchTupleA,
+		   ProgressionIntervalChoice,
+		   bar limit
+
+	output: list of next target matchTuple
+
+	unpack matchTupleA such that
+	(cnameA, chordTypeA, inverionA, romanA, chordFunctionA, tonicA, groupNoA) = matchTupleA
+
+	if choice is ChangedBaseline:
+		matchTupleBList = all matchTuple inside all target type interval from intervalA to ((intervalA + 5)/2)
+	else:
+		matchTupleBList = all matchTuple inside all target type interval form intervalA to (bar limit/2) 
+
+	unchangedMatchTuple = Null
+
+	for matchTupleB in matchTupleBList:
+
+		unpack matchTupleA such that
+		(cnameB, chordTypeB, inverionB, romanB, chordFunctionB, tonicB, groupNoB) = matchTupleB
+
+		if tonicA = tonicB && cnameA = cnameB:
+
+			unchangedMatchTuple = matchTupleB
+
+		else:
+
+			break
+
+	if unchangedMatchTuple is not Null:
+
+		append the unchangedMatchTuple to next target tuple list
+
+	tmpDict = {}
+
+	if chordFunctionA is "Subdominant":
+
+		let chordFunctionA = the nearest non "Subdominant" in previous progression
+
+	for matchTupleB in matchTupleBList:
+
+		unpack matchTupleA such that
+		(cnameB, chordTypeB, inverionB, romanB, chordFunctionB, tonicB, groupNoB) = matchTupleB
+
+		if tonicA = tonicB:
+
+			if chordFunctionB is "Subdominant":
+
+				append the matchTupleB to next target tuple list
+
+			else if chordFunctionA is "Tonic" && chordFunctionB is "Dominant":
+
+				append the matchTupleB to next target tuple list
+
+			else if chordFunctionA is "Dominant" && chordFunctionB is "Tonic":
+
+				append the matchTupleB to next target tuple list
+
+			else:
+
+				append the matchTupleB to tmpDict and handle later
+
+		if matchTupleB is the last matchTuple in a bar:
+
+			if chordFunctionA is "Tonic":
+
+				append the unhandled MatchTuple in tmpDict to next target tuple list in following order
+				"Tonic" > "Undefined"
+
+			if chordFunctionA is "Dominant":
+			
+				append the unhandled MatchTuple in tmpDict to next target tuple list in following order
+				"Dominant" > "Undefined"
