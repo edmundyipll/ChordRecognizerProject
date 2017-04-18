@@ -2,6 +2,7 @@ import os
 import ChordIdentifier
 import music21
 import sys
+import time
 
 curPath = os.getcwd() + '/'
 try:
@@ -29,6 +30,8 @@ identifier = ChordIdentifier.Identifier.getIdentifier(score=rawScore, scoreFilen
 verifierFeatureClass = ChordIdentifier.ProgressionVerifier.ProgressionFeature
 verifierIntervalChoiceClass = ChordIdentifier.ProgressionVerifier.ProgressionIntervalChoice
 
+startMs = round(time.time()*1000)
+
 # all possible feature combination for OnBeat mode
 identifier.runProgression(choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.ChordFunction], verbal=False, output=True)
 identifier.runProgression(choice=verifierIntervalChoiceClass.OnBeat, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
@@ -49,3 +52,8 @@ identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, fe
 identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
 identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.ChordFunction], verbal=False, output=True)
 identifier.runProgression(choice=verifierIntervalChoiceClass.ChangedBaseline, featureList=[verifierFeatureClass.VtoIProgression, verifierFeatureClass.FirstComeFirstServe], verbal=False, output=True)
+
+finishMs = round(time.time()*1000)
+
+totalMs = int(finishMs - startMs)
+print "Time used: "+str(int(round(totalMs/1000)))+"s "+str(totalMs%1000)+"ms"

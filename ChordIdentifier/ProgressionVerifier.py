@@ -116,18 +116,17 @@ class ProgressionVerifier(object):
 			startingPoint = startingPointIntervalList[0]
 			matchTupleRomanIndex = self._analyzingTool.convertMatchTupleKeyToIndex('roman')
 			matchTupleTonicIndex = self._analyzingTool.convertMatchTupleKeyToIndex('tonic')
-			if len(self._keyList):
-				keyReferenceObject = self._keyList[0]
-				referencedKey = keyReferenceObject.tonic.name
-				if keyReferenceObject.mode == 'minor':
+			referencedKeyList = []
+			for key in self._keyList:
+				referencedKey = key.tonic.name
+				if key.mode == 'minor':
 					referencedKey += 'm'
-			else:
-				referencedKey = None
+				referencedKeyList.append(referencedKey)
 			matchTuplePriorityList = []
 			allMatches = self.__getOrderedMatchesDict(interval=startingPoint, totalMatch=True, exactMatch=True, possibleMatch=True)
-			if referencedKey:
+			for referencedKey in referencedKeyList:
 				for key in sorted(allMatches.keys()):
-					matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList and matchTuple[matchTupleTonicIndex] == referencedKey]
+					matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList and matchTuple[matchTupleTonicIndex] == referencedKey and matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V']
 			for key in sorted(allMatches.keys()):
 				matchTuplePriorityList += [matchTuple for matchTuple in allMatches[key] if matchTuple not in matchTuplePriorityList and (matchTuple[matchTupleRomanIndex] == 'I' or matchTuple[matchTupleRomanIndex] == 'V')]
 			for key in sorted(allMatches.keys()):

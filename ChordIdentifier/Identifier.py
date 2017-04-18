@@ -35,6 +35,11 @@ class Identifier(object):
 
 		# extract the key object list for priority control in progression
 		self._keyList = [key for key in self._chordifiedScore.recurse().getElementsByClass(music21.key.Key)]
+		if not len(self._keyList):
+			self._keyList = [key for key in self._chordifiedScore.recurse().getElementsByClass(music21.key.KeySignature)] 
+			self._keyList += [self._keyList[0].asKey('major')]
+			self._keyList += [self._keyList[0].asKey('minor')]
+			self._keyList.remove(self._keyList[0])
 
 		# initialize progression verifier
 		self._progressionVerifier = ProgressionVerifier(inputList=self._preparedScoreInput, keyList=self._keyList)
