@@ -12,7 +12,7 @@ class ProgressionVerifier(object):
 
 		_intervalTypeListDictionary = {
 			OnBeat: [ChordInterval.IntervalType.OnBeat],
-			AllIntervalType: [ChordInterval.IntervalType.OnBeat, ChordInterval.IntervalType.AfterBeat, ChordInterval.IntervalType.ChangedBaseline],
+			AllIntervalType: [ChordInterval.IntervalType.OnBeat, ChordInterval.IntervalType.AfterBeat, ChordInterval.IntervalType.ChangedBaseline, ChordInterval.IntervalType.Normal],
 			ChangedBaseline: [ChordInterval.IntervalType.ChangedBaseline]
 		}
 
@@ -34,7 +34,7 @@ class ProgressionVerifier(object):
 
 		#OnBeat					-	Select OnBeat Interval
 
-		#llIntervalType 		-	Select Interval of all IntervalType except Continuous
+		#AllIntervalType 		-	Select Interval of all IntervalType except Continuous
 
 		#ChangedBaseline		-	Select ChangedBaseline Interval
 

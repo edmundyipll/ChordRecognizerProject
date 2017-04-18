@@ -1,0 +1,48 @@
+FEATURE VtoIProgression
+	
+	purpose: to find out all target matchTuple, with the requirement of V to I progression, within a given bar limit
+
+	input: intervalA,
+		   matchTupleA,
+		   ProgressionIntervalChoice,
+		   bar limit
+
+	output: list of next target matchTuple
+
+
+
+	unpack matchTupleA such that
+	(cnameA, chordTypeA, inverionA, romanA, chordFunctionA, tonicA, groupNoA) = matchTupleA
+
+	matchTupleBList = all matchTuple inside all target type interval from intervalA to (bar limit/2)
+
+	for matchTupleB in matchTupleBList:
+
+		unpack matchTupleA such that
+		(cnameB, chordTypeB, inverionB, romanB, chordFunctionB, tonicB, groupNoB) = matchTupleB
+
+		if romanB is 'V' && cnameB[0] not equal cnameA[0]:
+
+			matchTupleCList = all matchTuple inside all target type interval from intervalB to (bar limit/2)
+
+			for matchTupleC in matchTupleCList:
+
+				unpack matchTupleC such that
+				(cnameC, chordTypeC, inversionC, romanC, chordFunctionC, tonicC, groupNoC) = matchTupleC
+
+				if tonicB = tonicC && romanC is 'I' && (chordTypeA, chordTypeC) is [(Major 7th, Major) / (Major, Major) / (Minor, Minor)]
+
+					eqvMatchTupleC = equivalent matchTuple of matchTupleC which has tonic equal to tonicA
+
+					if matchTupleA to matchTupleC is a valid progression:
+
+						append matchTupleC to next target matchTuple list
+
+					eqvMatchTupleB = equivalent matchTuple of matchTupleB which has tonic equal to tonicA
+
+					if matchTupleA to matchTupleB is a valid progression:
+
+						append matchTupleB to next target matchTuple list
+
+
+
