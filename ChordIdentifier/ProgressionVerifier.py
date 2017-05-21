@@ -5,8 +5,21 @@ import copy
 
 class ProgressionVerifier(object):
 
-	#simulate enum
 	class ProgressionIntervalChoice(object):
+		# Simulate ENUM object
+		# enum ProgressionIntervalChoice {
+		# 	Onbeat,
+		# 	AllIntervalType,
+		# 	ChangedBaseline
+		# }
+
+		# OnBeat					-	Select OnBeat Interval
+
+		# AllIntervalType 			-	Select Interval of all IntervalType except Continuous
+
+		# ChangedBaseline			-	Select ChangedBaseline Interval
+
+		# the above mode are mutually exclusive, mode for choosing progression interval
 
 		OnBeat, AllIntervalType, ChangedBaseline = range(3)
 
@@ -32,17 +45,23 @@ class ProgressionVerifier(object):
 			else:
 				return []
 
-		#OnBeat					-	Select OnBeat Interval
-
-		#AllIntervalType 		-	Select Interval of all IntervalType except Continuous
-
-		#ChangedBaseline		-	Select ChangedBaseline Interval
-
-		# the above mode are mutually exclusive, mode for choosing progression interval
-
 	#simulate enum
 	class ProgressionFeature(object):
 
+		# enum ProgressionFeature {
+		# 	VtoIProgression,
+		# 	ChordFunction,
+		# 	FirstComeFirstServe
+		# }
+
+		# VtoIProgression		-	Using the V - I progression as FIRST PRIORITY
+
+		# ChordFunction			-	Using the chord function of each match tuple to prioritise the priority of progression, IN SECOND PRIORITY
+
+		# FirstComeFirstServe	-	For selected interval type, simply find a nearest progression in same tonic, IN SECOND PRIORITY
+
+		# ChordFunction and FirstComeFirstServe are mutually exclusive
+		
 		VtoIProgression, ChordFunction, FirstComeFirstServe = range(3)
 		@classmethod
 		def toString(self, feature):
@@ -52,14 +71,6 @@ class ProgressionVerifier(object):
 		@classmethod
 		def getFeatureList(self):
 			return [self.VtoIProgression, self.ChordFunction, self.FirstComeFirstServe]
-
-		#VtoIProgression		-	Using the V - I progression as FIRST PRIORITY
-
-		#ChordFunction			-	Using the chord function of each match tuple to prioritise the priority of progression, IN SECOND PRIORITY
-
-		#FirstComeFirstServe	-	For selected interval type, simply find a nearest progression in same tonic, IN SECOND PRIORITY
-
-		# ChordFunction and FirstComeFirstServe are mutually exclusive
 
 	def __init__(self, inputList=[], keyList=[]):
 		self._inputList = copy.deepcopy(inputList)
@@ -80,12 +91,12 @@ class ProgressionVerifier(object):
 		# init
 		resultList = []
 		featureList.sort();
-		
+
 
 		# get the invalidResultDictionary in current settings
 		invalidResult = self.__getInvalidDictionary(choice=choice, featureList=featureList, barLimit=barLimit)
 
-		# handle feature list		
+		# handle feature list
 		if len(featureList) == 0:
 			#default feature
 			featureList.append(self.ProgressionFeature.VtoIProgression)
@@ -100,7 +111,7 @@ class ProgressionVerifier(object):
 
 
 		# find starting point interval
-		targetTypeList = self.ProgressionIntervalChoice.getTargetIntervalTypeList(choice)		
+		targetTypeList = self.ProgressionIntervalChoice.getTargetIntervalTypeList(choice)
 		startingPointIntervalList = []
 		touchEnd = False
 		measureCnt = 0
@@ -275,7 +286,7 @@ class ProgressionVerifier(object):
 			else:
 				(targetIntervalWithinBarLimitA, touchEnd) = self.__findAllIntervalByIntervalTypeWithLimit(targetIntervalType=targetTypeList, startMeasure=intervalA.measureNo, startInterval=intervalA.intervalNo+1, barLimit=progressionBarLimitA)
 
-			# first search for remaining unchanged 
+			# first search for remaining unchanged
 			farestUnchangedChordFunction = None
 			for i, intervalB in enumerate(targetIntervalWithinBarLimitA):
 				allMatches = self.__getOrderedMatchesDict(interval=intervalB, totalMatch=True, exactMatch=True, possibleMatch=True)
@@ -299,7 +310,7 @@ class ProgressionVerifier(object):
 
 					#next progression with chord function remain unchanged
 					recursiveResult = self.__recursiveProgression(startingInterval=intervalB, startingMatch=matchTupleB, choice=choice, featureList=featureList, barLimit=barLimit, previousNotSubdominant=newPreviousNotSubdominant)
-					
+
 					if len(recursiveResult) == 0:
 						if intervalB not in invalidResult:
 							invalidResult[intervalB] = []
@@ -330,27 +341,27 @@ class ProgressionVerifier(object):
 
 					# In any case, Subdominant will be the first priority
 					priorityList += [(intervalB, matchTupleB) for matchTupleB in sameTonicList if matchTupleB[matchTupleChordFunctionIndex] == "Subdominant"]
-					
+
 					if chordFunctionA == "Dominant" or (previousNotSubdominant is None and chordFunctionA == "Subdominant") or (previousNotSubdominant is not None and chordFunctionA == "Subdominant" and chordFunctionP == "Dominant"):
 						# for Dominant, Tonic ranked higher than Dominant
 						priorityList += [(intervalB, matchTupleB) for matchTupleB in sameTonicList if matchTupleB[matchTupleChordFunctionIndex] == "Tonic"]
-						
+
 						# save to the dictionary and append later
 						unrankedPriorityListDict['Dominant'] += [(intervalB, matchTupleB) for matchTupleB in sameTonicList if matchTupleB[matchTupleChordFunctionIndex] == "Dominant"]
-					
+
 					elif chordFunctionA == "Tonic" or (previousNotSubdominant is not None and chordFunctionA == "Subdominant" and chordFunctionP == "Tonic"):
 						# for Tonic, Dominant ranked higher than Tonic
 						priorityList += [(intervalB, matchTupleB) for matchTupleB in sameTonicList if matchTupleB[matchTupleChordFunctionIndex] == "Dominant"]
-						
+
 						# save to the dictionary and append later
 						unrankedPriorityListDict['Tonic'] += [(intervalB, matchTupleB) for matchTupleB in sameTonicList if matchTupleB[matchTupleChordFunctionIndex] == "Tonic"]
 
 					# save to the dictionary and append later
 					unrankedPriorityListDict['Undefined'] += [(intervalB, matchTupleB) for matchTupleB in sameTonicList if matchTupleB[matchTupleChordFunctionIndex] == "Undefined"]
-				
+
 				# append the less priority list
 				if chordFunctionA == "Dominant" or (previousNotSubdominant is None and chordFunctionA == "Subdominant") or (previousNotSubdominant is not None and chordFunctionA == "Subdominant" and chordFunctionP == "Dominant"):
-					priorityList += unrankedPriorityListDict['Dominant']				
+					priorityList += unrankedPriorityListDict['Dominant']
 				elif chordFunctionA == "Tonic" or (previousNotSubdominant is not None and chordFunctionA == "Subdominant" and chordFunctionP == "Tonic"):
 					priorityList += unrankedPriorityListDict['Tonic']
 				priorityList += unrankedPriorityListDict['Undefined']
@@ -374,13 +385,13 @@ class ProgressionVerifier(object):
 							newPreviousNotSubdominant = previousNotSubdominant
 
 						recursiveResult = self.__recursiveProgression(startingInterval=intervalB, startingMatch=matchTupleB, choice=choice, featureList=featureList, barLimit=barLimit, previousNotSubdominant=newPreviousNotSubdominant)
-						
+
 						if len(recursiveResult) == 0:
 							if intervalB not in invalidResult:
 								invalidResult[intervalB] = []
 							invalidResult[intervalB].append(matchTupleB)
 						else:
-							
+
 							return [(intervalA, matchTupleA)] + recursiveResult
 				if choice == self.ProgressionIntervalChoice.ChangedBaseline:
 					break
@@ -415,7 +426,7 @@ class ProgressionVerifier(object):
 						else:
 							newPreviousNotSubdominant = previousNotSubdominant
 
-						# next progression 
+						# next progression
 						recursiveResult = self.__recursiveProgression(startingInterval=intervalB, startingMatch=matchTupleB, choice=choice, featureList=featureList, barLimit=barLimit, previousNotSubdominant=newPreviousNotSubdominant)
 
 						if len(recursiveResult) == 0:
@@ -473,7 +484,7 @@ class ProgressionVerifier(object):
 		if barLimit == 0:
 			# special case, select the next five possible target interval neglecting bar limit,
 			touchEnd = False
-			while not touchEnd: 
+			while not touchEnd:
 				(intervalInOneBar, touchEnd) = self.__findAllIntervalWithLimit(startMeasure=startMeasure, startInterval=startInterval, barLimit=1)
 				for interval in intervalInOneBar:
 					for intervalType in interval.intervalType:
@@ -490,7 +501,7 @@ class ProgressionVerifier(object):
 					if intervalType in targetIntervalType:
 						intervalList.append(interval)
 						break
-		return (intervalList, touchEnd)		
+		return (intervalList, touchEnd)
 
 
 	def __findAllIntervalWithLimit(self, startMeasure, startInterval, barLimit):

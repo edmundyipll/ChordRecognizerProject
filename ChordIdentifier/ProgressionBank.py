@@ -1,6 +1,8 @@
 import csv
 class ProgressionBank(object):
 
+	# Object for accessing progression table csv
+	# provide function for examining major or minor progression is valid or not
 	def __readCSV(self, source):
 		bank = {}
 		keys = []

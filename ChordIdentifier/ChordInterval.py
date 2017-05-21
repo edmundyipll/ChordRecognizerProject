@@ -2,8 +2,27 @@ import re
 
 class ChordInterval(object):
 
-	#simulate enum
+	# ChordInterval Object:
+	# {
+	# 	self._noteList: [ChordNote Objects],
+	# 	self._intervalType: [IntervalTypes],
+	# 	self._exactOffset: float,
+	# 	self._exactEndTime: float,
+	# 	self._measureNo: int,
+	# 	self._intervalNo: int,
+	# 	self._recognizedResultDict: {Tonic: ([TotalMatch chordname], [ExactMatch chordname, PossibleMatch chordname])}
+	# 	self._equivalentGroupDict: {GroupNo: [(chordname, chordType, inversion, roman, chordFunction, tonic, groupNo)]}
+	# }
+
 	class IntervalType(object):
+		# Simulate ENUM object
+		# enum IntervalType {
+		# 	Onbeat,
+		# 	AfterBeat,
+		# 	Continuous,
+		# 	Normal,
+		# 	ChangedBaseline,
+		# }
 		OnBeat, AfterBeat, Continuous, Normal, ChangedBaseline = range(5)
 		@staticmethod
 		def toString(intervalType=0):
@@ -26,8 +45,6 @@ class ChordInterval(object):
 		self._recognizedResultDict = {}
 		self._equivalentGroupDict = {}
 
-	# notes in this interval
-	# [note1, note2, note3, ...]
 	@property
 	def noteList(self):
 		return self._noteList
@@ -67,7 +84,7 @@ class ChordInterval(object):
 	def equivalentGroupDict(self):
 		return self._equivalentGroupDict
 
-
+	# Funtion for printing debug message
 	def debug(self):
 		print "Measure: ", self._measureNo, " Interval: ", self._intervalNo
 		print "\tStart at ", self._exactOffset, "End at ", self._exactEndTime
@@ -122,10 +139,12 @@ class ChordInterval(object):
 			print "\t", groupNo, ": ", strList
 		print ""
 
+	# never used
 	def addNote(self, chordNote=None):
 		if chordNote is not None:
 			self._noteList.append(chordNote)
 
+	# never used
 	def replaceNote(self, originalNote=None, newNote=None):
 		if originalNote is not None and newNote is not None:
 			try:
@@ -135,12 +154,14 @@ class ChordInterval(object):
 			except ValueError:
 				self._noteList.append(newNote)
 
+	# return the ChordNote object in self._noteList that has the lowest frequency
 	def getLowestFrequency(self):
 		if len(self._noteList):
 			return min([note.frequency for note in self._noteList])
 		else:
 			return None
 
+	# transform ChordNote object list to specific format for the recognize function in ChordAnalyzingTool
 	def getChordRecognizerInputFormat(self):
 		inputDict = {}
 		for chordNote in self._noteList:
@@ -170,6 +191,7 @@ class ChordInterval(object):
 	def setRecognizedResultDict(self, d={}):
 		self._recognizedResultDict = d
 
+	# function for analyze equivalentChord, generating self._equivalentGroupDict
 	def analyzeEquivalentChord(self):
 		resultDict = self._recognizedResultDict
 		groupDict = {}
@@ -237,6 +259,7 @@ class ChordInterval(object):
 						groupCounter += 1
 		self._equivalentGroupDict = groupDict
 
+	# hardcoded function for checking equivalent chord
 	def __chkEquivalent(self, targetChord, compareChord):
 		noteDict = {
 			'C':1, 'C#':2, 'Db':2,

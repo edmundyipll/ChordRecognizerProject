@@ -11,10 +11,21 @@ class Identifier(object):
 
 	StoragePath = "./Storage/"
 
+	# Identifier Object:
+	# {
+	# 	self._score: Music21.Score,
+	# 	self._scoreFilename: String,
+	# 	self._chordifiedScore: Music21.Score,
+	# 	self._analyzingTool: ChordAnalyzingTool,
+	# 	self._keyList: [Music21.Key],
+	# 	self._preparedScoreInput: [[ChordInterval],[ChordInterval], ... ],
+	#	self._progressionVerifier: ProgressionVerifier
+	# }
+
 	#_preparedScoreInput structure
 	#[measure 1, measure 2, [ interval 1, interval 2, interval Object, interval 4, ... ], measure 4, ... ]
-	#                       ^                         ^                
-	#                   in measure 3            in interval 3  
+	#                       ^                         ^
+	#                   in measure 3            in interval 3
 
 	def __init__(self, score, scoreFilename):
 		self._score = score
@@ -90,6 +101,13 @@ class Identifier(object):
 				interval.debug()
 				print ""
 
+	# Driving function for running progression for this Identifier
+	# If verbal = true, print out result,
+	# If output = true, save output in xml format with used features and interval type as default filename
+	# If outputFilename specified, save output in xml format with specified file name
+	# specify target interval type by setting "choice"
+	# specify features by setting "featureList"
+	# specify progression bar limit by setting "barLimit"
 	def runProgression(self, choice, featureList=[], barLimit=2, verbal=False, output=False, outputFilename=None):
 		result = self._progressionVerifier.verify(choice=choice, featureList=featureList, barLimit=barLimit)
 		if verbal:
@@ -106,7 +124,7 @@ class Identifier(object):
 				outputFilename += '_'.join([ProgressionVerifier.ProgressionFeature.toString(f) for f in featureList]) + '_'
 				outputFilename += str(barLimit)+'bar' + '.xml'
 			self.__outputResultInMusicXml(result=result, outputFilename=outputFilename)
-		return result	
+		return result
 
 	def __outputResultInMusicXml(self, result, outputFilename):
 		cnameIndex = self._analyzingTool.convertMatchTupleKeyToIndex(key='cname')
@@ -208,4 +226,3 @@ class Identifier(object):
 			count += 1
 			measure = score.measure(count)
 		return inputs
-

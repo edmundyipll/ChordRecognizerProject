@@ -1,6 +1,12 @@
-import json
 class ChordNote(object):
-
+	# ChordNote Object:
+	# {
+	# 	self.name: [ChordNote Objects],
+	# 	self._frequency: [IntervalTypes],
+	# 	self._offset: float,
+	# 	self._endTime: float,
+	# 	self._measure: int,
+	# }
 	@property
 	def frequency(self):
 		return self._frequency
